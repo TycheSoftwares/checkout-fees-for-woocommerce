@@ -351,7 +351,7 @@ class Alg_WC_Checkout_Fees_Settings_Per_Product {
 							'<div style="padding: 20px; background-color: #d6d5d3; margin-bottom: 15px;">'
 								. __( 'In free version only <strong>Direct Bank Transfer (BACS)</strong> fees are available on per product basis.', 'checkout-fees-for-woocommerce' ) . ' '
 								. sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set fees for this gateway on per product basis.', 'checkout-fees-for-woocommerce' ),
-									'https://wpfactory.com/item/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' )
+									'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' )
 							. '</div>' : '';
 						$html .= '<table>';
 						foreach ( $this->get_meta_box_options() as $option ) {
