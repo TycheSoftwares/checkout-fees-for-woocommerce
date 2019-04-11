@@ -30,6 +30,13 @@ class Alg_WC_Checkout_Fees {
 	public $current_currency;
 
 	/**
+	 * Names of fees added by the plugin
+	 *
+	 * @since 2.5.8
+	 */
+	public $fees_added = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @version 2.5.0
@@ -37,13 +44,19 @@ class Alg_WC_Checkout_Fees {
 	 */
 	function __construct() {
 		if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_enabled', 'yes' ) ) {
-			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_gateways_fees' ) );
+			add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_gateways_fees' ), PHP_INT_MAX );
 			add_action( 'wp_enqueue_scripts' ,             array( $this, 'enqueue_checkout_script' ) );
 			add_action( 'init',                            array( $this, 'register_script' ) );
 			require_once( 'class-wc-checkout-fees-info.php' );
 			$this->args_manager  = require_once( 'class-wc-checkout-fees-args.php' );
 			$this->base_currency = get_option( 'woocommerce_currency' );
 			$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
+
+			// check if subscriptions is enabled
+			if( in_array('woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+				// use this hook to add our fees in the recurring total displayed in the cart for subscriptions
+				add_filter( 'woocommerce_subscriptions_is_recurring_fee', array( $this, 'renewals_set_fees_recurring' ), 10, 3 );
+			}
 		}
 	}
 
@@ -256,6 +269,7 @@ class Alg_WC_Checkout_Fees {
 						get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' ),
 						get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 )
 					);
+					$this->fees_added[] = get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' );
 				}
 			}
 		}
@@ -272,6 +286,7 @@ class Alg_WC_Checkout_Fees {
 			}
 			if ( ! empty( $merged_fee ) ) {
 				WC()->cart->add_fee( $merged_fee['title'], $merged_fee['value'], $merged_fee['taxable'], $merged_fee['tax_class'] );
+				$this->fees_added[] = $merged_fee['title'];
 			}
 		}
 	}
@@ -636,6 +651,7 @@ class Alg_WC_Checkout_Fees {
 				} else {
 					$fee_text = $this->recheck_fee_title( $fee_text, $fees );
 					WC()->cart->add_fee( $fee_text, $final_fee_to_add, $taxable, $tax_class_name );
+					$this->fees_added[] = $fee_text;
 				}
 			}
 			if ( 0 != $final_fee_to_add_2 ) {
@@ -649,9 +665,27 @@ class Alg_WC_Checkout_Fees {
 				} else {
 					$fee_text_2 = $this->recheck_fee_title( $fee_text_2, $fees );
 					WC()->cart->add_fee( $fee_text_2, $final_fee_to_add_2, $taxable, $tax_class_name );
+					$this->fees_added[] = $fee_text_2;
 				}
 			}
 		}
+	}
+
+	/** 
+	 * Add fees to recurring totals for WC Subscriptions
+	 * 
+	 * @param boolean $recurring - Add or no to recurring total
+	 * @param object $fees - Fees present in the current cart
+	 * @param WC_Cart $cart - Cart Object
+	 * @return $recurring
+	 * @since 2.5.8
+	 */
+	function renewals_set_fees_recurring( $recurring, $fees, $cart ) {
+		
+		// If it's fees which have been added from our plugin, return true else return as is
+		$recurring = ( $fees->total > 0 && in_array( $fees->name, $this->fees_added ) ) ? true : $recurring;
+		return $recurring;
+		
 	}
 }
 
