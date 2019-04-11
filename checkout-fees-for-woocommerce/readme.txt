@@ -2,9 +2,8 @@
 Contributors: tychesoftwares
 Tags: woocommerce, woo commerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 5.0
-Stable tag: 2.5.7
-License: GNU General Public License v3.0
+Tested up to: 5.1.1
+Stable tag: 2.5.8License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Set fees and discounts for WooCommerce payment gateways.
@@ -49,9 +48,7 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
-== Changelog ==
-
-= 2.5.7 - 01/02/2019 =
+== Changelog === 2.5.8 - 11/04/2019 =* Added compatibility with WooCommerce Subscriptions.* The plugin goes into continous loading of the cart at Checkout when precision is left blanks for rounding. Fixed the same.* Added uninstall.php file to ensure the plugin data is deleted when the plugin is uninstalled.= 2.5.7 - 01/02/2019 =
 * Author name in the header has been changed.
 
 = 2.5.6 - 16/11/2018 =
