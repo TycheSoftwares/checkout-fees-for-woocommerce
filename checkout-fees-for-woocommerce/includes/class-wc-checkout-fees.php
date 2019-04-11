@@ -52,6 +52,9 @@ class Alg_WC_Checkout_Fees {
 			$this->base_currency = get_option( 'woocommerce_currency' );
 			$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 
+			// Modify Fee HTML
+			add_filter( 'woocommerce_cart_totals_fee_html', array( $this, 'modify_fee_html_for_taxes' ), 10, 2 );
+			
 			// check if subscriptions is enabled
 			if( in_array('woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 				// use this hook to add our fees in the recurring total displayed in the cart for subscriptions
@@ -669,6 +672,23 @@ class Alg_WC_Checkout_Fees {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Ensures (incl. %s Tax) is displayed for fees added from our plugin
+	 * when charges are being applied inclusive of taxes
+	 * 
+	 * @param string $cart_fee_html - HTML for fees 
+	 * @param object $fees - Fee Object
+	 * @return string $cart_fee_html
+	 * @since 2.5.8
+	 */
+	function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
+	
+		if( 'incl' == get_option( 'woocommerce_tax_display_cart' ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added ) ) {
+			$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s Tax)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ) ) . '</small>';
+		} 
+		return $cart_fee_html;
 	}
 
 	/** 
