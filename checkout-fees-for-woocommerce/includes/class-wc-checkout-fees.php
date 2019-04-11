@@ -223,6 +223,11 @@ class Alg_WC_Checkout_Fees {
 			return;
 		}
 
+		// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return
+		if( count( $this->fees_added ) > 0 ) { // this array will contain values if fees have already been added
+			return;
+		}
+
 		$this->get_max_ranges();
 
 		if ( $this->do_merge_fees ) {
