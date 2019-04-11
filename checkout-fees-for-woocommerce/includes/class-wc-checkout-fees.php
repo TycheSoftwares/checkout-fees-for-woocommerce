@@ -338,6 +338,8 @@ class Alg_WC_Checkout_Fees {
 		// Final calculations
 		$final_fee_to_add += $new_fee;
 		if ( 'percent' === $fee_type && 'yes' === $do_round ) {
+			// default the precision to 0 if it has been left blanks
+			$precision = '' == $precision ? 0 : $precision;
 			$final_fee_to_add = round( $final_fee_to_add, $precision );
 		}
 		return $final_fee_to_add;
