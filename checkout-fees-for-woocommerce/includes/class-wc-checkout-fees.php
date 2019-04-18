@@ -225,7 +225,8 @@ class Alg_WC_Checkout_Fees {
 
 		// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return
 		if( in_array('woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			if( WC_Subscriptions_Cart::cart_contains_subscription() && count( $this->fees_added ) > 0 && is_checkout() && ! isset( $_POST[ 'woocommerce-process-checkout-nonce' ] ) ) { // if cart contains subscriptions & fees have already been added & we're not yet processing the order
+			$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
+			if( $cart_contains_subscription && count( $this->fees_added ) > 0 && ( ( is_checkout() && ! isset( $_POST[ 'woocommerce-process-checkout-nonce' ] ) ) || is_cart() ) ) { // if cart contains subscriptions & fees have already been added & we're not yet processing the order
 				return;
 			}
 		}
@@ -710,7 +711,7 @@ class Alg_WC_Checkout_Fees {
 	function renewals_set_fees_recurring( $recurring, $fees, $cart ) {
 		
 		// If it's fees which have been added from our plugin, return true else return as is
-		$recurring = ( $fees->total > 0 && in_array( $fees->name, $this->fees_added ) ) ? true : $recurring;
+		$recurring = ( $fees->total != 0 && in_array( $fees->name, $this->fees_added ) ) ? true : $recurring;
 		return $recurring;
 		
 	}
