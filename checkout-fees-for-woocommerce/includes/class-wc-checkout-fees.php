@@ -224,8 +224,10 @@ class Alg_WC_Checkout_Fees {
 		}
 
 		// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return
-		if( count( $this->fees_added ) > 0 ) { // this array will contain values if fees have already been added
-			return;
+		if( in_array('woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			if( WC_Subscriptions_Cart::cart_contains_subscription() && count( $this->fees_added ) > 0 && is_checkout() && ! isset( $_POST[ 'woocommerce-process-checkout-nonce' ] ) ) { // if cart contains subscriptions & fees have already been added & we're not yet processing the order
+				return;
+			}
 		}
 
 		$this->get_max_ranges();
@@ -690,7 +692,7 @@ class Alg_WC_Checkout_Fees {
 	 */
 	function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
 	
-		if( 'incl' == get_option( 'woocommerce_tax_display_cart' ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added ) ) {
+		if( 'incl' == get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added ) ) {
 			$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s Tax)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ) ) . '</small>';
 		} 
 		return $cart_fee_html;
