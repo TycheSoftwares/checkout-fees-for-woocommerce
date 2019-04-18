@@ -3,7 +3,7 @@
 Plugin Name: Payment Gateway Based Fees and Discounts for WooCommerce
 Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/
 Description: Set payment gateways fees and discounts in WooCommerce.
-Version: 2.5.8
+Version: 2.5.9
 Author: Tyche Softwares
 Author URI: https://www.tychesoftwares.com/
 Text Domain: checkout-fees-for-woocommerce
@@ -11,7 +11,7 @@ Domain Path: /langs
 Copyright: © 2018 Tyche Softwares
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-WC tested up to: 3.5.7
+WC tested up to: 3.6.1
 */
 
 // Exit if accessed directly
@@ -53,7 +53,7 @@ final class Alg_Woocommerce_Checkout_Fees {
 	 * @var   string
 	 * @since 2.1.0
 	 */
-	public $version = '2.5.8';
+	public $version = '2.5.9';
 
 	/**
 	 * @var Alg_Woocommerce_Checkout_Fees The single instance of the class
