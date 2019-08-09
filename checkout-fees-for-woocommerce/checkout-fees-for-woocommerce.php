@@ -124,7 +124,7 @@ final class Alg_Woocommerce_Checkout_Fees {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_checkout_fees' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 		if ( 'checkout-fees-for-woocommerce.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/">' .
+			$custom_links[] = '<a href="https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=unlockall&utm_campaign=PaymentGatewayFeesLite">' .
 				__( 'Unlock All', 'checkout-fees-for-woocommerce' ) . '</a>';
 		}
 		return array_merge( $custom_links, $links );
