@@ -167,7 +167,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Customer countries', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'Countries to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_countries_include_fee_1_' . $key,
@@ -180,7 +180,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'Countries to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_countries_exclude_fee_1_' . $key,
@@ -194,7 +194,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Customer states', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'States to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing state is in the list. Comma separated list of states codes.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_states_include_fee_1_' . $key,
@@ -205,7 +205,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'States to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing state is NOT in the list. Comma separated list of states codes.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_states_exclude_fee_1_' . $key,
@@ -217,7 +217,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Product categories', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'Categories to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if product of selected category(-ies) is in the cart.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_cats_include_' . $key,
@@ -230,7 +230,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'Categories to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if NO product of selected category(-ies) is in the cart.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_cats_exclude_' . $key,
@@ -307,7 +307,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Customer countries', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'Countries to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_countries_include_fee_2_' . $key,
@@ -320,7 +320,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'Countries to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_countries_exclude_fee_2_' . $key,
@@ -334,7 +334,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Customer states', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'States to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing state is in the list. Comma separated list of states codes.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_states_include_fee_2_' . $key,
@@ -345,7 +345,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'States to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing state is NOT in the list. Comma separated list of states codes.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_states_exclude_fee_2_' . $key,
@@ -357,7 +357,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Product categories', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'Categories to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if product of selected category(-ies) is in the cart.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_cats_include_fee_2_' . $key,
@@ -370,7 +370,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'Categories to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if NO product of selected category(-ies) is in the cart.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ),
 				'id'        => 'alg_gateways_fees_cats_exclude_fee_2_' . $key,
@@ -457,7 +457,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 				'title'     => __( 'Customer countries', 'checkout-fees-for-woocommerce' ),
 				'desc'      => __( 'Countries to include', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ),
@@ -471,7 +471,7 @@ class Alg_WC_Checkout_Fees_Settings_Gateways {
 			array(
 				'desc'      => __( 'Countries to exclude', 'checkout-fees-for-woocommerce' ) . apply_filters( 'alg_wc_checkout_fees_option',
 					'<br>' . sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ),
-						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/' ), 'settings' ),
+						'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' ), 'settings' ),
 				'desc_tip'  => __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'Ignored if empty.', 'checkout-fees-for-woocommerce' ) . ' ' .
 					__( 'This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ),
