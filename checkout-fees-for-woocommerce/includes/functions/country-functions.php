@@ -5,29 +5,33 @@
  * @version 2.5.0
  * @since   2.0.0
  * @author  Tyche Softwares
+ *
+ * @package checkout-fees-for-woocommerce/Functions
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 if ( ! function_exists( 'alg_checkout_fees_get_country_set_countries' ) ) {
 	/**
-	 * alg_checkout_fees_get_country_set_countries.
+	 * Alg_checkout_fees_get_country_set_countries.
 	 *
 	 * @version 2.5.0
 	 * @since   2.4.0
 	 */
 	function alg_checkout_fees_get_country_set_countries() {
 		return array(
-			'EU'                        => array( 'AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HU', 'HR', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK' ),
-			'Europe'                    => array( 'AD', 'AL', 'AT', 'AX', 'BA', 'BE', 'BG', 'BY', 'CH', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FO', 'FR', 'FX', 'GB', 'GG', 'GI', 'GR', 'HR', 'HU', 'IE', 'IM', 'IS', 'IT', 'JE', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD', 'ME', 'MK', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RS', 'RU', 'SE', 'SI', 'SJ', 'SK', 'SM', 'TR', 'UA', 'VA' ),
-			'Europe-excluding-EU'       => array( 'AD', 'AL', 'AX', 'BA', 'BY', 'CH', 'FO', 'FX', 'GG', 'GI', 'IM', 'IS', 'JE', 'LI', 'MC', 'MD', 'ME', 'MK', 'NO', 'RS', 'RU', 'SJ', 'SM', 'TR', 'UA', 'VA' ),
-			'Eurozone'                  => array( 'AD', 'AT', 'BE', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'MC', 'NL', 'PT', 'SM', 'SI', 'SK', 'ES', 'VA' ),
-			'Africa'                    => array( 'AO', 'BF', 'BI', 'BJ', 'BW', 'CD', 'CF', 'CG', 'CI', 'CM', 'CV', 'DJ', 'DZ', 'EG', 'EH', 'ER', 'ET', 'GA', 'GH', 'GM', 'GN', 'GQ', 'GW', 'YT', 'KE', 'KM', 'LY', 'LR', 'LS', 'MA', 'MG', 'ML', 'MR', 'MU', 'MW', 'MZ', 'NA', 'NE', 'NG', 'RE', 'RW', 'SC', 'SD', 'SH', 'SL', 'SN', 'SO', 'ST', 'SZ', 'TD', 'TG', 'TN', 'TZ', 'UG', 'ZA', 'ZM', 'ZW' ),
-			'Asia'                      => array( 'AE', 'AF', 'AM', 'AP', 'AZ', 'BD', 'BH', 'BN', 'BT', 'CC', 'CY', 'CN', 'CX', 'GE', 'HK', 'ID', 'IL', 'IN', 'IO', 'IQ', 'IR', 'YE', 'JO', 'JP', 'KG', 'KH', 'KP', 'KR', 'KW', 'KZ', 'LA', 'LB', 'LK', 'MY', 'MM', 'MN', 'MO', 'MV', 'NP', 'OM', 'PH', 'PK', 'PS', 'QA', 'SA', 'SG', 'SY', 'TH', 'TJ', 'TL', 'TM', 'TW', 'UZ', 'VN' ),
-			'Australia-and-Oceania'     => array( 'AS', 'AU', 'CK', 'FJ', 'FM', 'GU', 'KI', 'MH', 'MP', 'NC', 'NF', 'NR', 'NU', 'NZ', 'PF', 'PG', 'PN', 'PW', 'SB', 'TK', 'TO', 'TV', 'UM', 'VU', 'WF', 'WS' ),
-			'Central-America'           => array( 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BM', 'BS', 'BZ', 'CR', 'CU', 'DM', 'DO', 'GD', 'GL', 'GP', 'GT', 'HN', 'HT', 'JM', 'KY', 'KN', 'LC', 'MF', 'MQ', 'MS', 'NI', 'PA', 'PM', 'PR', 'SV', 'TC', 'TT', 'VC', 'VG', 'VI' ),
-			'North-America'             => array( 'CA', 'MX', 'US' ),
-			'South-America'             => array( 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE' ),
+			'EU'                    => array( 'AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HU', 'HR', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK' ),
+			'Europe'                => array( 'AD', 'AL', 'AT', 'AX', 'BA', 'BE', 'BG', 'BY', 'CH', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FO', 'FR', 'FX', 'GB', 'GG', 'GI', 'GR', 'HR', 'HU', 'IE', 'IM', 'IS', 'IT', 'JE', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD', 'ME', 'MK', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RS', 'RU', 'SE', 'SI', 'SJ', 'SK', 'SM', 'TR', 'UA', 'VA' ),
+			'Europe-excluding-EU'   => array( 'AD', 'AL', 'AX', 'BA', 'BY', 'CH', 'FO', 'FX', 'GG', 'GI', 'IM', 'IS', 'JE', 'LI', 'MC', 'MD', 'ME', 'MK', 'NO', 'RS', 'RU', 'SJ', 'SM', 'TR', 'UA', 'VA' ),
+			'Eurozone'              => array( 'AD', 'AT', 'BE', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'MC', 'NL', 'PT', 'SM', 'SI', 'SK', 'ES', 'VA' ),
+			'Africa'                => array( 'AO', 'BF', 'BI', 'BJ', 'BW', 'CD', 'CF', 'CG', 'CI', 'CM', 'CV', 'DJ', 'DZ', 'EG', 'EH', 'ER', 'ET', 'GA', 'GH', 'GM', 'GN', 'GQ', 'GW', 'YT', 'KE', 'KM', 'LY', 'LR', 'LS', 'MA', 'MG', 'ML', 'MR', 'MU', 'MW', 'MZ', 'NA', 'NE', 'NG', 'RE', 'RW', 'SC', 'SD', 'SH', 'SL', 'SN', 'SO', 'ST', 'SZ', 'TD', 'TG', 'TN', 'TZ', 'UG', 'ZA', 'ZM', 'ZW' ),
+			'Asia'                  => array( 'AE', 'AF', 'AM', 'AP', 'AZ', 'BD', 'BH', 'BN', 'BT', 'CC', 'CY', 'CN', 'CX', 'GE', 'HK', 'ID', 'IL', 'IN', 'IO', 'IQ', 'IR', 'YE', 'JO', 'JP', 'KG', 'KH', 'KP', 'KR', 'KW', 'KZ', 'LA', 'LB', 'LK', 'MY', 'MM', 'MN', 'MO', 'MV', 'NP', 'OM', 'PH', 'PK', 'PS', 'QA', 'SA', 'SG', 'SY', 'TH', 'TJ', 'TL', 'TM', 'TW', 'UZ', 'VN' ),
+			'Australia-and-Oceania' => array( 'AS', 'AU', 'CK', 'FJ', 'FM', 'GU', 'KI', 'MH', 'MP', 'NC', 'NF', 'NR', 'NU', 'NZ', 'PF', 'PG', 'PN', 'PW', 'SB', 'TK', 'TO', 'TV', 'UM', 'VU', 'WF', 'WS' ),
+			'Central-America'       => array( 'AG', 'AI', 'AN', 'AW', 'BB', 'BL', 'BM', 'BS', 'BZ', 'CR', 'CU', 'DM', 'DO', 'GD', 'GL', 'GP', 'GT', 'HN', 'HT', 'JM', 'KY', 'KN', 'LC', 'MF', 'MQ', 'MS', 'NI', 'PA', 'PM', 'PR', 'SV', 'TC', 'TT', 'VC', 'VG', 'VI' ),
+			'North-America'         => array( 'CA', 'MX', 'US' ),
+			'South-America'         => array( 'AR', 'BO', 'BR', 'CL', 'CO', 'EC', 'FK', 'GF', 'GY', 'PE', 'PY', 'SR', 'UY', 'VE' ),
 		);
 	}
 }
@@ -42,16 +46,16 @@ if ( ! function_exists( 'alg_checkout_fees_get_countries_sets' ) ) {
 	 */
 	function alg_checkout_fees_get_countries_sets() {
 		return array(
-			'Africa'                    => __( 'Africa', 'checkout-fees-for-woocommerce' ),
-			'Asia'                      => __( 'Asia', 'checkout-fees-for-woocommerce' ),
-			'Australia-and-Oceania'     => __( 'Australia & Oceania', 'checkout-fees-for-woocommerce' ),
-			'Central-America'           => __( 'Central America', 'checkout-fees-for-woocommerce' ),
-			'EU'                        => __( 'European Union', 'woocommerce' ),
-			'Europe'                    => __( 'Europe', 'woocommerce' ),
-			'Europe-excluding-EU'       => __( 'Europe excluding EU', 'checkout-fees-for-woocommerce' ),
-			'Eurozone'                  => __( 'Eurozone', 'checkout-fees-for-woocommerce' ),
-			'North-America'             => __( 'North America', 'checkout-fees-for-woocommerce' ),
-			'South-America'             => __( 'South America', 'checkout-fees-for-woocommerce' ),
+			'Africa'                => __( 'Africa', 'checkout-fees-for-woocommerce' ),
+			'Asia'                  => __( 'Asia', 'checkout-fees-for-woocommerce' ),
+			'Australia-and-Oceania' => __( 'Australia & Oceania', 'checkout-fees-for-woocommerce' ),
+			'Central-America'       => __( 'Central America', 'checkout-fees-for-woocommerce' ),
+			'EU'                    => __( 'European Union', 'woocommerce' ),
+			'Europe'                => __( 'Europe', 'woocommerce' ),
+			'Europe-excluding-EU'   => __( 'Europe excluding EU', 'checkout-fees-for-woocommerce' ),
+			'Eurozone'              => __( 'Eurozone', 'checkout-fees-for-woocommerce' ),
+			'North-America'         => __( 'North America', 'checkout-fees-for-woocommerce' ),
+			'South-America'         => __( 'South America', 'checkout-fees-for-woocommerce' ),
 		);
 	}
 }
