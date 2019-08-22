@@ -2,10 +2,11 @@
 /**
  * Checkout Fees for WooCommerce - Info
  *
- * @package PaymentGatewayBasedFees
  * @version 2.5.0
  * @since   2.3.0
  * @author  Tyche Softwares
+ *
+ * @package checkout-fees-for-woocommerce
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
