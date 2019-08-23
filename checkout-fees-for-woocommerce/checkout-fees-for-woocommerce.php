@@ -101,16 +101,16 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 				// Admin core.
-				require_once 'includes/class-wc-checkout-fees-admin.php';
+				require_once 'includes/class-alg-wc-checkout-fees-admin.php';
 				// Settings.
-				require_once 'includes/settings/class-wc-checkout-fees-settings-section.php';
+				require_once 'includes/settings/class-alg-wc-checkout-fees-settings-section.php';
 				$this->settings                     = array();
-				$this->settings['general']          = require_once 'includes/settings/class-wc-checkout-fees-settings-general.php';
-				$this->settings['info']             = require_once 'includes/settings/class-wc-checkout-fees-settings-info.php';
-				$this->settings['global-extra-fee'] = require_once 'includes/settings/class-wc-checkout-fees-settings-global-extra-fee.php';
-				$this->settings['gateways']         = require_once 'includes/settings/class-wc-checkout-fees-settings-gateways.php';
+				$this->settings['general']          = require_once 'includes/settings/class-alg-wc-checkout-fees-settings-general.php';
+				$this->settings['info']             = require_once 'includes/settings/class-alg-wc-checkout-fees-settings-info.php';
+				$this->settings['global-extra-fee'] = require_once 'includes/settings/class-alg-wc-checkout-fees-settings-global-extra-fee.php';
+				$this->settings['gateways']         = require_once 'includes/settings/class-alg-wc-checkout-fees-settings-gateways.php';
 				// Settings - Per product meta box.
-				$this->meta_box_settings = require_once 'includes/settings/class-wc-checkout-fees-meta-boxes-per-product.php';
+				$this->meta_box_settings = require_once 'includes/settings/class-alg-wc-checkout-fees-settings-per-product.php';
 				// Version.
 				if ( get_option( 'alg_woocommerce_checkout_fees_version', '' ) !== $this->version ) {
 					add_action( 'admin_init', array( $this, 'version_updated' ) );
@@ -145,7 +145,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			// Functions.
 			require_once 'includes/functions/country-functions.php';
 			// Core.
-			$this->core = require_once 'includes/class-wc-checkout-fees.php';
+			$this->core = require_once 'includes/class-alg-wc-checkout-fees.php';
 		}
 
 		/**
@@ -173,7 +173,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 * @version 2.5.2
 		 */
 		public function add_woocommerce_settings_tab( $settings ) {
-			$settings[] = require_once 'includes/settings/class-wc-settings-checkout-fees.php';
+			$settings[] = require_once 'includes/settings/class-alg-wc-settings-checkout-fees.php';
 			return $settings;
 		}
 
