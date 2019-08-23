@@ -2,8 +2,8 @@
 Contributors: tychesoftwares
 Tags: woocommerce, woo commerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 5.1.1
-Stable tag: 2.5.9
+Tested up to: 5.2.2
+Stable tag: 2.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,10 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+= 2.6 - 23/08/2019 =
+* Made the plugin code compliant with WPCS standards.
+* Added UTM tags for the Pro plugin links.
+
 = 2.5.9 - 18/04/2019 =
 * Fix - Fees are not being carried over from the Checkout page to the order.
 * Fix - Discounts are not being applied to renewal orders for subscription products.
