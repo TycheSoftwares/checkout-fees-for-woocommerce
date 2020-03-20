@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 5.2.2
+Tested up to: 5.3.2
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -98,6 +98,9 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+= 2.6.1 - 20/03/2020 =
+* Update compatibility with WooCommerce 4.0.0.
+
 = 2.6 - 23/08/2019 =
 * Made the plugin code compliant with WPCS standards.
 * Added UTM tags for the Pro plugin links.
