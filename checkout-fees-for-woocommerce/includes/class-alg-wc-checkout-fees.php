@@ -901,7 +901,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 */
 		public function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
 			$tax_data = WC()->cart->get_tax_totals();
-			foreach($tax_data as $code => $tax){
+			foreach ( $tax_data as $code => $tax ) {
 				$tax_label = $tax->label;
 			}
 			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added, true ) ) {
