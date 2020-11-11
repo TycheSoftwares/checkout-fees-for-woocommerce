@@ -10,8 +10,9 @@ msgstr ""
 msgid "Plugin data successfully deleted."
 msgstr ""
 
-#: includes/class-wc-checkout-fees-admin.php:43
-msgid "Wrong user role or nonce not verified."
+
+#: includes/class-alg-wc-checkout-fees.php:908
+msgid "(includes %s %s)"
 msgstr ""
 
 #: includes/functions/country-functions.php:45
