@@ -14,6 +14,10 @@ msgstr ""
 msgid "Wrong user role or nonce not verified."
 msgstr ""
 
+#: includes/class-alg-wc-checkout-fees.php:908
+msgid "(includes %s %s)"
+msgstr ""
+
 #: includes/functions/country-functions.php:45
 msgid "Africa"
 msgstr ""

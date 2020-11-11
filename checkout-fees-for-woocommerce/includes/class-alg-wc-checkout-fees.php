@@ -900,9 +900,13 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.5.8
 		 */
 		public function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
-
+			$tax_label = 'Tax';
+			$tax_data  = WC()->cart->get_tax_totals();
+			foreach ( $tax_data as $code => $tax ) {
+				$tax_label = $tax->label;
+			}
 			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added, true ) ) {
-				$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s Tax)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ) ) . '</small>'; // phpcs:ignore
+				$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s %s)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ), $tax_label ) . '</small>'; // phpcs:ignore
 			}
 			return $cart_fee_html;
 		}
