@@ -900,7 +900,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.5.8
 		 */
 		public function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
-			$tax_data = WC()->cart->get_tax_totals();
+			$tax_label = 'Tax';
+			$tax_data  = WC()->cart->get_tax_totals();
 			foreach ( $tax_data as $code => $tax ) {
 				$tax_label = $tax->label;
 			}
