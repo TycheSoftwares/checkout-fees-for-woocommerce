@@ -856,10 +856,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$tax_class_name = '';
 				if ( $taxable ) {
 					$tax_class_names = array_merge( array( '' ), WC_Tax::get_tax_classes() );
-					$tax_class_name  = ( isset( $tax_class_names[ $tax_class_id ] ) ? $tax_class_names[ $tax_class_id ] : '' );
+					$tax_class_name  = ( isset( $tax_class_names[ $args['tax_class_id'] ] ) ? $tax_class_names[ $args['tax_class_id'] ] : '' );
 				}
 				$fees = WC()->cart->get_fees();
-				if ( 0 != $final_fee_to_add ) {
+				if ( 0 !== $final_fee_to_add ) {
 					if ( $this->do_merge_fees ) {
 						$this->fees[] = array(
 							'title'     => $args['fee_text'],
