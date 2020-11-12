@@ -98,6 +98,14 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.6.2 - 12/11/2020 =
+* Update compatibility with WooCommerce 4.7
+* Fix - On backend the gateway fees were accepted only as whole numbers. This is fixed now.
+* Fix - Getting errors in debug log when the option "Enable Tax" were enabled. This is fixed now.
+* Fix - Includes string was not getting translated on the checkout page. This is fixed now.
+* Fix - On checkout page taxname was not getting when the tax was included in the fees. This is fixed now.
+
 = 2.6.1 - 20/03/2020 =
 * Update compatibility with WooCommerce 4.0.0.
 
