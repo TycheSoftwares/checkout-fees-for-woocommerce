@@ -306,6 +306,14 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				}
 			}
 
+			// When PW Gift Card Plugin is activated and if the Gift card is applied in the cart fees/dicount should not be added, thus return it.
+			if ( in_array( 'pw-woocommerce-gift-cards/pw-gift-cards.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+				$session_data = (array) WC()->session->get( PWGC_SESSION_KEY );
+				if ( isset( $session_data['gift_cards'] ) && ! empty( $session_data['gift_cards'] ) ) {
+					return;
+				}
+			}
+
 			$this->get_max_ranges();
 
 			if ( $this->do_merge_fees ) {
