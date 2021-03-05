@@ -296,7 +296,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( ! $current_gateway ) {
 				return;
 			}
-
+			$klarna_payment = 'klarna_payments';
+			if ( strpos( $current_gateway, $klarna_payment ) !== false ) {
+				$current_gateway = 'klarna_payments';
+			}
 			// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return.
 			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
 				$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
