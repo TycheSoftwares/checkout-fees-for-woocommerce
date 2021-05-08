@@ -146,6 +146,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			require_once 'includes/functions/country-functions.php';
 			// Core.
 			$this->core = require_once 'includes/class-alg-wc-checkout-fees.php';
+			require_once 'includes/class-alg-wc-order-fees.php';
 		}
 
 		/**
