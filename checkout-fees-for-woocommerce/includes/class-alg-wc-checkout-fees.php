@@ -296,6 +296,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( ! $current_gateway ) {
 				return;
 			}
+			// Added this check for klarna payment method, as in the $current_gateway name of the Klarna payment was not coming proper, hence we add this check and pass the correct name in the $current_gateway.
 			$klarna_payment = 'klarna_payments';
 			if ( strpos( $current_gateway, $klarna_payment ) !== false ) {
 				$current_gateway = 'klarna_payments';
