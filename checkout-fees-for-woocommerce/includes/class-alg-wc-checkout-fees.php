@@ -62,6 +62,27 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public $fees_added = array();
 
 		/**
+		 * Names of Additional fees added by the plugin
+		 *
+		 * @var $fees_added_2
+		 */
+		public $fees_added_2 = array();
+
+		/**
+		 * Last fee added
+		 *
+		 * @var $last_fee_added
+		 */
+		public $last_fee_added = '';
+
+		/**
+		 * Last fee added
+		 *
+		 * @var $last_fee_added_2
+		 */
+		public $last_fee_added_2 = '';
+
+		/**
 		 * Constructor.
 		 *
 		 * @version 2.5.0
@@ -85,6 +106,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					// use this hook to add our fees in the recurring total displayed in the cart for subscriptions.
 					add_filter( 'woocommerce_subscriptions_is_recurring_fee', array( $this, 'renewals_set_fees_recurring' ), 10, 3 );
 				}
+
+				add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'add_order_meta_fees' ), 11 );
 			}
 		}
 
@@ -252,10 +275,34 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * Enqueue_checkout_script.
 		 */
 		public function enqueue_checkout_script() {
+			global $wp;
 			if ( ! is_checkout() ) {
 				return;
 			}
+			if ( is_wc_endpoint_url( 'order-pay' ) ) {
+				if ( isset( $wp->query_vars['order-pay'] ) && absint( $wp->query_vars['order-pay'] ) > 0 ) {
+					$order_id = absint( $wp->query_vars['order-pay'] ); // The order ID.
+				}
+				$payment_method = get_post_meta( $order_id, '_payment_method', true );
+				if ( '' !== get_query_var( 'order-pay' ) ) {
+					wp_localize_script(
+						'alg-payment-gateways-checkout',
+						'pgf_checkout_order_id',
+						array(
+							'order_id'       => get_query_var( 'order-pay' ),
+							'payment_method' => $payment_method,
+						)
+					);
+				}
+			}
 			wp_enqueue_script( 'alg-payment-gateways-checkout' );
+			wp_localize_script(
+				'alg-payment-gateways-checkout',
+				'pgf_checkout_params',
+				array(
+					'update_payment_method_nonce' => wp_create_nonce( 'update-payment-method' ),
+				)
+			);
 		}
 
 		/**
@@ -305,15 +352,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
 				$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
 				// if cart contains subscriptions & fees have already been added & we're not yet processing the order.
-				if ( $cart_contains_subscription && count( $this->fees_added ) > 0 && ( ( is_checkout() && ! isset( $_POST['woocommerce-process-checkout-nonce'] ) ) || is_cart() ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-					return;
-				}
-			}
-
-			// When PW Gift Card Plugin is activated and if the Gift card is applied in the cart fees/dicount should not be added, thus return it.
-			if ( in_array( 'pw-woocommerce-gift-cards/pw-gift-cards.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
-				$session_data = (array) WC()->session->get( PWGC_SESSION_KEY );
-				if ( isset( $session_data['gift_cards'] ) && ! empty( $session_data['gift_cards'] ) ) {
+				if ( $cart_contains_subscription && ( count( $this->fees_added ) > 0 || count( $this->fees_added_2 ) > 0 ) && ( ( is_checkout() && ! isset( $_POST['woocommerce-process-checkout-nonce'] ) ) || is_cart() ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 					return;
 				}
 			}
@@ -882,7 +921,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					} else {
 						$fee_text = $this->recheck_fee_title( $args['fee_text'], $fees );
 						WC()->cart->add_fee( $fee_text, $final_fee_to_add, $taxable, $tax_class_name );
-						$this->fees_added[] = $fee_text;
+						$this->fees_added[]   = $args['fee_text'];
+						$this->last_fee_added = $args['fee_text'];
 					}
 				}
 				if ( 0 != $final_fee_to_add_2 ) {
@@ -896,7 +936,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					} else {
 						$fee_text_2 = $this->recheck_fee_title( $args['fee_text_2'], $fees );
 						WC()->cart->add_fee( $fee_text_2, $final_fee_to_add_2, $taxable, $tax_class_name );
-						$this->fees_added[] = $fee_text_2;
+						$this->fees_added_2[]   = $args['fee_text_2'];
+						$this->last_fee_added_2 = $args['fee_text_2'];
 					}
 				}
 			}
@@ -917,7 +958,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			foreach ( $tax_data as $code => $tax ) {
 				$tax_label = $tax->label;
 			}
-			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && in_array( $fees->name, $this->fees_added, true ) ) {
+			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && ( in_array( $fees->name, $this->fees_added ) || in_array( $fees->name, $this->fees_added_2 ) ) ) { //phpcs:ignore
 				$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s %s)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ), $tax_label ) . '</small>'; // phpcs:ignore
 			}
 			return $cart_fee_html;
@@ -935,9 +976,27 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public function renewals_set_fees_recurring( $recurring, $fees, $cart ) {
 
 			// If it's fees which have been added from our plugin, return true else return as is.
-			$recurring = ( 0 != $fees->total && in_array( $fees->name, $this->fees_added, true ) ) ? true : $recurring;
+			$recurring = ( 0 != $fees->total && ( in_array( $fees->name, $this->fees_added || in_array( $fees->name, $this->fees_added_2 ) ) ) ) ? true : $recurring; //phpcs:ignore
 			return $recurring;
 
+		}
+
+		/**
+		 * Add fees in the order meta.
+		 *
+		 * @param integer $order_id Order ID.
+		 */
+		public function add_order_meta_fees( $order_id ) {
+			$order = wc_get_order( $order_id );
+			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+				if ( '' !== $this->last_fee_added && in_array( $item->get_name(), $this->fees_added ) ) { //phpcs:ignore
+					wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
+				}
+
+				if ( '' !== $this->last_fee_added_2 && in_array( $item->get_name(), $this->fees_added_2 ) ) { //phpcs:ignore
+					wc_add_order_item_meta( $item_id, '_last_added_fee_2', $item->get_name() );
+				}
+			}
 		}
 	}
 
