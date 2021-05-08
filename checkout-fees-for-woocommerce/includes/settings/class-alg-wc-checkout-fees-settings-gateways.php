@@ -41,7 +41,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			if ( function_exists( 'WC' ) ) {
 				$available_gateways = WC()->payment_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
-					$sections[ sanitize_title( $key ) ] = '<span style="font-style:italic;">' . $gateway->title . '</span>';
+					$sections[ sanitize_title( $key ) ] = $gateway->title;
 				}
 			}
 			return $sections;
