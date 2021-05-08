@@ -80,8 +80,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			if ( ! isset( $available_gateways[ $key ] ) && ! isset( $available_gateways[ strtoupper( $key ) ] ) ) {
 				return array();
 			}
-			$gateway = $available_gateways[ $key ];
-			if ( null === $gateway ) {
+			$gateway = '';
+			if ( isset( $available_gateways[ $key ] ) ) {
+				$gateway = $available_gateways[ $key ];
+			}
+			if ( null === $gateway || '' === $gateway ) {
 				$gateway = $available_gateways[ strtoupper( $key ) ];
 			}
 			// Countries.
