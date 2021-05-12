@@ -99,6 +99,12 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
+= 2.6.3 - 12/05/2021 =
+* Enhancement - Now the discount/fees will be added or removed on the "Pay for order" endpoint also.
+* Fix - Compatibility with WooCommerce ERIP Gateway Payment plugin.
+* Fix - Compatibility with Klarna payment gateway.
+* Fix - HTML code was coming in the titles of payment gateway on settings page. This is fixed now.
+
 = 2.6.2 - 12/11/2020 =
 * Update compatibility with WooCommerce 4.7
 * Fix - On backend the gateway fees were accepted only as whole numbers. This is fixed now.
