@@ -64,15 +64,24 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			global $wp;
 			check_ajax_referer( 'update-payment-method', 'security' );
 
-			$payment_method = isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			$order_id       = isset( $_POST['order_id'] ) ? sanitize_key( $_POST['order_id'] ): 0; // phpcs:ignore
+			$payment_method       = isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+			$order_id             = isset( $_POST['order_id'] ) ? sanitize_key( $_POST['order_id'] ): 0; // phpcs:ignore
+			$payment_method_title = isset( $_POST['payment_method_title'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method_title'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 			if ( $order_id <= 0 ) {
 				wp_die();
 			}
+
 			$order = wc_get_order( $order_id );
 			$this->remove_fees( $order );
 			$this->add_gateways_fees( $order, $payment_method );
+
+			// Update payment method record in the database.
+			update_post_meta( $order_id, '_payment_method', $payment_method );
+			update_post_meta( $order_id, '_payment_method_title', $payment_method_title );
+
+			// Declare $order again to fetch updates to post meta and serve to payment templte engine.
+			$order = wc_get_order( $order_id );
 
 			ob_start();
 			$this->woocommerce_order_pay( $order );
