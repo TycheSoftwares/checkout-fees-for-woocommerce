@@ -101,6 +101,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				// Modify Fee HTML.
 				add_filter( 'woocommerce_cart_totals_fee_html', array( $this, 'modify_fee_html_for_taxes' ), 10, 2 );
 
+				// Modify stripe parameters and set payment page as checkout in order to enable Stripe to be initialized.
+				add_filter( 'wc_stripe_params', array( $this, 'modify_stripe_params' ) );
+				
 				// check if subscriptions is enabled.
 				if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
 					// use this hook to add our fees in the recurring total displayed in the cart for subscriptions.
@@ -997,6 +1000,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					wc_add_order_item_meta( $item_id, '_last_added_fee_2', $item->get_name() );
 				}
 			}
+		}
+
+		/**
+		 * Function to modify stripe parameters and set payment page as checkout.
+		 *
+		 * @param array $stripe_params Array of parameters for Stripe payment plugin.
+		 */
+		public function modify_stripe_params( $stripe_params ) {
+			$stripe_params['is_checkout'] = 'yes';
+			return $stripe_params;
 		}
 	}
 
