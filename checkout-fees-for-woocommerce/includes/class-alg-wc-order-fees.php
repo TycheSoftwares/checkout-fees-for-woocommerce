@@ -472,6 +472,10 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				}
 			} else {
 				$do_override_global_fees_for_all_cart = true;
+				$items_array                          = $order->get_items();
+				if ( empty( $items_array ) ) {
+					$do_override_global_fees_for_all_cart = false;
+				}
 				foreach ( $order->get_items() as $item_id => $item ) {
 					if ( ! $checkout_obj->is_override_global_fees_enabled_for_product( $fee_num, $current_gateway, $item['product_id'] ) ) {
 						// At least one product does not have the override, no need to check further.
