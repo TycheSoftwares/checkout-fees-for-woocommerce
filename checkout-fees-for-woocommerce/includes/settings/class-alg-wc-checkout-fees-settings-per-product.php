@@ -44,8 +44,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		 * @version 2.5.0
 		 */
 		public function enqueue_styles_and_scripts() {
-			wp_enqueue_style( 'checkout-fees-admin', alg_wc_cf()->plugin_url() . '/includes/css/checkout-fees-admin.css', array(), alg_wc_cf()->version );
-			wp_enqueue_script( 'checkout-fees-admin-js', alg_wc_cf()->plugin_url() . '/includes/js/checkout-fees-admin.js', array(), alg_wc_cf()->version, false );
+			if ( array_key_exists( 'post', $_GET ) || ( isset( $_GET['post_type'] ) && 'product' === $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				wp_enqueue_style( 'checkout-fees-admin', alg_wc_cf()->plugin_url() . '/includes/css/checkout-fees-admin.css', array(), alg_wc_cf()->version );
+				wp_enqueue_script( 'checkout-fees-admin-js', alg_wc_cf()->plugin_url() . '/includes/js/checkout-fees-admin.js', array(), alg_wc_cf()->version, false );
+			}
 		}
 
 		/**
