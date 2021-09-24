@@ -644,7 +644,21 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 						$_product    = wc_get_product( $args['product_id'] );
 						$sum_for_fee = $_product->get_price() * $args['product_qty'];
 					} else {
-						$sum_for_fee = $total_in_cart;
+						if ( (float) 0 === $total_in_cart ) {
+							$cf_on_fees = apply_filters( 'alg_wc_not_to_calculate_on_fees', true );
+							if ( $cf_on_fees ) {
+								$fee_totals = 0;
+								foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+									$fee_total   = $item->get_total();
+									$fee_totals += $fee_total;
+								}
+								$sum_for_fee = $fee_totals;
+							} else {
+								$sum_for_fee = $total_in_cart;
+							}
+						} else {
+							$sum_for_fee = $total_in_cart;
+						}
 					}
 					$new_fee = ( $fee_value / 100 ) * $sum_for_fee;
 					break;
