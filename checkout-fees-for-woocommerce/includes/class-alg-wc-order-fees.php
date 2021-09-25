@@ -322,7 +322,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 							}
 
 							if ( ( 'local' === $args['fee_scope'] || $checkout_obj->check_countries( $args['current_gateway'], 'fee_1' ) ) ) {
-								$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_1' );
+								$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_1', $order );
 							}
 						}
 					}
@@ -332,7 +332,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 								$total_in_cart = $this->get_sum_for_fee_by_included_and_excluded_cats( $order, $total_in_cart, 'fee_2', $args['current_gateway'] );
 							}
 							if ( ( 'local' === $args['fee_scope'] || $checkout_obj->check_countries( $args['current_gateway'], 'fee_2' ) ) ) {
-								$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_2' );
+								$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_2', $order );
 							}
 						}
 					}
@@ -472,6 +472,10 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				}
 			} else {
 				$do_override_global_fees_for_all_cart = true;
+				$items_array                          = $order->get_items();
+				if ( empty( $items_array ) ) {
+					$do_override_global_fees_for_all_cart = false;
+				}
 				foreach ( $order->get_items() as $item_id => $item ) {
 					if ( ! $checkout_obj->is_override_global_fees_enabled_for_product( $fee_num, $current_gateway, $item['product_id'] ) ) {
 						// At least one product does not have the override, no need to check further.
@@ -614,7 +618,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @param string $fee_num Fee number.
 		 * @since   2.6
 		 */
-		public function calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, $fee_num ) {
+		public function calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, $fee_num, $order ) {
 			$checkout_obj = new Alg_WC_Checkout_Fees();
 
 			if ( 'fee_2' === $fee_num ) {
@@ -640,7 +644,21 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 						$_product    = wc_get_product( $args['product_id'] );
 						$sum_for_fee = $_product->get_price() * $args['product_qty'];
 					} else {
-						$sum_for_fee = $total_in_cart;
+						if ( (float) 0 === $total_in_cart ) {
+							$cf_on_fees = apply_filters( 'alg_wc_not_to_calculate_on_fees', true );
+							if ( $cf_on_fees ) {
+								$fee_totals = 0;
+								foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+									$fee_total   = $item->get_total();
+									$fee_totals += $fee_total;
+								}
+								$sum_for_fee = $fee_totals;
+							} else {
+								$sum_for_fee = $total_in_cart;
+							}
+						} else {
+							$sum_for_fee = $total_in_cart;
+						}
 					}
 					$new_fee = ( $fee_value / 100 ) * $sum_for_fee;
 					break;
