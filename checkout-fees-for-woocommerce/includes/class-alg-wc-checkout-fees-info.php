@@ -236,6 +236,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 						// Saving lowest price data.
 						if ( $the_price < $lowest_price ) {
 							$lowest_price                     = $the_price;
+							$lowest_price_gateway_key         = $available_gateway->id;
 							$lowest_price_gateway             = $available_gateway->title;
 							$lowest_price_gateway_description = $available_gateway->get_description();
 							$lowest_price_gateway_icon        = $available_gateway->get_icon();
@@ -250,6 +251,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 				// Saving lowest price info.
 				if ( true === $lowest_price_only && '' !== $lowest_price_gateway ) {
 					$lowest_price_array[] = array(
+						'gateway_id'                 => $lowest_price_gateway_key,
 						'gateway_title'              => $lowest_price_gateway,
 						'gateway_description'        => $lowest_price_gateway_description,
 						'gateway_icon'               => $lowest_price_gateway_icon,
@@ -271,13 +273,18 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 					// All gateways.
 					foreach ( $gateways_data as $single_product_gateways_data ) {
 						$single_product_gateways_data_html = '';
-						foreach ( $single_product_gateways_data as $row ) {
-							$row_html = get_option(
+						foreach ( $single_product_gateways_data as $key => $row ) {
+							$payment_id = $key;
+							$row_html   = get_option(
 								'alg_woocommerce_checkout_fees_info_row_template',
 								'<tr><td><strong>%gateway_title%</strong></td><td>%product_original_price%</td><td>%product_gateway_price%</td><td>%product_price_diff%</td></tr>'
 							);
 							foreach ( $row as $key => $value ) {
 								if ( in_array( $key, $price_keys ) ) {
+									$payment_fees = (int) get_option( 'alg_gateways_fees_value_' . $payment_id, 0 );
+									if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+										$value = 0;
+									}
 									$value = wc_price( $value );
 								}
 								$row_html = str_replace( '%' . $key . '%', $value, $row_html );
@@ -295,7 +302,15 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 							'<p><strong>%gateway_title%</strong> %product_gateway_price% (%product_price_diff%)</p>'
 						);
 						foreach ( $lowest_price as $key => $value ) {
+							$gateway_key = '';
+							if ( 'gateway_id' === $key ) {
+								$gateway_key = $value;
+							}
 							if ( in_array( $key, $price_keys ) ) {
+								$payment_fees = (int) get_option( 'alg_gateways_fees_value_' . $gateway_key, 0 );
+								if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+									$value = 0;
+								}
 								$value = wc_price( $value );
 							}
 							$row_html = str_replace( '%' . $key . '%', $value, $row_html );
@@ -321,11 +336,18 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 						);
 						foreach ( $values as $key => $values_array ) {
 							$values_array = array_unique( $values_array );
+							$payment_fees = (int) get_option( 'alg_gateways_fees_value_' . $gateway_key, 0 );
 							if ( in_array( $key, $price_keys ) ) {
 								if ( count( $values_array ) > 1 ) {
 									$value = wc_price( min( $values_array ) ) . '&ndash;' . wc_price( max( $values_array ) );
+									if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+										$value = wc_price( 0 ) . '&ndash;' . wc_price( 0 );
+									}
 								} else {
 									$value = wc_price( min( $values_array ) );
+									if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+										$value = wc_price( 0 );
+									}
 								}
 							} else {
 								$value = implode( '<br>', $values_array );
@@ -341,6 +363,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 					$modified_array = array();
 					foreach ( $lowest_price_array as $i => $row ) {
 						foreach ( $row as $key => $value ) {
+							$gateway_key = '';
+							if ( 'gateway_id' === $key ) {
+								$gateway_key = $value;
+							}
 							$modified_array[ $key ][ $i ] = $value;
 						}
 					}
@@ -350,11 +376,18 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 					);
 					foreach ( $modified_array as $key => $values_array ) {
 						$values_array = array_unique( $values_array );
+						$payment_fees = (int) get_option( 'alg_gateways_fees_value_' . $gateway_key, 0 );
 						if ( in_array( $key, $price_keys ) ) {
 							if ( count( $values_array ) > 1 ) {
 								$value = wc_price( min( $values_array ) ) . '&ndash;' . wc_price( max( $values_array ) );
+								if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+									$value = wc_price( 0 ) . '&ndash;' . wc_price( 0 );
+								}
 							} else {
 								$value = wc_price( min( $values_array ) );
+								if ( '0' === $the_product->get_price() && 0 >= $payment_fees ) {
+									$value = wc_price( 0 );
+								}
 							}
 						} else {
 							$value = implode( '<br>', $values_array );
