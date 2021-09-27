@@ -210,10 +210,10 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 			if ( 0 != $final_fee_to_add || 0 != $final_fee_to_add_2 ) { //phpcs:ignore
 				$taxable        = $args['is_taxable'];
-				$tax_class_name = '';
+				$tax_class_slug = '';
 				if ( $taxable ) {
-					$tax_class_names = array_merge( array( '' ), WC_Tax::get_tax_classes() );
-					$tax_class_name  = ( isset( $tax_class_names[ $args['tax_class_id'] ] ) ? $tax_class_names[ $args['tax_class_id'] ] : '' );
+					$tax_class_slugs = array_merge( array( '' ), WC_Tax::get_tax_classes() );
+					$tax_class_slug  = ( isset( $tax_class_slugs[ $args['tax_class_id'] ] ) ? $tax_class_slugs[ $args['tax_class_id'] ] : '' );
 				}
 				if ( 'no' === $taxable ) {
 					$taxable = 'none';
@@ -225,7 +225,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 							'title'     => $args['fee_text'],
 							'value'     => $final_fee_to_add,
 							'taxable'   => $taxable,
-							'tax_class' => $tax_class_name,
+							'tax_class' => $tax_class_slug,
 						);
 					} else {
 						$this->fees_added[] = $args['fee_text'];
@@ -234,7 +234,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 						$item_fee->set_name( $args['fee_text'] ); // Generic fee name.
 						$item_fee->set_amount( $final_fee_to_add ); // Fee amount.
-						$item_fee->set_tax_class( $tax_class_name ); // default for ''.
+						$item_fee->set_tax_class( $tax_class_slug ); // default for ''.
 						$item_fee->set_tax_status( $taxable ); // or 'none'.
 						$item_fee->set_total( $final_fee_to_add ); // Fee amount.
 
@@ -257,7 +257,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 							'title'     => $args['fee_text_2'],
 							'value'     => $final_fee_to_add_2,
 							'taxable'   => $taxable,
-							'tax_class' => $tax_class_name,
+							'tax_class' => $tax_class_slug,
 						);
 					} else {
 						$this->fees_added[] = $args['fee_text_2'];
@@ -265,7 +265,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 						$item_fee->set_name( $args['fee_text_2'] ); // Generic fee name.
 						$item_fee->set_amount( $final_fee_to_add_2 ); // Fee amount.
-						$item_fee->set_tax_class( $tax_class_name ); // default for ''.
+						$item_fee->set_tax_class( $tax_class_slug ); // default for ''.
 						$item_fee->set_tax_status( $taxable ); // or 'none'.
 						$item_fee->set_total( $final_fee_to_add_2 ); // Fee amount.
 
