@@ -212,7 +212,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$taxable        = $args['is_taxable'];
 				$tax_class_name = '';
 				if ( $taxable ) {
-					$tax_class_names = array_merge( array( '' ), WC_Tax::get_tax_classes() );
+					$tax_class_names = array_merge( array( '' ), WC_Tax::get_tax_class_slugs() );
 					$tax_class_name  = ( isset( $tax_class_names[ $args['tax_class_id'] ] ) ? $tax_class_names[ $args['tax_class_id'] ] : '' );
 				}
 				if ( 'no' === $taxable ) {
