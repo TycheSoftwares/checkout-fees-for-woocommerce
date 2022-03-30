@@ -51,8 +51,27 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->base_currency = get_option( 'woocommerce_currency' );
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
-
+				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
 			}
+		}
+
+		/**
+		 * Do not add fees again if the Fees is splited into the partial payments.
+		 *
+		 * @param bool $status Whether to add fees or not.
+		 * @param obj  $order Order Object.
+		 *
+		 * @return bool $status True if continue to add the fees.
+		 */
+		public function alc_wc_deposits_for_wc_compatibility( $status, $order ) {
+
+			if ( 'WCDP_Payment' === get_class( $order ) ) {
+				if ( 'split' === get_option( 'wc_deposits_fees_handling', '' ) ) {
+					$status = false;
+				}
+			}
+
+			return $status;
 		}
 
 		/**
@@ -72,13 +91,18 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				wp_die();
 			}
 
-			$order = wc_get_order( $order_id );
-			$this->remove_fees( $order );
-			$this->add_gateways_fees( $order, $payment_method );
+			$order    = wc_get_order( $order_id );
+			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
 
-			// Update payment method record in the database.
-			update_post_meta( $order_id, '_payment_method', $payment_method );
-			update_post_meta( $order_id, '_payment_method_title', $payment_method_title );
+			
+
+			$this->remove_fees( $order );
+			if ( $add_fees ) {
+				$this->add_gateways_fees( $order, $payment_method );
+				// Update payment method record in the database.
+				update_post_meta( $order_id, '_payment_method', $payment_method );
+				update_post_meta( $order_id, '_payment_method_title', $payment_method_title );
+			}
 
 			// Declare $order again to fetch updates to post meta and serve to payment templte engine.
 			$order = wc_get_order( $order_id );
