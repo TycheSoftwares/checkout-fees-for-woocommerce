@@ -90,16 +90,9 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 */
 		public function __construct() {
 
-			// Set up localisation.
-			// load_plugin_textdomain( 'checkout-fees-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );.
-
 			// Include required files.
 			$this->includes();
-
-			if ( is_admin() ) {
-				add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-			}
-
+			$this->load_plugin_textdomain();
 			// Admin.
 			if ( is_admin() ) {
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
@@ -154,7 +147,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		}
 
 		/**
-		 * Add trnslations as per user language.
+		 * Add translations as per user language.
 		 *
 		 * @version 2.5.2
 		 */
