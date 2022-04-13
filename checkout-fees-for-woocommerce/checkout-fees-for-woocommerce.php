@@ -92,7 +92,10 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 
 			// Include required files.
 			$this->includes();
-			$this->load_plugin_textdomain();
+			if ( is_admin() ) {
+				add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+			}
+
 			// Admin.
 			if ( is_admin() ) {
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
