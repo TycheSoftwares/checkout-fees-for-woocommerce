@@ -191,6 +191,11 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					$order->calculate_totals();
 					$order->save();
 					$this->fees_added[] = $merged_fee['title'];
+					foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+						if ( $merged_fee['title'] === $item->get_name() ) {
+							wc_add_order_item_meta( $item_id, '_last_added_fee', $args['fee_text'] );
+						}
+					}
 				}
 			}
 
