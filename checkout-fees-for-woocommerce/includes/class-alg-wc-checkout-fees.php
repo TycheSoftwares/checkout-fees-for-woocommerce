@@ -1008,7 +1008,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @param array $stripe_params Array of parameters for Stripe payment plugin.
 		 */
 		public function modify_stripe_params( $stripe_params ) {
-			$stripe_params['is_checkout'] = 'yes';
+			if ( is_checkout() ) {
+				$stripe_params['is_checkout'] = 'yes';
+			}
 			return $stripe_params;
 		}
 	}
