@@ -681,7 +681,9 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 								$sum_for_fee = $total_in_cart;
 							}
 						} else {
-							$sum_for_fee = $total_in_cart;
+							$sum_for_fee    = $total_in_cart;
+							$discount_total = $order->get_discount_total();
+							$sum_for_fee   -= $discount_total;
 						}
 					}
 					$new_fee = ( $fee_value / 100 ) * $sum_for_fee;
