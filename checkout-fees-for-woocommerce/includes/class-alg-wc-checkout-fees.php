@@ -979,7 +979,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public function renewals_set_fees_recurring( $recurring, $fees, $cart ) {
 
 			// If it's fees which have been added from our plugin, return true else return as is.
-			$recurring = ( 0 != $fees->total && ( in_array( $fees->name, $this->fees_added || in_array( $fees->name, $this->fees_added_2 ) ) ) ) ? true : $recurring; //phpcs:ignore
+			$recurring = ( 0 != $fees->total && ( in_array( $fees->name, $this->fees_added ) || in_array( $fees->name, $this->fees_added_2 ) ) ) ? true : $recurring; //phpcs:ignore
 			return $recurring;
 
 		}
