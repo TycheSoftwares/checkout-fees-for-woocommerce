@@ -90,11 +90,11 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 */
 		public function __construct() {
 
-			// Set up localisation.
-			load_plugin_textdomain( 'checkout-fees-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
-
 			// Include required files.
 			$this->includes();
+			if ( is_admin() ) {
+				add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+			}
 
 			// Admin.
 			if ( is_admin() ) {
@@ -147,6 +147,19 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			// Core.
 			$this->core = require_once 'includes/class-alg-wc-checkout-fees.php';
 			require_once 'includes/class-alg-wc-order-fees.php';
+		}
+
+		/**
+		 * Add translations as per user language.
+		 *
+		 * @version 2.5.2
+		 */
+		public function load_plugin_textdomain() {
+			$locale = determine_locale();
+			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce' );
+			unload_textdomain( 'checkout-fees-for-woocommerce' );
+			load_textdomain( 'checkout-fees-for-woocommerce', WP_LANG_DIR . '/checkout-fees-for-woocommerce/checkout-fees-for-woocommerce-' . $locale . '.mo' );
+			load_plugin_textdomain( 'checkout-fees-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 		}
 
 		/**
