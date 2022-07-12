@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -98,6 +98,13 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.7.0 - 12/07/2022 =
+* Fix - Plugin strings are not getting translated according to the User's selected language.
+* Fix - The fees should be applied after calculating the discounted price.
+* Fix - Credit Card Details Fields are becoming invisible on the payment page.
+* Fix - Compatibility with WooCommerce Subscriptions plugin.
+* Fix - Discount is applied multiple times when customers try to pay for the order.
 
 = 2.6.4 - 28/09/2021 =
 * Fix - Zero priced products were showing the discount in the payment gateway info table on the product page. This is fixed now.
