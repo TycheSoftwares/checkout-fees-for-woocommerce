@@ -100,11 +100,11 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 == Changelog ==
 
 = 2.7.0 - 12/07/2022 =
-* Fix - Use Language selected for individual user instead the WordPress Site Language.
-* Fix - The fees should be applied after the calculating the discounted price.
-* Fix - Credit Cart Details Fields are becoming invisible on Payment Method page.
-* Fix - Compatibility with WooCommerce Subscription plugin.
-* Fix - Discount is getting multiplied when we try to repay the order.
+* Fix - Plugin strings are not getting translated according to the User's selected language.
+* Fix - The fees should be applied after calculating the discounted price.
+* Fix - Credit Card Details Fields are becoming invisible on the payment page.
+* Fix - Compatibility with WooCommerce Subscriptions plugin.
+* Fix - Discount is applied multiple times when customers try to pay for the order.
 
 = 2.6.4 - 28/09/2021 =
 * Fix - Zero priced products were showing the discount in the payment gateway info table on the product page. This is fixed now.
