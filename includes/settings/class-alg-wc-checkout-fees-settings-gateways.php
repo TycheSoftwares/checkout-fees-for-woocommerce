@@ -42,6 +42,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				$available_gateways = WC()->payment_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
 					$sections[ sanitize_title( $key ) ] = $gateway->title;
+					if ( $key === 'zipmoney' ) { //phpcs:ignore
+						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+					}
 				}
 			}
 			return $sections;
@@ -102,6 +105,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			/* translators: %s: Upgrade to Pro URL */
 			$upgrade_url = sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ), 'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' );
 
+			if ( $key === 'zipmoney' ) { //phpcs:ignore
+				$gateway->title = $gateway->method_title;
+			}
 			// Adding settings.
 			$settings = array(
 				array(
