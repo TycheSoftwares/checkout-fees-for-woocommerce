@@ -52,6 +52,25 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
+				add_action( 'save_post', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+			}
+		}
+
+		/**
+		 * Function to add the fees in the Order when order is updated.
+		 *
+		 * @param int    $post_id Post ID.
+		 * @param object $post Post object.
+		 */
+		public function alg_wc_cf_update_order_fees( $post_id, $post ) {
+			if ( 'shop_order' !== $post->post_type ) {
+				return;
+			}
+			$order          = wc_get_order( $post_id );
+			$payment_method = $order->get_payment_method();
+			if ( '' !== $payment_method ) {
+				$this->remove_fees( $order );
+				$this->add_gateways_fees( $order, $payment_method );
 			}
 		}
 

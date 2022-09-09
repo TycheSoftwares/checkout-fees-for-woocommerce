@@ -178,7 +178,13 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( '' !== $fee_num ) {
 				$fee_num = $fee_num . '_';
 			}
-			$customer_country  = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ? WC()->customer->get_country() : WC()->customer->get_billing_country() );
+			if ( null === WC()->customer ) {
+				if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$customer_country = sanitize_text_field( wp_unslash( $_POST['_billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+				}
+			} else {
+				$customer_country = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ? WC()->customer->get_country() : WC()->customer->get_billing_country() );
+			}
 			$include_countries = $this->replace_country_sets(
 				apply_filters(
 					'alg_wc_checkout_fees_option',
@@ -210,7 +216,13 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				return false;
 			}
 			if ( '' !== $fee_num ) {
-				$customer_state = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ? WC()->customer->get_state() : WC()->customer->get_billing_state() );
+				if ( null === WC()->customer ) { // phpcs:ignore WordPress.Security.NonceVerification
+					if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_state'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+						$customer_state = sanitize_text_field( wp_unslash( $_POST['_billing_state'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+					}
+				} else {
+					$customer_state = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ? WC()->customer->get_state() : WC()->customer->get_billing_state() );
+				}
 				$include_states = apply_filters(
 					'alg_wc_checkout_fees_option',
 					'',
