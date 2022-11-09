@@ -20,6 +20,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
 
 // Check if WooCommerce is active.
 $plugin_name = 'woocommerce/woocommerce.php';
@@ -100,6 +101,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			if ( is_admin() ) {
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+				add_action( 'before_woocommerce_init', array( &$this, 'pgbf_lite_custom_order_tables_compatibility' ), 999 );
 				// Admin core.
 				require_once 'includes/class-alg-wc-checkout-fees-admin.php';
 				// Settings.
@@ -207,6 +209,18 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 */
 		public function plugin_path() {
 			return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		}
+		/**
+		 * Sets the compatibility with Woocommerce HPOS.
+		 *
+		 * @since 2.8.0
+		 */
+		public function pgbf_lite_custom_order_tables_compatibility() {
+
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'checkout-fees-for-woocommerce/checkout-fees-for-woocommerce.php', true );
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'orders_cache', 'checkout-fees-for-woocommerce/checkout-fees-for-woocommerce.php', true );
+			}
 		}
 	}
 
