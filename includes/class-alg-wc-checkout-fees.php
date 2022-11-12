@@ -12,6 +12,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
 
 if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 	/**
@@ -126,6 +127,20 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$this->current_currency = get_woocommerce_currency();
 			}
 			return apply_filters( 'wc_aelia_cs_convert', $amount, $this->base_currency, $this->current_currency );
+		}
+		/**
+		 * Check if HPOS is enabled or not.
+		 *
+		 * @since 2.8.0
+		 * return boolean true if enabled else false
+		 */
+		public function pgbf_wc_hpos_enabled() {
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
+				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/**
@@ -298,7 +313,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				if ( isset( $wp->query_vars['order-pay'] ) && absint( $wp->query_vars['order-pay'] ) > 0 ) {
 					$order_id = absint( $wp->query_vars['order-pay'] ); // The order ID.
 				}
-				$payment_method = get_post_meta( $order_id, '_payment_method', true );
+				if ( $this->pgbf_wc_hpos_enabled() ) {
+					$order = wc_get_order( $order_id );
+					if ( $order->meta_exists( '_payment_method' ) ) {
+						$payment_method = $order->get_meta( '_payment_method' );
+					} else {
+						$payment_method = $order->get_payment_method();
+					}
+				} else {
+					$payment_method = get_post_meta( $order_id, '_payment_method', true );
+				}
 				if ( '' !== get_query_var( 'order-pay' ) ) {
 					wp_localize_script(
 						'alg-payment-gateways-checkout',
