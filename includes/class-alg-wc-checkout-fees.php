@@ -389,6 +389,17 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			}
 			// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return.
 			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+				if ( did_action( 'woocommerce_cart_calculate_fees' ) > 1 ) {
+					return;
+				}
+				$args = $this->args_manager->get_the_args_global( $current_gateway );
+				$fees = WC()->cart->get_fees();
+				foreach ( $fees as $key => $value ) {
+					if ( $fees[ $key ]->name === $args['fee_text'] ) {
+						unset( $fees[ $key ] );
+					}
+				}
+				WC()->cart->fees_api()->set_fees( $fees );
 				$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
 				// if cart contains subscriptions & fees have already been added & we're not yet processing the order.
 				if ( $cart_contains_subscription && ( count( $this->fees_added ) > 0 || count( $this->fees_added_2 ) > 0 ) && ( ( is_checkout() && ! isset( $_POST['woocommerce-process-checkout-nonce'] ) ) || is_cart() ) ) { // phpcs:ignore WordPress.Security.NonceVerification
