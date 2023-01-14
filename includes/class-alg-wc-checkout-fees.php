@@ -508,11 +508,14 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					break;
 			}
 			// Min fee.
-			if ( 0 != $min_fee && $new_fee < $min_fee ) {
+			if ( 0 != $min_fee && $new_fee < $min_fee ) { //phpcs:ignore
 				$new_fee = $min_fee;
 			}
+			if ( '' === $max_fee ) {
+				$max_fee = 0;
+			}
 			// Max fee.
-			if ( 0 != $max_fee && $new_fee > $max_fee ) {
+			if ( 0 != $max_fee && $new_fee > $max_fee ) { //phpcs:ignore
 				$new_fee = $max_fee;
 			}
 			// Max total discount.
