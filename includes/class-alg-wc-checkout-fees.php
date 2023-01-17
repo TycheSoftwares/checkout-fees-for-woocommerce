@@ -516,6 +516,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$new_fee = $max_fee;
 			}
 			// Max total discount.
+			if ( empty( $this->max_total_all_discounts ) || empty( $this->max_total_all_fees ) ) {
+				$this->max_total_all_discounts = 0;
+				$this->max_total_all_fees      = 0;
+			}
 			if ( false !== $this->max_total_all_discounts ) {
 				if ( $new_fee < $this->max_total_all_discounts ) {
 					$new_fee = $this->max_total_all_discounts;
