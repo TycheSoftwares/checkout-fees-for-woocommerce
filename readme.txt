@@ -99,6 +99,10 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
+= 2.9.0 - 17/01/2023 =
+* Fix - Fatal Errors on the checkout page with PHP 8.
+* Fix - Fees are getting multiplied when we try to repay the subscription order.
+
 = 2.8.0 - 15/11/2022 =
 * Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
 
