@@ -28,9 +28,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 		public function __construct() {
 			add_filter( 'woocommerce_get_sections_alg_checkout_fees', array( $this, 'settings_section' ) );
 			add_filter( 'init', array( $this, 'add_get_settings_hook' ), PHP_INT_MAX );
-			if ( isset( $_GET['section'], $_GET['tab'] ) && 'iyzico' === $_GET['section'] && 'alg_checkout_fees' === $_GET['tab'] ) { // phpcs:ignore
-				add_action( 'wp_print_scripts', array( $this, 'dequeue_js' ), 10 );
-			}
+			add_action( 'wp_print_scripts', array( $this, 'dequeue_js' ), 10 );
 		}
 
 		/**
@@ -55,9 +53,13 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 
 		/**
 		 * Unload js file from iyzico plugin.
+		 * 
+		 * @version 2.9.0
 		 */
 		public function dequeue_js() {
-			wp_dequeue_script( 'script' );
+			if ( isset( $_GET['section'], $_GET['tab'] ) && 'iyzico' === $_GET['section'] && 'alg_checkout_fees' === $_GET['tab'] ) { // phpcs:ignore
+				wp_dequeue_script( 'script' );
+			}
 		}
 
 		/**
