@@ -53,7 +53,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 
 		/**
 		 * Unload js file from iyzico plugin.
-		 * 
+		 *
 		 * @version 2.9.0
 		 */
 		public function dequeue_js() {
