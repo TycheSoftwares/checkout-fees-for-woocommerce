@@ -31,7 +31,30 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_init', array( $this, 'maybe_delete_all_plugin_data' ), PHP_INT_MAX );
+			add_action( 'admin_enqueue_scripts', array( $this, 'alg_checkout_fees_inline_css' ) );
 		}
+
+
+
+		/**
+		 * Inline CSS on admin end.
+		 * Solve the conflict issue of bykea_cash.
+		 *
+		 * @version 2.5.0
+		 */
+		public function alg_checkout_fees_inline_css() {
+			if ( isset( $_GET['tab'] ) && 'alg_checkout_fees' === $_GET['tab'] && isset( $_GET['section'] ) && 'bykea_cash' === $_GET['section'] ) {
+				wp_register_style(
+					'alg-wc-checkout-bykea-cash',
+					false,
+					array(),
+					alg_wc_cf()->version,
+				);
+				wp_enqueue_style( 'alg-wc-checkout-bykea-cash' );
+				wp_add_inline_style( 'alg-wc-checkout-bykea-cash', '.hide-save-btn{ display:block !important;}' );
+			}
+		}
+
 
 		/**
 		 * Admin_notice_delete_all_plugin_data_success.
