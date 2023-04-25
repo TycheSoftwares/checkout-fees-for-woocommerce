@@ -55,8 +55,7 @@ jQuery(($) => {
 
 	$('body').on('payment_method_selected', () => {
 		if ($('.woocommerce-order-pay').length === 0) {
-		  const methodSelected = $('input[name="payment_method"]:checked').val();
-		  $('input[name="payment_method"]').val(`${methodSelected}`).trigger('change');
+			$('input[name="payment_method"]').trigger( 'change' ); 
 		}
 	});
 });
