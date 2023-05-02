@@ -104,7 +104,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 
 				// Modify stripe parameters and set payment page as checkout in order to enable Stripe to be initialized.
 				add_filter( 'wc_stripe_params', array( $this, 'modify_stripe_params' ) );
-				
+
 				// check if subscriptions is enabled.
 				if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
 					// use this hook to add our fees in the recurring total displayed in the cart for subscriptions.
@@ -552,7 +552,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				}
 			}
 			// Final calculations.
-			$final_fee_to_add += $new_fee;
+			$final_fee_to_add += (float) $new_fee;
 			if ( 'percent' === $fee_type && 'yes' === $args['do_round'] ) {
 				// default the precision to 0 if it has been left blanks.
 				$precision        = '' === $args['precision'] ? 0 : $args['precision'];
