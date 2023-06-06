@@ -27,7 +27,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 		 */
 		public function __construct() {
 			add_filter( 'woocommerce_get_sections_alg_checkout_fees', array( $this, 'settings_section' ) );
-			add_filter( 'init', array( $this, 'add_get_settings_hook' ), PHP_INT_MAX );
+			add_action( 'woocommerce_update_options_alg_checkout_fees', array( $this, 'alg_checkout_fees_update_settings' ) );
+			add_filter( 'admin_init', array( $this, 'add_get_settings_hook' ), PHP_INT_MAX );
 			add_action( 'wp_print_scripts', array( $this, 'dequeue_js' ), 10 );
 		}
 
@@ -40,7 +41,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 		 */
 		public function settings_section( $sections ) {
 			if ( function_exists( 'WC' ) ) {
-				$available_gateways = WC()->payment_gateways->payment_gateways();
+				$wc_gateways        = new WC_Payment_Gateways();
+				$available_gateways = $wc_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
 					$sections[ sanitize_title( $key ) ] = $gateway->title;
 					if ( $key === 'zipmoney' ) { //phpcs:ignore
@@ -49,6 +51,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				}
 			}
 			return $sections;
+		}
+
+		/**
+		 * Save settings section for each gateways.
+		 *
+		 * @version 2.9.1
+		 * @todo    [dev] add option to show available (i.e. enabled) gateways only
+		 */
+		function alg_checkout_fees_update_settings() {
+    		woocommerce_update_options( $this->get_settings() );
 		}
 
 		/**
