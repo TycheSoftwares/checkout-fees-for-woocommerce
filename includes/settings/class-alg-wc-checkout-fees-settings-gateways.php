@@ -28,7 +28,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 		public function __construct() {
 			add_filter( 'woocommerce_get_sections_alg_checkout_fees', array( $this, 'settings_section' ) );
 			add_filter( 'init', array( $this, 'add_get_settings_hook' ), PHP_INT_MAX );
-			add_action( 'wp_print_scripts', array( $this, 'dequeue_js' ), 10 );
 		}
 
 		/**
@@ -49,17 +48,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				}
 			}
 			return $sections;
-		}
-
-		/**
-		 * Unload js file from iyzico plugin.
-		 *
-		 * @version 2.9.0
-		 */
-		public function dequeue_js() {
-			if ( isset( $_GET['section'], $_GET['tab'] ) && 'iyzico' === $_GET['section'] && 'alg_checkout_fees' === $_GET['tab'] ) { // phpcs:ignore
-				wp_dequeue_script( 'script' );
-			}
 		}
 
 		/**
@@ -92,6 +80,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			}
 			$available_gateways = WC()->payment_gateways->payment_gateways();
 			$key                = sanitize_title( wp_unslash( $_GET['section'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+			if ($key == "wooecpay_gateway_credit" || $key == "wooecpay_gateway_webatm" || $key == "wooecpay_gateway_atm" || $key == "wooecpay_gateway_credit_installment" || $key == "wooecpay_gateway_cvs" || $key == "wooecpay_gateway_barcode" || $key == "wooecpay_gateway_applepay" ) {	 $key = str_replace('_', ' ', $key); $key = ucwords($key); $key = str_replace(' ', '_', $key); }
 			if ( ! isset( $available_gateways[ $key ] ) && ! isset( $available_gateways[ strtoupper( $key ) ] ) ) {
 				return array();
 			}
@@ -120,6 +109,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			if ( $key === 'zipmoney' ) { //phpcs:ignore
 				$gateway->title = $gateway->method_title;
 			}
+			
+
 			// Adding settings.
 			$settings = array(
 				array(
