@@ -59,8 +59,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 		 * @version 2.9.1
 		 * @todo    [dev] add option to show available (i.e. enabled) gateways only
 		 */
-		function alg_checkout_fees_update_settings() {
-    		woocommerce_update_options( $this->get_settings() );
+		public function alg_checkout_fees_update_settings() {
+			woocommerce_update_options( $this->get_settings() );
 		}
 
 		/**
