@@ -92,6 +92,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			}
 			$available_gateways = WC()->payment_gateways->payment_gateways();
 			$key                = sanitize_title( wp_unslash( $_GET['section'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+			if ( $key == 'wooecpay_gateway_credit' || $key == 'wooecpay_gateway_webatm' || $key == 'wooecpay_gateway_atm' || $key == 'wooecpay_gateway_credit_installment' || $key == 'wooecpay_gateway_cvs' || $key == 'wooecpay_gateway_barcode' || $key == 'wooecpay_gateway_applepay' ) {
+				$key = str_replace( '_', ' ', $key );
+				$key = ucwords( $key ); 
+				$key = str_replace( ' ', '_', $key ); 
+			}
 			if ( ! isset( $available_gateways[ $key ] ) && ! isset( $available_gateways[ strtoupper( $key ) ] ) ) {
 				return array();
 			}
