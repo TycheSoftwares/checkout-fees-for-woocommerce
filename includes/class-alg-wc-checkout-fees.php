@@ -92,6 +92,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public function __construct() {
 			if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_enabled', 'yes' ) ) {
 				add_action( 'woocommerce_cart_calculate_fees', array( $this, 'add_gateways_fees' ), PHP_INT_MAX );
+				add_filter( 'woocommerce_cart_totals_get_fees_from_cart_taxes', array( $this, 'alg_woocommerce_checkout_fees_cart_totals_get_fees_from_cart_taxes' ), 10, 2 );
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_checkout_script' ) );
 				add_action( 'init', array( $this, 'register_script' ) );
 				require_once 'class-alg-wc-checkout-fees-info.php';
@@ -559,6 +560,26 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$final_fee_to_add = round( $final_fee_to_add, $precision );
 			}
 			return $final_fee_to_add;
+		}
+
+		/**
+		 * Removing the tax amount from negative fees. This patch is for #128.
+		 *
+		 * Ref - https://github.com/woocommerce/woocommerce/issues/21148.
+		 *
+		 * @param array  $taxes Tax amount array.
+		 * @param object $fee Fees Object.
+		 *
+		 * @version 2.10.0
+		 * @since   2.10.0
+		 */
+		public function alg_woocommerce_checkout_fees_cart_totals_get_fees_from_cart_taxes( $taxes, $fee ) {
+
+			if ( $fee->object->amount < 0 && ! $fee->taxable ) {
+				$taxes = array();
+			}
+
+			return $taxes;
 		}
 
 		/**
