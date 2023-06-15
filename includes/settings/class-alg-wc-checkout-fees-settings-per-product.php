@@ -19,7 +19,21 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 	 * Product based settings.
 	 */
 	class Alg_WC_Checkout_Fees_Settings_Per_Product {
-
+		/**
+		 * ID
+		 *
+		 * @var $id
+		 * @since 2.1.1
+		 */
+		public $id = '';
+		/**
+		 * Desc
+		 *
+		 * @var $desc
+		 * @since 2.1.1
+		 */
+		public $desc = '';
+		
 		/**
 		 * Constructor.
 		 *

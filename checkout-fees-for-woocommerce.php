@@ -68,6 +68,27 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		protected static $instance = null;
 
 		/**
+		 * Core.
+		 *
+		 * @var $core
+		 */
+		public $core = null;
+
+		/**
+		 * Meta Box Settings
+		 *
+		 * @var $meta_box_settings
+		 */
+		public $meta_box_settings = '';
+
+		/**
+		 * Setting.
+		 *
+		 * @var $setting
+		 */
+		public $settings = '';
+
+		/**
 		 * Main Alg_Woocommerce_Checkout_Fees Instance
 		 *
 		 * Ensures only one instance of Alg_Woocommerce_Checkout_Fees is loaded or can be loaded.

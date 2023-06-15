@@ -38,7 +38,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.1.1
 		 */
 		public $max_total_all_fees = 0;
-
 		/**
 		 * Currency conversion.
 		 *
@@ -53,7 +52,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.3.0
 		 */
 		public $current_currency;
-
 		/**
 		 * Names of fees added by the plugin
 		 *
@@ -61,28 +59,43 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.5.8
 		 */
 		public $fees_added = array();
-
 		/**
 		 * Names of Additional fees added by the plugin
 		 *
 		 * @var $fees_added_2
 		 */
 		public $fees_added_2 = array();
-
 		/**
 		 * Last fee added
 		 *
 		 * @var $last_fee_added
 		 */
 		public $last_fee_added = '';
-
+		/**
+		 * Args manager
+		 *
+		 * @var $args_manager
+		 */
+		public $args_manager = null;
+		/**
+		 * Do merge fees
+		 *
+		 * @var $do_merge_fees
+		 */
+		public $do_merge_fees = null;
 		/**
 		 * Last fee added
 		 *
 		 * @var $last_fee_added_2
 		 */
 		public $last_fee_added_2 = '';
-
+		/**
+		 * Last known current gateway
+		 *
+		 * @var $last_known_current_gateway
+		 */
+		public $last_known_current_gateway = '';
+		
 		/**
 		 * Constructor.
 		 *

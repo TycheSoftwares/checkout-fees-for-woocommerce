@@ -19,7 +19,20 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 	 * Add a settings tab on WooCommerce settings page.
 	 */
 	class Alg_WC_Settings_Checkout_Fees extends WC_Settings_Page {
-
+		/**
+		 * ID
+		 *
+		 * @var $id
+		 * @since 2.1.1
+		 */
+		public $id = '';
+		/**
+		 * Label
+		 *
+		 * @var $label
+		 * @since 2.1.1
+		 */
+		public $label = '';
 		/**
 		 * Constructor.
 		 *
