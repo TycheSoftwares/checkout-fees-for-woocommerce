@@ -19,7 +19,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_General' ) ) :
 	 * General Settings.
 	 */
 	class Alg_WC_Checkout_Fees_Settings_General extends Alg_WC_Checkout_Fees_Settings_Section {
-		
 		/**
 		 * ID
 		 *
@@ -27,7 +26,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_General' ) ) :
 		 * @since 2.1.1
 		 */
 		public $id = '';
-
 		/**
 		 * Desc
 		 *

@@ -70,7 +70,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		/**
 		 * Core.
 		 *
-		 * @var  $core
+		 * @var $core
 		 */
 		public $core = null;
 
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		/**
 		 * Setting.
 		 *
-		 * @var  $setting
+		 * @var $setting
 		 */
 		public $settings = '';
 

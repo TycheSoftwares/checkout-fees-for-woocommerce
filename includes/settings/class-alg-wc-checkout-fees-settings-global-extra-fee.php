@@ -19,7 +19,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee' ) ) :
 	 * Global Extra Fee settings section.
 	 */
 	class Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee extends Alg_WC_Checkout_Fees_Settings_Section {
-		
 		/**
 		 * ID
 		 *
@@ -27,7 +26,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee' ) ) :
 		 * @since 2.1.1
 		 */
 		public $id = '';
-
 		/**
 		 * Desc
 		 *
