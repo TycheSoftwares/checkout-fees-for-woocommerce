@@ -48,7 +48,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 					'alg-wc-checkout-bykea-cash',
 					false,
 					array(),
-					alg_wc_cf()->version,
+					alg_wc_cf()->version
 				);
 				wp_enqueue_style( 'alg-wc-checkout-bykea-cash' );
 				wp_add_inline_style( 'alg-wc-checkout-bykea-cash', '.hide-save-btn{ display:block !important;}' );
