@@ -38,7 +38,28 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @var $fees_added
 		 */
 		public $fees_added = array();
+		
+		/**
+		 * Args manager 
+		 *
+		 * @var $args_manager 
+		 */
+		public $args_manager = null;
 
+		/**
+		 * Do merge fees
+		 *
+		 * @var $do_merge_fees
+		 */
+		public $do_merge_fees = null;
+
+		/**
+		 * Base Currency
+		 *
+		 * @var $base_currency
+		 * 
+		 */
+		public $base_currency = '';
 		/**
 		 * Constructor.
 		 *
