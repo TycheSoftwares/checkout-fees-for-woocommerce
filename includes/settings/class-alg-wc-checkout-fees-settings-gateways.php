@@ -48,6 +48,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 					if ( $key === 'zipmoney' ) { //phpcs:ignore
 						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
 					}
+					if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
+						$sections[ sanitize_title( $key ) ] = str_replace( '_', ' ', $key );
+					}
+					if ( 'iyzico_pwi' === $key) {
+						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+					}
 				}
 			}
 			return $sections;
@@ -135,6 +141,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			$upgrade_url = sprintf( __( 'You will need <a target="_blank" href="%s">Pro version</a> of the plugin to set this option.', 'checkout-fees-for-woocommerce' ), 'https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=pgfupgradetopro&utm_medium=link&utm_campaign=PaymentGatewayFeesLite' );
 
 			if ( $key === 'zipmoney' ) { //phpcs:ignore
+				$gateway->title = $gateway->method_title;
+			}
+			if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
+				$gateway->title = str_replace( '_', ' ', $key );
+			}
+			if ( 'iyzico_pwi' === $key) {
 				$gateway->title = $gateway->method_title;
 			}
 			// Adding settings.
