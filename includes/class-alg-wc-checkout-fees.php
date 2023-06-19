@@ -525,7 +525,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					} else {
 						$sum_for_fee = $total_in_cart;
 					}
-					$new_fee = ( (int) $fee_value / 100 ) * $sum_for_fee;
+					$new_fee = ( (float) $fee_value / 100 ) * $sum_for_fee;
 					break;
 			}
 			// Min fee.
