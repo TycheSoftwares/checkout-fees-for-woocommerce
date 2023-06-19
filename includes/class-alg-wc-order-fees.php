@@ -11,6 +11,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
 
 if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
@@ -71,6 +72,20 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				add_action( 'woocommerce_saved_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
 			}
 		}
+		/**
+		 * Check if HPOS is enabled or not.
+		 *
+		 * @since 2.8.0
+		 * return boolean true if enabled else false
+		 */
+		public function pgbf_wc_hpos_enabled() {
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
+				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+					return true;
+				}
+			}
+			return false;
+		}
 
 		/**
 		 * Function to add the fees in the Order when order is updated.
@@ -79,8 +94,15 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @param object $post Post object.
 		 */
 		public function alg_wc_cf_update_order_fees( $post_id, $post ) {
-			if ( 'shop_order' !== $post->post_type ) {
-				return;
+			if ( $this->pgbf_wc_hpos_enabled() ) {
+				if ( 'shop_order' === OrderUtil::get_order_type( $post_id ) ) {
+					return;
+				}
+			}
+			if ( false === $this->pgbf_wc_hpos_enabled() ) {
+				if ( 'shop_order' === $post->post_type ) {
+					return;
+				}
 			}
 			$order          = wc_get_order( $post_id );
 			$payment_method = $order->get_payment_method();
