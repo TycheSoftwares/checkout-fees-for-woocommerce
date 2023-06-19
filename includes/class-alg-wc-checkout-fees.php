@@ -915,6 +915,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 						$total_in_cart -= array_sum( WC()->cart->credit_used );
 					}
 				}
+				if ( '' === $args['min_cart_amount'] && '' === $args['max_cart_amount'] ) {
+					$args['min_cart_amount'] = 0;
+					$args['max_cart_amount'] = 0;
+				}
 				if ( $total_in_cart >= $args['min_cart_amount'] && ( 0 == $args['max_cart_amount'] || $total_in_cart <= $args['max_cart_amount'] ) ) {
 					if ( 0 != $args['fee_value'] && 'fee_2' !== $fee_num ) {
 						if ( 'local' === $args['fee_scope'] || $this->do_apply_fees_by_categories( 'fee_1', $args['current_gateway'], $info_product_id ) ) {
