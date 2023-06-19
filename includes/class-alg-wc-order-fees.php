@@ -68,8 +68,27 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
-				add_action( 'woocommerce_saved_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+				if ( $this->pgbf_lite_wc_hpos_enabled() ) {
+					add_action( 'woocommerce_saved_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+				} else {
+					add_action( 'save_post', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+				}
 			}
+		}
+
+		/**
+		 * Check if HPOS is enabled or not.
+		 *
+		 * @since 2.10.0
+		 * return boolean true if enabled else false
+		 */
+		public function pgbf_lite_wc_hpos_enabled() {
+			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
+				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/**
