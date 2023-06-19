@@ -51,7 +51,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 					if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
 						$sections[ sanitize_title( $key ) ] = str_replace( '_', ' ', $key );
 					}
-					if ( 'iyzico_pwi' === $key) {
+					if ( 'iyzico_pwi' === $key ) {
 						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
 					}
 				}
@@ -146,7 +146,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
 				$gateway->title = str_replace( '_', ' ', $key );
 			}
-			if ( 'iyzico_pwi' === $key) {
+			if ( 'iyzico_pwi' === $key ) {
 				$gateway->title = $gateway->method_title;
 			}
 			// Adding settings.
