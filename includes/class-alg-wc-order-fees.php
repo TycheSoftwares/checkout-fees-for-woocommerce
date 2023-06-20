@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 	/**
