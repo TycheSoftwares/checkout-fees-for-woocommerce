@@ -745,7 +745,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 							$sum_for_fee   -= $discount_total;
 						}
 					}
-					$new_fee = ( $fee_value / 100 ) * $sum_for_fee;
+					$new_fee = ( (float) $fee_value / 100 ) * $sum_for_fee;
 					break;
 			}
 			// Min fee.
