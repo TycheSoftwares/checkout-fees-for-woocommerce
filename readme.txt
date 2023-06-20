@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 7.3
+Tested up to: 6.2
 Stable tag: trunk
 Requires PHP: 5.6
 License: GNU General Public License v3.0
@@ -102,9 +102,9 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 = 2.10.0 - 20/06/2023 =
 * Fix - Compatibility with "zipMoney(Zip Co) Payments Plugin for WooCommerce" plugin.
 * Fix - Compatibility with "iyzico WooCommerce" plugin.
-* Fix - Compatibility with the "Bykea.Cash – Online Payments" plugin.
+* Fix - Compatibility with the "Bykea.Cash ï¿½ Online Payments" plugin.
 * Fix - Compatibility with "ECPay" plugin.
-* Fix - Compatibility with "bSecure – Your Universal Checkout" plugin.
+* Fix - Compatibility with "bSecure ï¿½ Your Universal Checkout" plugin.
 * Fix - Made some changes to solve the conflict with Germanized for WooCommerce plugin.
 * Fix - Incorrect fees amount when the fees is set in negative value and tax is enabled.
 * Fix - Not possible to select the Payment Gateway on the checkout page when our plugin is activated.
