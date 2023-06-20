@@ -99,6 +99,9 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
+= 2.10.1 - 20/06/2023 =
+* Fix - Fatal error when High-Performance Order Storage (HPOS) is enabled on store.
+
 = 2.10.0 - 20/06/2023 =
 * Fix - Compatibility with "zipMoney(Zip Co) Payments Plugin for WooCommerce" plugin.
 * Fix - Compatibility with "iyzico WooCommerce" plugin.
