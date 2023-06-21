@@ -169,7 +169,19 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			require_once 'includes/functions/country-functions.php';
 			// Core.
 			$this->core = require_once 'includes/class-alg-wc-checkout-fees.php';
+			$plugin_url = plugins_url() . '/checkout-fees-for-woocommerce';
 			require_once 'includes/class-alg-wc-order-fees.php';
+			// plugin deactivation.
+			require_once 'includes/class-tyche-plugin-deactivation.php';
+			new Tyche_Plugin_Deactivation(
+				array(
+					'plugin_name'       => 'Custom Order Numbers for WooCommerce',
+					'plugin_base'       => 'checkout-fees-for-woocommerce/checkout-fees-for-woocommerce.php',
+					'script_file'       => $plugin_url . '/includes/js/plugin-deactivation.js',
+					'plugin_short_name' => 'pgbf_lite',
+					'version'           => $this->version,
+				)
+			);
 		}
 
 		/**
