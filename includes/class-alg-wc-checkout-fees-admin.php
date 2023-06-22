@@ -53,6 +53,15 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 				wp_enqueue_style( 'alg-wc-checkout-bykea-cash' );
 				wp_add_inline_style( 'alg-wc-checkout-bykea-cash', '.hide-save-btn{ display:block !important;}' );
 			}
+			$plugin_url = plugins_url() . '/checkout-fees-for-woocommerce';
+			wp_register_script(
+				'tyche',
+				$plugin_url . '/includes/js/tyche.js',
+				array( 'jquery' ),
+				alg_wc_cf()->version,
+				true
+			);
+			wp_enqueue_script( 'tyche' );
 		}
 
 
