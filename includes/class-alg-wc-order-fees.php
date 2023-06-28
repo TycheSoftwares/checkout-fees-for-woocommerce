@@ -120,8 +120,6 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @return bool $status True if continue to add the fees.
 		 */
 		public function alc_wc_deposits_for_wc_compatibility( $status, $order ) {
-			print_r($status);
-			error_log($status);
 			if ( 'WCDP_Payment' === get_class( $order ) ) {
 				if ( 'split' === get_option( 'wc_deposits_fees_handling', '' ) ) {
 					$status = false;
