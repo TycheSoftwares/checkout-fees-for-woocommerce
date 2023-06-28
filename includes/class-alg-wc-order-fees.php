@@ -142,7 +142,6 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @return bool $status True if continue to add the fees.
 		 */
 		public function alc_wc_deposits_for_wc_compatibility( $status, $order ) {
-
 			if ( 'WCDP_Payment' === get_class( $order ) ) {
 				if ( 'split' === get_option( 'wc_deposits_fees_handling', '' ) ) {
 					$status = false;
@@ -742,7 +741,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			$new_fee = 0;
 			switch ( $fee_type ) {
 				case 'fixed':
-					$fixed_fee = ( 'by_quantity' === $args['fixed_usage'] ) ? $fee_value * $args['product_qty'] : $fee_value;
+					$fixed_fee = ( 'by_quantity' === $args['fixed_usage'] ) ? (float) $fee_value * $args['product_qty'] : $fee_value;
 					$fixed_fee = $checkout_obj->convert_currency( $fixed_fee );
 					$new_fee   = $fixed_fee;
 					break;
@@ -756,8 +755,8 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 							if ( $cf_on_fees ) {
 								$fee_totals = 0;
 								foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-									$fee_total   = $item->get_total();
-									$fee_totals += $fee_total;
+									$fee_total           = $item->get_total();
+									(float) $fee_totals += $fee_total;
 								}
 								$sum_for_fee = $fee_totals;
 							} else {
@@ -801,7 +800,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				}
 			}
 			// Final calculations.
-			$final_fee_to_add += $new_fee;
+			$final_fee_to_add += (float) $new_fee;
 			if ( 'percent' === $fee_type && 'yes' === $args['do_round'] ) {
 				// default the precision to 0 if it has been left blanks.
 				$precision        = '' == $args['precision'] ? 0 : $args['precision']; //phpcs:ignore
