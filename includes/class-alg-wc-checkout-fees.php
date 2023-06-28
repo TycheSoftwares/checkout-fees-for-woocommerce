@@ -514,7 +514,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			$new_fee = 0;
 			switch ( $fee_type ) {
 				case 'fixed':
-					$fixed_fee = ( 'by_quantity' === $args['fixed_usage'] ) ? $fee_value * $args['product_qty'] : $fee_value;
+					$fixed_fee = ( 'by_quantity' === $args['fixed_usage'] ) ? (float) $fee_value * $args['product_qty'] : $fee_value;
 					$fixed_fee = $this->convert_currency( $fixed_fee );
 					$new_fee   = $fixed_fee;
 					break;
