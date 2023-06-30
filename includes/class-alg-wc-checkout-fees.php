@@ -1011,6 +1011,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 							'taxable'   => $taxable,
 							'tax_class' => $tax_class_name,
 						);
+						$this->fees_added[]   = $args['fee_text'];
+						$this->last_fee_added = $args['fee_text'];
 					} else {
 						$fee_text = $this->recheck_fee_title( $args['fee_text'], $fees );
 						WC()->cart->add_fee( $fee_text, $final_fee_to_add, $taxable, $tax_class_name );
@@ -1026,6 +1028,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 							'taxable'   => $taxable,
 							'tax_class' => $tax_class_name,
 						);
+						$this->fees_added_2[]   = $args['fee_text_2'];
+						$this->last_fee_added_2 = $args['fee_text_2'];
 					} else {
 						$fee_text_2 = $this->recheck_fee_title( $args['fee_text_2'], $fees );
 						WC()->cart->add_fee( $fee_text_2, $final_fee_to_add_2, $taxable, $tax_class_name );
