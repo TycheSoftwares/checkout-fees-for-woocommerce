@@ -13,8 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 use Automattic\WooCommerce\Utilities\OrderUtil;
 
-use Automattic\WooCommerce\Utilities\OrderUtil;
-
 if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 	/**
