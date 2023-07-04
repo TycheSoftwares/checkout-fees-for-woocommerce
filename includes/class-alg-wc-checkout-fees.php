@@ -332,10 +332,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				}
 				if ( $this->pgbf_wc_hpos_enabled() ) {
 					$order = wc_get_order( $order_id );
-					if ( $order->meta_exists( '_payment_method' ) ) {
-						$payment_method = $order->get_meta( '_payment_method' );
-					} else {
-						$payment_method = $order->get_payment_method();
+					if ( $order ) {
+						if ( $order->meta_exists( '_payment_method' ) ) {
+							$payment_method = $order->get_meta( '_payment_method' );
+						} else {
+							$payment_method = $order->get_payment_method();
+						}
 					}
 				} else {
 					$payment_method = get_post_meta( $order_id, '_payment_method', true );
@@ -1085,10 +1087,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 */
 		public function add_order_meta_fees( $order_id ) {
 			$order = wc_get_order( $order_id );
-			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-				if ( '' !== $this->last_fee_added && in_array( $item->get_name(), $this->fees_added ) ) { //phpcs:ignore
-					wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
-				}
+			if ( $order ) {
+				foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+					if ( '' !== $this->last_fee_added && in_array( $item->get_name(), $this->fees_added ) ) { //phpcs:ignore
+						wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
+					}
 
 				if ( '' !== $this->last_fee_added_2 && in_array( $item->get_name(), $this->fees_added_2 ) ) { //phpcs:ignore
 					wc_add_order_item_meta( $item_id, '_last_added_fee_2', $item->get_name() );
