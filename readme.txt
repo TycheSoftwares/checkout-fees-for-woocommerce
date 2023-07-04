@@ -5,7 +5,7 @@ Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
 Tested up to: 6.2
 Stable tag: trunk
-Requires PHP: 5.6
+Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -98,6 +98,12 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.10.2 - 04/07/2023 =
+* Fix - After an order has been placed, fees are being duplicated.
+* Fix - Fatal Errors on the checkout page with PHP 8.1.12.
+* Fix - Added deactivation survey v2.
+* Fix - Payment methods are collapses a moment after the page loads on "Change Payment" button of Subscription order.
 
 = 2.10.1 - 20/06/2023 =
 * Fix - Fatal error when High-Performance Order Storage (HPOS) is enabled on store.
