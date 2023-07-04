@@ -103,47 +103,48 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Info' ) ) :
 			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
 
 			$products_array = array();
-			if ( $the_product->is_type( 'variable' ) ) {
-				foreach ( $the_product->get_available_variations() as $product_variation ) {
-					$variation_product = wc_get_product( $product_variation['variation_id'] );
-					$products_array[]  = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
+			if ( $the_product ) {
+				if ( $the_product->is_type( 'variable' ) ) {
+					foreach ( $the_product->get_available_variations() as $product_variation ) {
+						$variation_product = wc_get_product( $product_variation['variation_id'] );
+						$products_array[]  = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
+						array(
+							'variation_atts' => $variation_product->get_formatted_variation_attributes( true ),
+							'price_excl_tax' => $variation_product->get_price_excluding_tax(),
+							'price_incl_tax' => $variation_product->get_price_including_tax(),
+							'display_price'  => $variation_product->get_display_price(),
+						) :
+						array(
+							'variation_atts' => wc_get_formatted_variation( $variation_product, true ),
+							'price_excl_tax' => wc_get_price_excluding_tax( $variation_product ),
+							'price_incl_tax' => wc_get_price_including_tax( $variation_product ),
+							'display_price'  => wc_get_price_to_display( $variation_product ),
+						)
+						);
+					}
+				} else {
+					$products_array = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
 					array(
-						'variation_atts' => $variation_product->get_formatted_variation_attributes( true ),
-						'price_excl_tax' => $variation_product->get_price_excluding_tax(),
-						'price_incl_tax' => $variation_product->get_price_including_tax(),
-						'display_price'  => $variation_product->get_display_price(),
+						array(
+							'variation_atts' => '',
+							'price_excl_tax' => $the_product->get_price_excluding_tax(),
+							'price_incl_tax' => $the_product->get_price_including_tax(),
+							'display_price'  => $the_product->get_display_price(),
+						),
 					) :
 					array(
-						'variation_atts' => wc_get_formatted_variation( $variation_product, true ),
-						'price_excl_tax' => wc_get_price_excluding_tax( $variation_product ),
-						'price_incl_tax' => wc_get_price_including_tax( $variation_product ),
-						'display_price'  => wc_get_price_to_display( $variation_product ),
+						array(
+							'variation_atts' => '',
+							'price_excl_tax' => wc_get_price_excluding_tax( $the_product ),
+							'price_incl_tax' => wc_get_price_including_tax( $the_product ),
+							'display_price'  => wc_get_price_to_display( $the_product ),
+						),
 					)
 					);
 				}
-			} else {
-				$products_array = ( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
-				array(
-					array(
-						'variation_atts' => '',
-						'price_excl_tax' => $the_product->get_price_excluding_tax(),
-						'price_incl_tax' => $the_product->get_price_including_tax(),
-						'display_price'  => $the_product->get_display_price(),
-					),
-				) :
-				array(
-					array(
-						'variation_atts' => '',
-						'price_excl_tax' => wc_get_price_excluding_tax( $the_product ),
-						'price_incl_tax' => wc_get_price_including_tax( $the_product ),
-						'display_price'  => wc_get_price_to_display( $the_product ),
-					),
-				)
-				);
-			}
-
-			$gateways_data      = array();
-			$lowest_price_array = array();
+			
+				$gateways_data      = array();
+				$lowest_price_array = array();
 
 			foreach ( $products_array as $product_data ) {
 

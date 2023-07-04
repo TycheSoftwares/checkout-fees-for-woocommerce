@@ -69,26 +69,12 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
-				if ( $this->pgbf_lite_wc_hpos_enabled() ) {
+				if ( $this->pgbf_wc_hpos_enabled() ) {
 					add_action( 'woocommerce_saved_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
 				} else {
 					add_action( 'save_post', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
 				}
 			}
-		}
-		/**
-		 * Check if HPOS is enabled or not.
-		 *
-		 * @since 2.8.0
-		 * return boolean true if enabled else false
-		 */
-		public function pgbf_wc_hpos_enabled() {
-			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
-				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-					return true;
-				}
-			}
-			return false;
 		}
 
 		/**
@@ -97,7 +83,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @since 2.10.0
 		 * return boolean true if enabled else false
 		 */
-		public function pgbf_lite_wc_hpos_enabled() {
+		public function pgbf_wc_hpos_enabled() {
 			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
 				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
 					return true;
@@ -123,11 +109,13 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					return;
 				}
 			}
-			$order          = wc_get_order( $post_id );
-			$payment_method = $order->get_payment_method();
-			if ( '' !== $payment_method ) {
-				$this->remove_fees( $order );
-				$this->add_gateways_fees( $order, $payment_method );
+			$order = wc_get_order( $post_id );
+			if ( $order ) {
+				$payment_method = $order->get_payment_method();
+				if ( '' !== $payment_method ) {
+					$this->remove_fees( $order );
+					$this->add_gateways_fees( $order, $payment_method );
+				}
 			}
 		}
 
@@ -166,12 +154,11 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				wp_die();
 			}
 
-			$order    = wc_get_order( $order_id );
-			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
-
-			
-
-			$this->remove_fees( $order );
+			$order = wc_get_order( $order_id );
+			if ( $order ) {
+				$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
+				$this->remove_fees( $order );
+			}
 			if ( $add_fees ) {
 				$this->add_gateways_fees( $order, $payment_method );
 				// Update payment method record in the database.
@@ -202,17 +189,18 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 */
 		public function remove_fees( $order ) {
 			global $wpdb;
-
-			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-				$last_added   = wc_get_order_item_meta( $item_id, '_last_added_fee' );
-				$last_added_2 = wc_get_order_item_meta( $item_id, '_last_added_fee_2' );
-				if ( $last_added === $item->get_name() || $last_added_2 === $item->get_name() ) {
-					wc_delete_order_item( $item_id );
-					$order->remove_item( $item_id );
+			if ( $order ) {
+				foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+					$last_added   = wc_get_order_item_meta( $item_id, '_last_added_fee' );
+					$last_added_2 = wc_get_order_item_meta( $item_id, '_last_added_fee_2' );
+					if ( $last_added === $item->get_name() || $last_added_2 === $item->get_name() ) {
+						wc_delete_order_item( $item_id );
+						$order->remove_item( $item_id );
+					}
 				}
+				$order->calculate_totals();
+				$order->save();
 			}
-			$order->calculate_totals();
-			$order->save();
 		}
 
 		/**

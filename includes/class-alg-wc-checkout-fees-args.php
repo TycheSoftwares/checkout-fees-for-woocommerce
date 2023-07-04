@@ -85,13 +85,17 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Args' ) ) :
 			$do_add_product_name = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_per_product_add_product_name', 'no' ) );
 			if ( $do_add_product_name ) {
 				if ( isset( $variation_id ) && 0 != $variation_id ) {
-					$_product               = wc_get_product( $variation_id );
-					$product_formatted_name = ' &ndash; ' . $_product->get_title() . ' &ndash; ' .
-					( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
-						$_product->get_formatted_variation_attributes( true ) : wc_get_formatted_variation( $_product, true ) );
+					$_product = wc_get_product( $variation_id );
+					if ( $_product ) {
+						$product_formatted_name = ' &ndash; ' . $_product->get_title() . ' &ndash; ' .
+						( version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' ) ?
+							$_product->get_formatted_variation_attributes( true ) : wc_get_formatted_variation( $_product, true ) );
+					}
 				} else {
-					$_product               = wc_get_product( $product_id );
-					$product_formatted_name = ' &ndash; ' . $_product->get_title();
+					$_product = wc_get_product( $product_id );
+					if ( $_product ) {
+						$product_formatted_name = ' &ndash; ' . $_product->get_title();
+					}
 				}
 			}
 			$args                     = array();
