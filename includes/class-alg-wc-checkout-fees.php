@@ -1093,8 +1093,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 						wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
 					}
 
-				if ( '' !== $this->last_fee_added_2 && in_array( $item->get_name(), $this->fees_added_2 ) ) { //phpcs:ignore
-					wc_add_order_item_meta( $item_id, '_last_added_fee_2', $item->get_name() );
+					if ( '' !== $this->last_fee_added_2 && in_array( $item->get_name(), $this->fees_added_2 ) ) { //phpcs:ignore
+						wc_add_order_item_meta( $item_id, '_last_added_fee_2', $item->get_name() );
+					}
 				}
 			}
 		}
