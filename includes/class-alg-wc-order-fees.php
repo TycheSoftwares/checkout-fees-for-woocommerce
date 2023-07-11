@@ -82,7 +82,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			$order = wc_get_order( $order_id );
 			if ( $order && is_a( $order, 'WC_Order' ) ) {
 				if ( is_admin() ) {
-					$payment_method = isset( $_POST['_payment_method'] ) ? $_POST['_payment_method'] : $order->get_payment_method();
+					$payment_method = isset( $_POST['_payment_method'] ) ? $_POST['_payment_method'] : $order->get_payment_method(); // phpcs:ignore
 				} else {
 					$payment_method = $order->get_payment_method();
 				}
