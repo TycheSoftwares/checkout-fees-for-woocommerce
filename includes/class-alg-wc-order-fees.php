@@ -11,7 +11,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-use Automattic\WooCommerce\Utilities\OrderUtil;
 
 if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
@@ -69,49 +68,24 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
-				if ( $this->pgbf_wc_hpos_enabled() ) {
-					add_action( 'woocommerce_saved_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
-				} else {
-					add_action( 'save_post', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
-				}
+				add_action( 'woocommerce_process_shop_order_meta', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
 			}
-		}
-
-		/**
-		 * Check if HPOS is enabled or not.
-		 *
-		 * @since 2.10.0
-		 * return boolean true if enabled else false
-		 */
-		public function pgbf_wc_hpos_enabled() {
-			if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) ) {
-				if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-					return true;
-				}
-			}
-			return false;
 		}
 
 		/**
 		 * Function to add the fees in the Order when order is updated.
 		 *
-		 * @param int    $post_id Post ID.
-		 * @param object $post Post object.
+		 * @param int    $order_id Order ID.
+		 * @param object $order Post object.
 		 */
-		public function alg_wc_cf_update_order_fees( $post_id, $post ) {
-			if ( $this->pgbf_wc_hpos_enabled() ) {
-				if ( 'shop_order' === OrderUtil::get_order_type( $post_id ) ) {
-					return;
+		public function alg_wc_cf_update_order_fees( $order_id, $order ) {
+			$order = wc_get_order( $order_id );
+			if ( $order && is_a( $order, 'WC_Order' ) ) {
+				if ( is_admin() ) {
+					$payment_method = isset( $_POST['_payment_method'] ) ? $_POST['_payment_method'] : $order->get_payment_method();
+				} else {
+					$payment_method = $order->get_payment_method();
 				}
-			}
-			if ( false === $this->pgbf_wc_hpos_enabled() ) {
-				if ( 'shop_order' === $post->post_type ) {
-					return;
-				}
-			}
-			$order = wc_get_order( $post_id );
-			if ( $order ) {
-				$payment_method = $order->get_payment_method();
 				if ( '' !== $payment_method ) {
 					$this->remove_fees( $order );
 					$this->add_gateways_fees( $order, $payment_method );
@@ -231,6 +205,45 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					$this->maybe_add_order_fee( $args, $order );
 				}
 			}
+			
+			// Add fee - "super" global.
+			if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_global_fee_enabled', 'no' ) ) {
+				$do_add = true;
+				if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_global_fee_as_extra_enabled', 'no' ) ) {
+					$current_fees = ( $this->do_merge_fees ? $this->fees : $order->get_items( 'fee' ) );
+					if ( empty( $current_fees ) ) {
+						$do_add = false;
+					}
+				}
+				if ( $do_add ) {
+					$gateways_excl = get_option( 'alg_woocommerce_checkout_fees_global_fee_gateways_excl', '' );
+					if ( ! empty( $gateways_excl ) && in_array( $current_gateway, $gateways_excl, true ) ) {
+						$do_add = false;
+					}
+				}
+				if ( $do_add ) {
+					if ( $this->do_merge_fees ) {
+						$this->fees[] = array(
+							'title'     => get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' ),
+							'value'     => get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ),
+							'taxable'   => false,
+							'tax_class' => '',
+						);
+					} else {
+						$item_fee = new WC_Order_Item_Fee();
+
+						$item_fee->set_name( get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' ) );
+						$item_fee->set_amount( get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ) );
+						$item_fee->set_total( get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ) );
+
+						// Add Fee item to the order.
+						$order->add_item( $item_fee );
+						$order->calculate_totals();
+						$order->save();
+						$this->fees_added[] = get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' );
+					}
+				}
+			}
 
 			// Maybe merge.
 			if ( $this->do_merge_fees && ! empty( $this->fees ) ) {
@@ -254,12 +267,12 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					$order->calculate_totals();
 					$order->save();
 					$this->fees_added[] = $merged_fee['title'];
-					foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-						if ( $merged_fee['title'] === $item->get_name() ) {
-							wc_add_order_item_meta( $item_id, '_last_added_fee', $args['fee_text'] );
-						}
-					}
+					
 				}
+			}
+
+			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
+				wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
 			}
 
 		}
