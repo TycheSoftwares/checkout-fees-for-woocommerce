@@ -95,7 +95,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @var $last_known_current_gateway
 		 */
 		public $last_known_current_gateway = '';
-		
 		/**
 		 * Constructor.
 		 *
@@ -471,7 +470,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 						} else {
 							$global_fee = ( WC()->cart->cart_contents_total + WC()->cart->shipping_total ) / 100 * $global_value;
 						}
-						WC()->cart->add_fee( get_option( 'alg_woocommerce_checkout_fees_global_fee_title' ), $global_fee, true, '' );
+						WC()->cart->add_fee( get_option( 'alg_woocommerce_checkout_fees_global_fee_title' ), $global_fee, );
 						$this->fees_added[] = get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' );
 					}
 				}
