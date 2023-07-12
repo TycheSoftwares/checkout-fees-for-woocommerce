@@ -166,13 +166,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public function get_max_ranges() {
 			$this->max_total_all_discounts = $this->convert_currency( get_option( 'alg_woocommerce_checkout_fees_range_max_total_discounts', 0 ) );
 			$this->max_total_all_fees      = $this->convert_currency( get_option( 'alg_woocommerce_checkout_fees_range_max_total_fees', 0 ) );
-			if ( 0 == $this->max_total_all_discounts ) {
+			if ( 0 == $this->max_total_all_discounts || '' === $this->max_total_all_discounts ) { //phpcs:ignore
 				$this->max_total_all_discounts = false;
 			}
-			if ( '' === $this->max_total_all_fees ) {
-				$this->max_total_all_fees = 0;
-			}
-			if ( 0 == $this->max_total_all_fees ) {
+			if ( 0 == $this->max_total_all_fees || '' === $this->max_total_all_fees ) { //phpcs:ignore
 				$this->max_total_all_fees = false;
 			}
 		}
@@ -552,7 +549,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				if ( $new_fee < $this->max_total_all_discounts ) {
 					$new_fee = $this->max_total_all_discounts;
 				}
-				$this->max_total_all_discounts -= $new_fee;
+				$this->max_total_all_discounts = (float) $this->max_total_all_discounts - (float) $new_fee;
 				if ( $this->max_total_all_discounts > 0 ) {
 					$this->max_total_all_discounts = 0;
 				}
@@ -562,7 +559,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				if ( $new_fee > $this->max_total_all_fees ) {
 					$new_fee = $this->max_total_all_fees;
 				}
-				$this->max_total_all_fees -= $new_fee;
+				$this->max_total_all_fees = (float) $this->max_total_all_fees - (float) $new_fee;
 				if ( $this->max_total_all_fees < 0 ) {
 					$this->max_total_all_fees = 0;
 				}
