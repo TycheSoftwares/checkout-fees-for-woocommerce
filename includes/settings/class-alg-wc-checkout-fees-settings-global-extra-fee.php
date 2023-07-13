@@ -98,17 +98,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee' ) ) :
 					'type'     => 'text',
 				),
 				array(
-					'title'    => __( 'Fee type', 'checkout-fees-for-woocommerce' ),
-					'desc_tip' => __( 'Fee type. Percent or fixed value.', 'checkout-fees-for-woocommerce' ),
-					'id'       => 'alg_woocommerce_checkout_fees_global_fee_type',
-					'default'  => 'fixed',
-					'type'     => 'select',
-					'options'  => array(
-						'fixed'   => __( 'Fixed', 'checkout-fees-for-woocommerce' ),
-						'percent' => __( 'Percent', 'checkout-fees-for-woocommerce' ),
-					),
-				),
-				array(
 					'title'             => __( 'Fee value', 'checkout-fees-for-woocommerce' ),
 					'desc_tip'          => __( 'Fee (or discount) value. For discount enter a negative number.', 'checkout-fees-for-woocommerce' ),
 					'id'                => 'alg_woocommerce_checkout_fees_global_fee_value',
