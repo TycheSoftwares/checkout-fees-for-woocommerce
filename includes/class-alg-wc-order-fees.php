@@ -222,33 +222,25 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					}
 				}
 				if ( $do_add ) {
-					$global_title = get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' );
-					$global_value = get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 );
-					$global_type  = get_option( 'alg_woocommerce_checkout_fees_global_fee_type', 'fixed' );
-					if ( 'fixed' === $global_type ) {
-						$global_fee = $global_value;
-					} else {
-						$global_fee = ( $order->get_subtotal() ) / 100 * $global_value;
-					}
 					if ( $this->do_merge_fees ) {
 						$this->fees[] = array(
-							'title'     => $global_title,
-							'value'     => $global_fee,
+							'title'     => get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' ),
+							'value'     => get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ),
 							'taxable'   => false,
 							'tax_class' => '',
 						);
 					} else {
 						$item_fee = new WC_Order_Item_Fee();
 
-						$item_fee->set_name( $global_title );
-						$item_fee->set_amount( $global_fee );
-						$item_fee->set_total( $global_fee );
+						$item_fee->set_name( get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' ) );
+						$item_fee->set_amount( get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ) );
+						$item_fee->set_total( get_option( 'alg_woocommerce_checkout_fees_global_fee_value', 0 ) );
 
 						// Add Fee item to the order.
 						$order->add_item( $item_fee );
 						$order->calculate_totals();
 						$order->save();
-						$this->fees_added[] = $global_title;
+						$this->fees_added[] = get_option( 'alg_woocommerce_checkout_fees_global_fee_title', '' );
 					}
 				}
 			}
