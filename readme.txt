@@ -99,6 +99,10 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
+= 2.10.3 - 13/07/2023 =
+* Fix - Fees are not getting recalculated on the backend when the payment gateway is changed after placing the order.
+* Fix - Fatal errors while processing a refund on the edit order page.
+
 = 2.10.2 - 04/07/2023 =
 * Fix - After an order has been placed, fees are being duplicated.
 * Fix - Fatal Errors on the checkout page with PHP 8.1.12.
