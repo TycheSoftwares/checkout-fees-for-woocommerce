@@ -278,7 +278,9 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			}
 
 			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-				wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
+				if ( in_array( $item->get_name(), $this->fees_added ) ) { //phpcs:ignore
+					wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
+				}
 			}
 
 		}
