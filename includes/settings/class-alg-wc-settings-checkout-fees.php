@@ -48,6 +48,7 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 			add_action( 'woocommerce_update_options_' . $this->id, array( $this, 'maybe_reset_settings' ) );
 			add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'maybe_unclean_option' ), PHP_INT_MAX, 3 );
 			add_action( 'woocommerce_admin_field_alg_woocommerce_checkout_fees_custom_link', array( $this, 'output_custom_link' ) );
+			add_action( 'woocommerce_admin_field_link', array( $this, 'pgbf_add_admin_field_reset_button' ) );
 
 		}
 
@@ -72,6 +73,15 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 						'id'      => 'alg_woocommerce_checkout_fees_' . $current_section . '_reset',
 						'default' => 'no',
 						'type'    => 'checkbox',
+					),
+					array(
+						'name'          => __( 'Reset usage tracking', 'deposits-for-woocommerce'),
+						'type'          => 'link',
+						'desc'          => __( 'This will reset your usage tracking settings, causing it to show the opt-in banner again and not sending any data','ts-tracking'),
+						'button_text'   => 'Reset',
+						'desc_tip'      => true,
+						'class'         => 'button-secondary reset_tracking',
+						'id'            => 'pgbf_ts_reset_tracking',
 					),
 					array(
 						'type' => 'sectionend',
@@ -138,6 +148,35 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 			<?php
 		}
 
+		/**
+		 * Reset the usage tracking settings.
+		 *
+		 * @param array $value Settings value.
+		 */
+		public static function pgbf_add_admin_field_reset_button( $value ) {
+			if ( 'pgbf_ts_reset_tracking' == $value['id'] ) {
+				$description = WC_Admin_Settings::get_field_description( $value );
+				$ts_action = "admin.php?page=wc-settings&tab=alg_checkout_fees&ts_action=reset_tracking";
+				?>
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?></label>
+						<?php echo  $description['tooltip_html'];?>
+					</th>
+					
+					<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
+						
+						<a  href = "<?php echo $ts_action; ?>"
+							name ="pgbf_ts_reset_tracking"
+							id   ="pgbf_ts_reset_tracking"
+							style="<?php echo esc_attr( $value['css'] ); ?>"
+							class="<?php echo esc_attr( $value['class'] ); ?>"
+						> <?php echo $value['button_text']; ?> </a> <?php echo $description['description']; ?>
+					</td>
+				</tr>
+				<?php
+			}
+		}
 	}
 
 endif;
