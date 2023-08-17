@@ -90,7 +90,7 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 				),
 			);
 
-			return wp_json_encode( $global_settings );
+			return $global_settings;
 
 		}
 
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 
 			$active_gateways = self::wc_payment_gateways();
 
-			return wp_json_encode( $active_gateways );
+			return $active_gateways;
 		}
 
 		/**
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 				$active_gateways_fees[ $key ] = $args;
 			}
 
-			return wp_json_encode( $active_gateways_fees );
+			return $active_gateways_fees;
 		}
 
 		/**
@@ -160,7 +160,7 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 				$product_count[ $gateway ] = $count;
 			}
 
-			return wp_json_encode( $product_count );
+			return $product_count;
 		}
 
 		/**
