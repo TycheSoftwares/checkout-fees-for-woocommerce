@@ -470,7 +470,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 							);
 					} else {
 							WC()->cart->add_fee( $global_title, $global_fee );
-							$this->fees_added[] = $global_title;
+							$this->fees_added[]   = $global_title;
+							$this->last_fee_added = $global_title;
 					}
 				}
 			}
@@ -487,7 +488,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				}
 				if ( ! empty( $merged_fee ) ) {
 					WC()->cart->add_fee( $merged_fee['title'], $merged_fee['value'], $merged_fee['taxable'], $merged_fee['tax_class'] );
-					$this->fees_added[] = $merged_fee['title'];
+					$this->fees_added[]   = $merged_fee['title'];
+					$this->last_fee_added = $merged_fee['title'];
 				}
 			}
 		}

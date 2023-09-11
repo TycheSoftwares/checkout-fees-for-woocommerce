@@ -68,7 +68,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->do_merge_fees = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_merge_all_fees', 'no' ) );
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
-				add_action( 'woocommerce_process_shop_order_meta', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+				add_action( 'woocommerce_before_save_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
 			}
 		}
 
@@ -80,16 +80,18 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 */
 		public function alg_wc_cf_update_order_fees( $order_id, $order ) {
 			$order = wc_get_order( $order_id );
-			if ( $order && is_a( $order, 'WC_Order' ) ) {
-				if ( is_admin() ) {
-					$payment_method = isset( $_POST['_payment_method'] ) ? $_POST['_payment_method'] : $order->get_payment_method(); // phpcs:ignore
-				} else {
-					$payment_method = $order->get_payment_method();
-				}
-				if ( '' !== $payment_method ) {
-					$this->remove_fees( $order );
-					$this->add_gateways_fees( $order, $payment_method );
-				}
+			if ( ! $order || ! is_a( $order, 'WC_Order' ) ) {
+				return;
+			}
+			$current_payment_method = $order->get_payment_method();
+			if ( is_admin() ) {
+                $posted_payment_method = isset( $_POST['_payment_method'] ) ? wc_clean( $_POST['_payment_method'] ) : $current_payment_method; // phpcs:ignore
+			} else {
+				$posted_payment_method = $current_payment_method;
+			}
+			if ( $posted_payment_method !== $current_payment_method ) {
+				$this->remove_fees( $order );
+				$this->add_gateways_fees( $order, $posted_payment_method );
 			}
 		}
 
@@ -247,7 +249,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 						$order->add_item( $item_fee );
 						$order->calculate_totals();
 						$order->save();
-						$this->fees_added[] = $global_titale;
+						$this->fees_added[] = $global_title;
 					}
 				}
 			}
