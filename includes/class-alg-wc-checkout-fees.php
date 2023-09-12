@@ -95,7 +95,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @var $last_known_current_gateway
 		 */
 		public $last_known_current_gateway = '';
-		
 		/**
 		 * Constructor.
 		 *
@@ -371,9 +370,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( '' === $current_gateway ) {
 				$current_gateway = ( ! empty( $_REQUEST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['payment_method'] ) ) : '' );// phpcs:ignore WordPress.Security.NonceVerification
 				if ( '' === $current_gateway ) {
-					return ( isset( $this->last_known_current_gateway ) ? $this->last_known_current_gateway : get_option( 'woocommerce_default_gateway', '' ) );
+					$current_gateway = ( isset( $this->last_known_current_gateway ) ? $this->last_known_current_gateway : get_option( 'woocommerce_default_gateway', '' ) );
 				}
 			}
+			$current_gateway                  = apply_filters( 'alg_wc_checkout_current_gateway', $current_gateway );
 			$this->last_known_current_gateway = $current_gateway;
 			return $current_gateway;
 		}
@@ -394,7 +394,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				return;
 			}
 
-			$current_gateway = $this->get_current_gateway();
+			$current_gateway = apply_filters( 'alg_wc_add_default_gateway_on_cart', $this->get_current_gateway() );
 			if ( ! $current_gateway ) {
 				return;
 			}
