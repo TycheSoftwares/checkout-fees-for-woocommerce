@@ -1064,6 +1064,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && ( in_array( $fees->name, $this->fees_added ) || in_array( $fees->name, $this->fees_added_2 ) ) ) { //phpcs:ignore
 				$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s %s)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ), $tax_label ) . '</small>'; // phpcs:ignore
 			}
+			$cart_fee_html = str_replace( '-', '', $cart_fee_html );
+
+			if ( 0 > $fees->amount ) {
+				$cart_fee_html = '-' . rtrim( $cart_fee_html );
+			}
+
 			return $cart_fee_html;
 		}
 
