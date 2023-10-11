@@ -69,6 +69,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				add_action( 'wc_ajax_update_fees', array( $this, 'update_checkout_fees_ajax' ) );
 				add_filter( 'alg_wc_add_gateways_fees', array( $this, 'alc_wc_deposits_for_wc_compatibility' ), 10, 2 );
 				add_action( 'woocommerce_before_save_order_items', array( $this, 'alg_wc_cf_update_order_fees' ), PHP_INT_MAX, 2 );
+				add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'alg_wc_order_item_fee_after_calculate_taxes' ), 10, 2 );
 			}
 		}
 
@@ -837,6 +838,25 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					'order_button_text'  => apply_filters( 'woocommerce_pay_order_button_text', __( 'Pay for order', 'woocommerce' ) ),
 				)
 			);
+		}
+
+		/**
+		 * Removing the tax amount from negative fees form order edit page when click on recalculate button. This patch is for #191.
+		 *
+		 * Ref - https://github.com/woocommerce/woocommerce/pull/16969/files.
+		 *
+		 * @param object $fees Fees Object.
+		 * @param array  $calculate_tax_for Calculate tax array.
+		 */
+		public function alg_wc_order_item_fee_after_calculate_taxes( $fees, $calculate_tax_for ) {
+			if ( $fees->get_total() < 0 ) {
+				$fees->set_tax_class( '' );
+				$fees->set_tax_status( 'none' );
+				$fees->set_total( $fees->get_total() );
+				$fees->set_total_tax( 0 );
+				$fees->set_taxes( array( 'total' => 0 ) );
+				$fees->save();
+			}
 		}
 	}
 
