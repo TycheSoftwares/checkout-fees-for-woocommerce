@@ -38,7 +38,7 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 		public static function cf_plugin_tracking_data( $data ) {
 
 			$plugin_data = array(
-				'ts_meta_data_table_name'  => 'ts_tracking_cf_meta_data',
+				'ts_meta_data_table_name'  => 'ts_tracking_pgbf_lite_meta_data',
 				'ts_plugin_name'           => 'Payment Gateway Based Fees and Discounts for WooCommerce',
 				'global_settings'          => self::cf_get_global_settings(),
 				'enabled_payment_gateways' => self::cf_get_enabled_payment_gateways(),
