@@ -123,6 +123,10 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 				add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
 				add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 				add_action( 'before_woocommerce_init', array( &$this, 'pgbf_lite_custom_order_tables_compatibility' ), 999 );
+				add_action( 'admin_footer', array( $this, 'ts_admin_notices_scripts' ) );
+				add_action( 'admin_init', array( $this, 'ts_reset_tracking_setting' ) );
+				add_action( 'pgbf_lite_init_tracker_completed', array( $this, 'init_tracker_completed' ), 10, 2 );
+				add_filter( 'ts_tracker_data', array( 'Cf_Tracking_Functions', 'cf_plugin_tracking_data' ), 10, 1 );
 				// Admin core.
 				require_once 'includes/class-alg-wc-checkout-fees-admin.php';
 				// Settings.
@@ -171,17 +175,71 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			$this->core      = require_once 'includes/class-alg-wc-checkout-fees.php';
 			$pgbf_plugin_url = plugins_url() . '/checkout-fees-for-woocommerce';
 			require_once 'includes/class-alg-wc-order-fees.php';
-			// plugin deactivation.
-			require_once 'includes/class-tyche-plugin-deactivation.php';
-			new Tyche_Plugin_Deactivation(
+
+			// Data Tracking.
+			include_once 'includes/class-cf-tracking-functions.php';
+			include_once 'includes/class-alg-wc-all-component.php';
+		}
+
+
+		/**
+		 * Added tracking dismiss notice js.
+		 */
+		public static function ts_admin_notices_scripts() {
+			wp_enqueue_script(
+				'pgbf_lite_ts_dismiss_notice',
+				plugins_url() . '/checkout-fees-for-woocommerce/includes/js/tyche-dismiss-tracking-notice.js',
+				'',
+				'',
+				false
+			);
+		
+			wp_localize_script(
+				'pgbf_lite_ts_dismiss_notice',
+				'pgbf_lite_ts_dismiss_notice',
 				array(
-					'plugin_name'       => 'Payment Gateway Based Fees and Discounts for WooCommerce',
-					'plugin_base'       => 'checkout-fees-for-woocommerce/checkout-fees-for-woocommerce.php',
-					'script_file'       => $pgbf_plugin_url . '/includes/js/plugin-deactivation.js',
-					'plugin_short_name' => 'pgbf_lite',
-					'version'           => $this->version,
+					'ts_prefix_of_plugin' => 'pgbf_lite',
+					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
 				)
 			);
+		}
+
+
+		/**
+         * This function includes js files required for admin side.
+         * 
+         * @hook admin_enqueue_scripts
+         * 
+         * @since 2.9.0
+         */
+		function enqueue_script() {
+			wp_register_script(
+				'tyche',
+				plugins_url() . '/checkout-fees-for-woocommerce/includes/js/tyche.js',
+				array( 'jquery' ),
+				$this->version,
+				true
+			);
+			wp_enqueue_script( 'tyche' );
+		}
+
+		/**
+		 * Remove query string to the admin url.
+		 */
+		public static function ts_reset_tracking_setting() {
+			if ( isset( $_GET ['ts_action'] ) && 'reset_tracking' == $_GET ['ts_action'] ) {
+				Tyche_Plugin_Tracking::reset_tracker_setting( 'pgbf_lite' );
+				$ts_url = remove_query_arg( 'ts_action' );
+				wp_safe_redirect( $ts_url );
+			}
+		}
+
+		/**
+		 * Redirect page after tracking completed.
+		 */
+		public static function init_tracker_completed() {
+			header( 'Location: ' . admin_url( 'admin.php?page=wc-settings&tab=alg_checkout_fees' ) );
+			exit;
 		}
 
 		/**
