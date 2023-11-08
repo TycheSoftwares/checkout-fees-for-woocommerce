@@ -225,7 +225,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 * Remove query string to the admin url.
 		 */
 		public static function ts_reset_tracking_setting() {
-			if ( isset( $_GET ['ts_action'] ) && 'reset_tracking' == $_GET ['ts_action'] ) {
+			if ( isset( $_GET ['ts_action'] ) && 'reset_tracking' === $_GET ['ts_action'] ) { // phpcs:ignore
 				Tyche_Plugin_Tracking::reset_tracker_setting( 'pgbf_lite' );
 				$ts_url = remove_query_arg( 'ts_action' );
 				wp_safe_redirect( $ts_url );
