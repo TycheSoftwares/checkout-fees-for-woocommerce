@@ -190,7 +190,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 				'pgbf_lite_ts_dismiss_notice',
 				plugins_url() . '/checkout-fees-for-woocommerce/includes/js/tyche-dismiss-tracking-notice.js',
 				'',
-				$this->version,
+				get_option( 'alg_woocommerce_checkout_fees_version' ),
 				false
 			);
 			wp_localize_script(
@@ -201,24 +201,6 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
 				)
 			);
-		}
-
-
-		/**
-		 * This function includes js files required for admin side.
-		 *
-		 * @hook admin_enqueue_scripts
-		 * @since 2.9.0
-		 */
-		public function enqueue_script() {
-			wp_register_script(
-				'tyche',
-				plugins_url() . '/checkout-fees-for-woocommerce/includes/js/tyche.js',
-				array( 'jquery' ),
-				$this->version,
-				true
-			);
-			wp_enqueue_script( 'tyche' );
 		}
 
 		/**
