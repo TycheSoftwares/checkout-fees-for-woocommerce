@@ -849,7 +849,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 * @param array  $calculate_tax_for Calculate tax array.
 		 */
 		public function alg_wc_order_item_fee_after_calculate_taxes( $fees, $calculate_tax_for ) {
-			if ( $fees->get_tax_status() != 'taxable') {
+			if ( $fees->get_tax_status() != 'taxable' ) {
 				if ( $fees->get_total() < 0 ) {
 					$fees->set_tax_class( '' );
 					$fees->set_tax_status( 'none' );
