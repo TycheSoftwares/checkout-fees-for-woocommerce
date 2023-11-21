@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.2
+Tested up to: 6.4
 Stable tag: trunk
 Requires PHP: 7.3
 License: GNU General Public License v3.0
@@ -98,6 +98,13 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.11.0 - 21/11/2023 =
+* Fix - Tax is being included for Discount.
+* Fix - Option to show fees on cart page based on previously payment method was selected.
+* Fix - Unable to remove fees from Edit Order Page.
+* Fix - WooCommerce Fees is being removed when adding Order Fees in Admin Side.
+* Dev - Percentage Fees option added for 'Global Extra Fee'.
 
 = 2.10.3 - 13/07/2023 =
 * Fix - Fees are not getting recalculated on the backend when the payment gateway is changed after placing the order.
