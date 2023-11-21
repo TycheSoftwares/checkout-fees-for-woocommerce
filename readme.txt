@@ -99,7 +99,7 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
-= 2.10.3 - 13/07/2023 =
+= 2.11.0 - 21/11/2023 =
 * Fix - Tax is being included for Discount.
 * Fix - Option to show fees on cart page based on previously payment method was selected.
 * Fix - Unable to remove fees from Edit Order Page.
