@@ -54,6 +54,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 					if ( 'iyzico_pwi' === $key ) {
 						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
 					}
+					if ( 'alma' === $key ) {
+						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+					}
 				}
 			}
 			return $sections;
@@ -147,6 +150,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				$gateway->title = str_replace( '_', ' ', $key );
 			}
 			if ( 'iyzico_pwi' === $key ) {
+				$gateway->title = $gateway->method_title;
+			}
+			if ( 'alma' === $key ) {
 				$gateway->title = $gateway->method_title;
 			}
 			// Adding settings.
