@@ -94,6 +94,7 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 				$this->remove_fees( $order );
 				$this->add_gateways_fees( $order, $posted_payment_method );
 			}
+			do_action( 'alg_wc_checkout_fees_after_order_updated', $this, $order );
 		}
 
 		/**
