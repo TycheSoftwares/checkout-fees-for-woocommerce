@@ -492,6 +492,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					$this->last_fee_added = $merged_fee['title'];
 				}
 			}
+			do_action( 'alg_wc_checkout_fees_after_fees_added', $this );
 		}
 
 		/**
