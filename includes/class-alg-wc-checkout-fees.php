@@ -978,6 +978,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since   1.1.0
 		 */
 		public function recheck_fee_title( $fee_text, $fees ) {
+			if ( is_checkout() ) {
+				return $fee_text;
+			}
 			foreach ( $fees as $fee ) {
 				if ( $fee_text === $fee->name ) {
 					$fee_text .= ' #2';
