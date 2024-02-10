@@ -27,7 +27,7 @@ add_action(
         if ( function_exists( 'woocommerce_store_api_register_update_callback' ) ) {
             woocommerce_store_api_register_update_callback(
                 array(
-                    'namespace' => 'checkout-block-example',
+                    'namespace' => 'checkout-fees-for-woocommerce',
                     'callback'  => 'update_cart_fees',
                 )
             );
