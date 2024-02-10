@@ -405,6 +405,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			}
 			if ( strpos( $current_gateway, 'alma_in_page' ) !== false ) {
 				$current_gateway = 'alma';
+      }
+			if ( strpos( $current_gateway, 'xpay_paypal' ) !== false ) {
+				$current_gateway = 'xpay';
 			}
 			// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return.
 			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
@@ -495,6 +498,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					$this->last_fee_added = $merged_fee['title'];
 				}
 			}
+			do_action( 'alg_wc_checkout_fees_after_fees_added', $this );
 		}
 
 		/**
