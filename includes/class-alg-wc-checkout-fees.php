@@ -403,6 +403,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( strpos( $current_gateway, $klarna_payment ) !== false ) {
 				$current_gateway = 'klarna_payments';
 			}
+			if ( strpos( $current_gateway, 'alma_in_page' ) !== false ) {
+				$current_gateway = 'alma';
+			}
 			if ( strpos( $current_gateway, 'xpay_paypal' ) !== false ) {
 				$current_gateway = 'xpay';
 			}
