@@ -15,11 +15,11 @@ use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
 
 add_action(
     'woocommerce_blocks_loaded',
-    function() {
+    function () {
         require_once 'class-blocks-integration.php';
         add_action(
             'woocommerce_blocks_checkout_block_registration',
-            function( $integration_registry ) {
+            function ( $integration_registry ) {
                 $integration_registry->register( new Blocks_Integration() );
             }
         );
@@ -44,9 +44,7 @@ add_action(
 function update_cart_fees( $data ) {
 	if ( isset( $data['shipping_method'] ) ) {
 		WC()->session->set( 'chosen_shipping_method', $data['shipping_method'] );
-	}
-
-    if ( isset( $data['payment_method'] ) ) {
+	} if ( isset( $data['payment_method'] ) ) {
 		WC()->session->set( 'chosen_payment_method', $data['payment_method'] );
 	}
 
