@@ -69,7 +69,7 @@ class Blocks_Integration implements IntegrationInterface {
 
 		wp_register_script(
 			'checkout-block-frontend',
-			trailingslashit( plugin_dir_url( __DIR__ ) ) . 'includes/js/checkout-block-frontend.js',
+			trailingslashit( plugin_dir_url( __DIR__ ) ) . 'src/frontend.js',
 			array(),
 			PGBF_BLOCK_VERSION,
 			true
