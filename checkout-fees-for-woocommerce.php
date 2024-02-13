@@ -179,6 +179,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 			// Data Tracking.
 			include_once 'includes/class-cf-tracking-functions.php';
 			include_once 'includes/class-alg-wc-all-component.php';
+			require_once 'checkout-block/checkout-blocks-initialize.php';
 		}
 
 
