@@ -126,7 +126,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 				add_action( 'admin_footer', array( $this, 'ts_admin_notices_scripts' ) );
 				add_action( 'admin_init', array( $this, 'ts_reset_tracking_setting' ) );
 				add_action( 'pgbf_lite_init_tracker_completed', array( $this, 'init_tracker_completed' ), 10, 2 );
-				add_filter( 'ts_tracker_data', array( 'Cf_Tracking_Functions', 'cf_plugin_tracking_data' ), 10, 1 );
+				add_filter( 'pgbf_lite_ts_tracker_data', array( 'Cf_Tracking_Functions', 'cf_plugin_tracking_data' ), 10, 1 );
 				// Admin core.
 				require_once 'includes/class-alg-wc-checkout-fees-admin.php';
 				// Settings.
@@ -187,6 +187,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 		 * Added tracking dismiss notice js.
 		 */
 		public static function ts_admin_notices_scripts() {
+			$nonce = wp_create_nonce( 'tracking_notice' );
 			wp_enqueue_script(
 				'pgbf_lite_ts_dismiss_notice',
 				plugins_url() . '/checkout-fees-for-woocommerce/includes/js/tyche-dismiss-tracking-notice.js',
@@ -200,6 +201,7 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 				array(
 					'ts_prefix_of_plugin' => 'pgbf_lite',
 					'ts_admin_url'        => admin_url( 'admin-ajax.php' ),
+					'tracking_notice'     => $nonce,
 				)
 			);
 		}
