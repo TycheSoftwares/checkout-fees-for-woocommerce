@@ -16,7 +16,7 @@ module.exports = {
 			path.resolve(
 				process.cwd(),
 				'src',
-				'checkout-block-frontend.js'
+				'frontend.js'
 			),
 	},
 	module: {
