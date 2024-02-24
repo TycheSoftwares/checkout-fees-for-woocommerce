@@ -8,40 +8,32 @@ import { extensionCartUpdate } from '@woocommerce/blocks-checkout';
 const { registerCheckoutBlock } = wc.blocksCheckout;
 
 const Block = ({ children, checkoutExtensionData }) => { 
-	const [ giftMessage, setGiftMessage ] = useState('');
     const { setExtensionData } = checkoutExtensionData;
 
     useEffect( () => {
-        setExtensionData( 'checkout-fees-for-woocommerce', 'add_fees', giftMessage  );
 
-        wp.hooks.addAction( 'experimental__woocommerce_blocks-checkout-set-selected-shipping-rate', 'checkout-block-example', function( shipping ) {
-            console.log( document.querySelector('input[name="radio-control-wc-payment-method-options"]:checked').value  );
+        wp.hooks.addAction( 'experimental__woocommerce_blocks-checkout-set-active-payment-method', 'checkout-block-example', function( payment_method ) {
 			var update_cart = extensionCartUpdate( {
                 namespace: 'checkout-fees-for-woocommerce',
                 data: {
-                    shipping_method: shipping.shippingRateId,
-                    payment_method: document.querySelector('input[name="radio-control-wc-payment-method-options"]:checked').value
+                    payment_method: payment_method.value,
                 },
             });
-		} );  
+		} );
 
-        jQuery( document ).on('change', 'input[name="radio-control-wc-payment-method-options"]', function( e ) {
-            console.log( 'here');
+        wp.hooks.addAction( 'experimental__woocommerce_blocks-checkout-set-selected-shipping-rate', 'checkout-block-example', function( shipping ) {
             var update_cart = extensionCartUpdate( {
                 namespace: 'checkout-fees-for-woocommerce',
                 data: {
-                    shipping_method: document.querySelector('input[name="radio-control-0"]:checked').value,
-                    payment_method: e.target.value
+                    payment_method: shipping.storeCart.paymentMethods[0],
                 },
             });
-        })
+        } ); 
 
 	}, [] );
 
     const onInputChange = useCallback(
 		( value ) => {
-			setGiftMessage( value );
-			setExtensionData( 'checkout-fees-for-woocommerce', 'add_fees', value );
 		},
 		[ setGiftMessage. setExtensionData ]
 	)

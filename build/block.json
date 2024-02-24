@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "checkout-fees-for-woocommerce/Payment Gateway Based Fees and Discounts",
+  "name": "checkout-fees-for-woocommerce/add_fees",
   "version": "1.0.0",
   "title": "Payment Gateway Based Fees and Discounts",
   "category": "woocommerce",
