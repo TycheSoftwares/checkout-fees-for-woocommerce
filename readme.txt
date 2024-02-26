@@ -3,7 +3,7 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.4
+Tested up to: 6.4.3
 Stable tag: trunk
 Requires PHP: 7.3
 License: GNU General Public License v3.0
@@ -98,6 +98,14 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.12.0 - 27/02/2024 =
+* Fix - The payment gateway fees are added twice when Woo Discount Rules plugins are activated.
+* Fix - Payment gateway fees are not visible on the checkout block page.
+* Fix - Compatibility with Woo Discount Rules plugins where the payment gateway fees are added twice.
+* Fix - Compatibility with the Almapay payment plugin.
+* Fix - Added hook/filter called  'alg_wc_checkout_fees_after_fees_added' & 'alg_wc_checkout_fees_after_order_updated' to customize fees.
+* Fix - Payment gateway fees is not calculated for one of the Nexi XPay method.
 
 = 2.11.0 - 21/11/2023 =
 * Fix - Tax is being included for Discount.
