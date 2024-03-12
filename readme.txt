@@ -105,6 +105,7 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 * Fix - Unable to remove fees from Edit Order Page.
 * Fix - WooCommerce Fees is being removed when adding Order Fees in Admin Side.
 * Dev - Percentage Fees option added for 'Global Extra Fee'.
+* Fix - Cross Site Request Forgery (CSRF) vulnerability.
 
 = 2.10.3 - 13/07/2023 =
 * Fix - Fees are not getting recalculated on the backend when the payment gateway is changed after placing the order.
