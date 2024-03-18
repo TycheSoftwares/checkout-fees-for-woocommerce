@@ -147,7 +147,7 @@ if ( ! class_exists( 'Tyche_Plugin_Tracking' ) ) {
 		 * Called when the dismiss icon is clicked on the notice.
 		 */
 		public function dismiss_notice() {
-			if ( ! current_user_can( 'administrator' ) ) {
+			if ( ! current_user_can( 'manage_options' ) ) {
 				return;
 			}
 			$nonce = $_POST['tracking_notice'];//phpcs:ignore
