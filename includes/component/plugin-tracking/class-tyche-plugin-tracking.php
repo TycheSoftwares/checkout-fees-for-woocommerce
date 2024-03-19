@@ -147,7 +147,11 @@ if ( ! class_exists( 'Tyche_Plugin_Tracking' ) ) {
 		 * Called when the dismiss icon is clicked on the notice.
 		 */
 		public function dismiss_notice() {
-			if ( ! current_user_can( 'manage_options' ) ) {
+			if ( ! is_user_logged_in() ) {
+				return;
+			}
+			$current_user = wp_get_current_user();
+			if ( ! in_array( 'administrator', $current_user->roles, true ) || ! current_user_can( 'manage_options' ) ) {
 				return;
 			}
 			$nonce = $_POST['tracking_notice'];//phpcs:ignore
