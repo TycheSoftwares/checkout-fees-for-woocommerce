@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.4.3
-Stable tag: 2.12.1
+Tested up to: 6.5.0
+Stable tag: 2.12.2
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -98,6 +98,9 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.12.2 - 01/04/2024 =
+* Fix – Cross Site Request Forgery (CSRF) vulnerability.
 
 = 2.12.1 - 21/03/2024 =
 * Fix – Cross Site Request Forgery (CSRF) vulnerability.
