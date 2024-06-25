@@ -20,7 +20,7 @@ add_action(
         add_action(
             'woocommerce_blocks_checkout_block_registration',
             function ( $integration_registry ) {
-                $integration_registry->register( new Blocks_Integration() );
+                $integration_registry->register( new CheckoutFeesBlocksIntegration() );
             }
         );
 
