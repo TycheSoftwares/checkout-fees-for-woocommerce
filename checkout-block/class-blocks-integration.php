@@ -16,7 +16,7 @@ define( 'PGBF_BLOCK_VERSION', '1.0.0' );
 /**
  * Blocks Integration.
  */
-class Blocks_Integration implements IntegrationInterface {
+class CheckoutFeesBlocksIntegration implements IntegrationInterface {
 	/**
 	 * The name of the integration.
 	 *
