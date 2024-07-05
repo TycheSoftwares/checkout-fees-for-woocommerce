@@ -548,10 +548,18 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( '' === $max_fee ) {
 				$max_fee = 0;
 			}
+
 			// Max fee.
-			if ( 0 != $max_fee && $new_fee > $max_fee ) { //phpcs:ignore
-				$new_fee = $max_fee;
+			if ($max_fee > 0) {
+				if ( 0 != $max_fee && $new_fee > $max_fee ) {
+					$new_fee = $max_fee;
+				}
+			} elseif ($max_fee < 0) {
+				if ( 0 != $max_fee && $new_fee < $max_fee ) { //phpcs:ignore
+					$new_fee = $max_fee;
+				}
 			}
+
 			// Max total discount.
 			if ( '' === $this->max_total_all_discounts ) {
 				$this->max_total_all_discounts = 0;
