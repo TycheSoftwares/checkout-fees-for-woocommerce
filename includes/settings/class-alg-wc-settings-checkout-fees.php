@@ -156,7 +156,8 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 		public static function add_admin_field_reset_button( $value ) {
 			if ( 'ts_reset_tracking' === $value['id'] ) {
 				$description = WC_Admin_Settings::get_field_description( $value );
-				$ts_action   = 'admin.php?page=wc-settings&tab=alg_checkout_fees&ts_action=reset_tracking';
+				$nonce       = wp_create_nonce( 'ts_nonce_action' );
+				$ts_action   = 'admin.php?page=wc-settings&tab=alg_checkout_fees&ts_action=reset_tracking&nonce=' . $nonce;
 				?>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
@@ -175,7 +176,6 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 				<?php
 			}
 		}
-
 	}
 
 endif;
