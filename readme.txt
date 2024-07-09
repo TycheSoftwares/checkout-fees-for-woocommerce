@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.5.0
-Stable tag: 2.12.2
+Tested up to: 6.5.5
+Stable tag: 2.13.0
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -98,6 +98,12 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
 == Changelog ==
+
+= 2.13.0 - 09/06/2024 =
+* Fix - Added a nonce check for Cross-Site Request Forgery (CSRF) vulnerability on the reset button
+* Fix – Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks
+* Fix - The maximum fee value option was not working as expected.
+* Fix - A fatal error was shown when activating the 'WooCommerce Table Rate Shipping' plugin with our PGBF lite plugin.
 
 = 2.12.2 - 01/04/2024 =
 * Fix – Cross Site Request Forgery (CSRF) vulnerability.
