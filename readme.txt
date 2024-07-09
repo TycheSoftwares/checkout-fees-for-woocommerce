@@ -101,9 +101,9 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 = 2.13.0 - 09/06/2024 =
 * Fix - Added a nonce check for Cross-Site Request Forgery (CSRF) vulnerability on the reset button
-* Fix – Fixed Payment Gateway fees do not change when the payment gateway is changed when WooCommerce Cart/Checkout blocks are set.
-* Fix - Fixed Maximum fee value option is not working as expected.
-* Fix - Fixed A fatal error is shown when activating the 'WooCommerce Table Rate Shipping' plugin with our PGBF lite plugin.
+* Fix – Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks
+* Fix - The maximum fee value option was not working as expected.
+* Fix - A fatal error was shown when activating the 'WooCommerce Table Rate Shipping' plugin with our PGBF lite plugin.
 
 = 2.12.2 - 01/04/2024 =
 * Fix – Cross Site Request Forgery (CSRF) vulnerability.
