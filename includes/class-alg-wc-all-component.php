@@ -34,17 +34,19 @@ if ( ! class_exists( 'Alg_WC_All_Component' ) ) {
                 $pgbf_blog_post_link    = 'https://www.tychesoftwares.com/docs/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/payment-gateway-based-fees-and-discounts-usage-tracking/';
                 $pgbf_get_previous_version = get_option( 'alg_woocommerce_checkout_fees_version' );
 
-                require_once( "component/plugin-deactivation/class-tyche-plugin-deactivation.php" );
-                new Tyche_Plugin_Deactivation(
-                    array(
-                        'plugin_name'       => $pgbf_plugin_name,
-                        'plugin_base'       => $pgbf_file_name,
-                        'script_file'       => $plugin_url . '/includes/js/plugin-deactivation.js',
-                        'plugin_short_name' => $pgbf_plugin_prefix,
-                        'version'           => $pgbf_get_previous_version,
-                        'plugin_locale'     => $pgbf_locale,
-                    )
-                );
+                if ( strpos( $_SERVER['REQUEST_URI'], 'plugins.php' ) !== false || strpos( $_SERVER['REQUEST_URI'], 'action=deactivate' ) !== false || ( strpos( $_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false && isset( $_POST['action'] ) && $_POST['action'] === 'tyche_plugin_deactivation_submit_action' ) ) { //phpcs:ignore
+                    require_once( "component/plugin-deactivation/class-tyche-plugin-deactivation.php" );
+                    new Tyche_Plugin_Deactivation(
+                        array(
+                            'plugin_name'       => $pgbf_plugin_name,
+                            'plugin_base'       => $pgbf_file_name,
+                            'script_file'       => $plugin_url . '/includes/js/plugin-deactivation.js',
+                            'plugin_short_name' => $pgbf_plugin_prefix,
+                            'version'           => $pgbf_get_previous_version,
+                            'plugin_locale'     => $pgbf_locale,
+                        )
+                    );
+                }
 
                 require_once( "component/plugin-tracking/class-tyche-plugin-tracking.php" );
                 new Tyche_Plugin_Tracking(
