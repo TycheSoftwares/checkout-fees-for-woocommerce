@@ -431,7 +431,9 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					}
 				}
 
-				if ( $total_in_cart >= $args['min_cart_amount'] && ( 0 == $args['max_cart_amount'] || $total_in_cart <= $args['max_cart_amount'] ) ) { //phpcs:ignore
+				$min_cart_amount = ! empty( $args['min_cart_amount'] ) ? $args['min_cart_amount'] : 0;
+				$max_cart_amount = ! empty( $args['max_cart_amount'] ) ? $args['max_cart_amount'] : 0;
+				if ( $total_in_cart >= $min_cart_amount && ( 0 == $max_cart_amount || $total_in_cart <= $max_cart_amount ) ) { //phpcs:ignore
 					if ( 0 != $args['fee_value'] && 'fee_2' !== $fee_num ) { //phpcs:ignore
 						if ( 'local' === $args['fee_scope'] || $this->do_apply_fees_by_categories( $order, 'fee_1', $args['current_gateway'], $info_product_id ) ) {
 							if ( ! $is_info_only && 'global' === $args['fee_scope'] ) {
@@ -741,13 +743,13 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			if ( 'fee_2' === $fee_num ) {
 				$fee_type  = $args['fee_type_2'];
 				$fee_value = $args['fee_value_2'];
-				$min_fee   = $args['min_fee_2'];
-				$max_fee   = $args['max_fee_2'];
+				$min_fee   = ! empty( $args['min_fee_2'] ) ? $args['min_fee_2'] : 0;
+				$max_fee   = ! empty( $args['max_fee_2'] ) ? $args['max_fee_2'] : 0;
 			} else {
 				$fee_type  = $args['fee_type'];
 				$fee_value = $args['fee_value'];
-				$min_fee   = $args['min_fee'];
-				$max_fee   = $args['max_fee'];
+				$min_fee   = ! empty( $args['min_fee'] ) ? $args['min_fee'] : 0;
+				$max_fee   = ! empty( $args['max_fee'] ) ? $args['max_fee'] : 0;
 			}
 			$new_fee = 0;
 			switch ( $fee_type ) {
