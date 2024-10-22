@@ -40,7 +40,9 @@ jQuery(($) => {
 		$.post('?wc-ajax=update_fees', data, (response) => {
 			$('#place_order').prop('disabled', false);
 			if (response && response.fragments) {
-				$('#order_review').html(response.fragments);
+				var tempDiv = $('<div>').html(response.fragments);
+				var shopTableHtml = tempDiv.find('table.shop_table').prop('outerHTML');
+				$('#order_review table.shop_table').html(shopTableHtml);
 				$(`input[name="payment_method"][value=${paymentMethod}]`).prop('checked', true);
 				$(`.payment_method_${paymentMethod}`).css('display', 'block');
 				$(`div.payment_box:not(".payment_method_${paymentMethod}")`).filter(':visible').slideUp(0);
