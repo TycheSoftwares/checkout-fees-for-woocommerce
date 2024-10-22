@@ -99,6 +99,11 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 == Changelog ==
 
+= 2.14.0 - 22/10/2024 =
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
+* Fix - Compatibility issue with the WooCommerce Authorize.Net Gateway plugin.
+* Fix - The payment gateway fees or discounts are not charged on the 'Pay for this order' page.
+
 = 2.13.0 - 09/06/2024 =
 * Fix - Added a nonce check for Cross-Site Request Forgery (CSRF) vulnerability on the reset button
 * Fix – Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks
