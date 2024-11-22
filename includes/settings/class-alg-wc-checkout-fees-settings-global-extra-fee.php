@@ -41,9 +41,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee' ) ) :
 		 * @since   2.5.0
 		 */
 		public function __construct() {
-			$this->id   = 'global_extra_fee';
-			$this->desc = __( 'Global Extra Fee', 'checkout-fees-for-woocommerce' );
+			$this->id = 'global_extra_fee';
+			add_action( 'init', array( &$this, 'add_pgbf_desc_global' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_pgbf_desc_global() {
+			$this->desc = __( 'Global Extra Fee', 'checkout-fees-for-woocommerce' );
 		}
 
 		/**

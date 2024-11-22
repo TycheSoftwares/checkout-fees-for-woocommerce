@@ -40,9 +40,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_General' ) ) :
 		 * @version 2.5.0
 		 */
 		public function __construct() {
-			$this->id   = '';
-			$this->desc = __( 'General', 'checkout-fees-for-woocommerce' );
+			$this->id = '';
+			add_action( 'init', array( &$this, 'add_pgbf_desc_general' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_pgbf_desc_general() {
+			$this->desc = __( 'General', 'checkout-fees-for-woocommerce' );
 		}
 
 		/**
