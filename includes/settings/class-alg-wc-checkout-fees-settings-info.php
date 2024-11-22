@@ -40,9 +40,16 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Info' ) ) :
 		 * @since   2.4.0
 		 */
 		public function __construct() {
-			$this->id   = 'info';
-			$this->desc = __( 'Info', 'checkout-fees-for-woocommerce' );
+			$this->id = 'info';
+			add_action( 'init', array( &$this, 'add_pgbf_desc_info' ) );
 			parent::__construct();
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_pgbf_desc_info() {
+			$this->desc = __( 'Info', 'checkout-fees-for-woocommerce' );
 		}
 
 		/**

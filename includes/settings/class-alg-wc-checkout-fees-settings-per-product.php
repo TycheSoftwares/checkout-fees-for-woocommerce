@@ -41,8 +41,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		 */
 		public function __construct() {
 
-			$this->id   = 'per_product';
-			$this->desc = __( 'Payment Gateway Based Fees and Discounts', 'checkout-fees-for-woocommerce' );
+			$this->id = 'per_product';
+			add_action( 'init', array( &$this, 'add_pgbf_desc_per_product' ) );
 
 			if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_per_product_enabled', 'no' ) ) {
 				add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
@@ -50,6 +50,13 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 				add_action( 'admin_init', array( $this, 'enqueue_styles_and_scripts' ) );
 			}
 
+		}
+
+		/**
+		 * Add desc to setting page.
+		 */
+		public function add_pgbf_desc_per_product() {
+			$this->desc = __( 'Payment Gateway Based Fees and Discounts', 'checkout-fees-for-woocommerce' );
 		}
 
 		/**
