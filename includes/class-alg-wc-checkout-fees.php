@@ -410,14 +410,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$current_gateway = 'xpay';
 			}
 			// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return.
-			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
-				if ( did_action( 'woocommerce_cart_calculate_fees' ) > 1 ) {
-					return;
-				}
-				WC()->cart->fees_api()->set_fees();
+			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) { //phpcs:ignore
 				$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
-				// if cart contains subscriptions & fees have already been added & we're not yet processing the order.
-				if ( $cart_contains_subscription && ( count( $this->fees_added ) > 0 || count( $this->fees_added_2 ) > 0 ) && ( ( is_checkout() && ! isset( $_POST['woocommerce-process-checkout-nonce'] ) ) || is_cart() ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				if ( $cart_contains_subscription && ( count( $this->fees_added ) > 0 || count( $this->fees_added_2 ) > 0 ) && ( ( is_checkout() && ( empty( $_POST['woocommerce-process-checkout-nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['woocommerce-process-checkout-nonce'] ), 'woocommerce-process_checkout' ) ) ) || is_cart() ) ) {
+					// if cart contains subscriptions & fees have already been added & we're not yet processing the order.
 					return;
 				}
 			}
