@@ -25,7 +25,6 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 		 * @since 2.6.3
 		 */
 		public function __construct() {
-
 		}
 
 		/**
@@ -95,7 +94,6 @@ if ( ! class_exists( 'Cf_Tracking_Functions' ) ) :
 			);
 
 			return $global_settings;
-
 		}
 
 		/**

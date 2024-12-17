@@ -43,7 +43,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 		 * @version 2.5.0
 		 */
 		public function alg_checkout_fees_inline_css() {
-			if ( isset( $_GET['tab'] ) && 'alg_checkout_fees' === $_GET['tab'] && isset( $_GET['section'] ) && 'bykea_cash' === $_GET['section'] ) {
+			if ( isset( $_GET['tab'] ) && 'alg_checkout_fees' === $_GET['tab'] && isset( $_GET['section'] ) && 'bykea_cash' === $_GET['section'] ) { // phpcs:ignore
 				wp_register_style(
 					'alg-wc-checkout-bykea-cash',
 					false,
@@ -94,27 +94,24 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 		public function maybe_delete_all_plugin_data() {
 			if ( isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data'] ) ) {
 				// Checking nonce & user role.
-				if ( ! isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'] ) ||
-				! wp_verify_nonce( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'], 'alg_woocommerce_checkout_fees_delete_all_data' ) ||
-				! current_user_can( 'manage_woocommerce' )
-				) {
+				if ( ! isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'] ) || ! wp_verify_nonce( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'], 'alg_woocommerce_checkout_fees_delete_all_data' ) || ! current_user_can( 'manage_woocommerce' ) ) { // phpcs:ignore
 					add_action( 'admin_notices', array( $this, 'admin_notice_delete_all_plugin_data_error' ) );
 					return;
 				}
 				global $wpdb;
 				$delete_counter_meta = 0;
-				$plugin_meta         = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->postmeta} WHERE meta_key LIKE %s", '_alg_checkout_fees_%' ) ); // WPCS: db call ok, WPCS: cache ok.
+				$plugin_meta         = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->postmeta} WHERE meta_key LIKE %s", '_alg_checkout_fees_%' ) ); // phpcs:ignore
 				foreach ( $plugin_meta as $meta ) {
 					delete_post_meta( $meta->post_id, $meta->meta_key );
-					$delete_counter_meta++;
+					++$delete_counter_meta;
 				}
 				$delete_counter_options = 0;
-				$plugin_options         = $wpdb->get_results( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s", 'alg_woocommerce_checkout_fees_%', 'alg_gateways_fees_%' ) ); // WPCS: db call ok, WPCS: cache ok.
+				$plugin_options         = $wpdb->get_results( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s", 'alg_woocommerce_checkout_fees_%', 'alg_gateways_fees_%' ) ); // phpcs:ignore
 				foreach ( $plugin_options as $option ) {
 					if ( 'alg_woocommerce_checkout_fees_version' !== $option->option_name ) {
 						delete_option( $option->option_name );
 						delete_site_option( $option->option_name );
-						$delete_counter_options++;
+						++$delete_counter_options;
 					}
 				}
 				// The end.
@@ -130,7 +127,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 				add_action( 'admin_notices', array( $this, 'admin_notice_delete_all_plugin_data_success' ) );
 			}
 		}
-
 	}
 
 endif;

@@ -14,25 +14,25 @@ use Automattic\WooCommerce\StoreApi\Schemas\ExtendSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
 
 add_action(
-    'woocommerce_blocks_loaded',
-    function () {
-        require_once 'class-blocks-integration.php';
-        add_action(
-            'woocommerce_blocks_checkout_block_registration',
-            function ( $integration_registry ) {
-                $integration_registry->register( new CheckoutFeesBlocksIntegration() );
-            }
-        );
+	'woocommerce_blocks_loaded',
+	function () {
+		require_once 'class-blocks-integration.php';
+		add_action(
+			'woocommerce_blocks_checkout_block_registration',
+			function ( $integration_registry ) {
+				$integration_registry->register( new CheckoutFeesBlocksIntegration() );
+			}
+		);
 
-        if ( function_exists( 'woocommerce_store_api_register_update_callback' ) ) {
-            woocommerce_store_api_register_update_callback(
-                array(
-                    'namespace' => 'checkout-fees-for-woocommerce',
-                    'callback'  => 'update_cart_fees',
-                )
-            );
-        }
-    }
+		if ( function_exists( 'woocommerce_store_api_register_update_callback' ) ) {
+			woocommerce_store_api_register_update_callback(
+				array(
+					'namespace' => 'checkout-fees-for-woocommerce',
+					'callback'  => 'update_cart_fees',
+				)
+			);
+		}
+	}
 );
 
 /**

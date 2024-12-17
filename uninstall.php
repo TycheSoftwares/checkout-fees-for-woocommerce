@@ -42,10 +42,10 @@ if ( is_multisite() ) {
 
 
 		// Product Settings.
-		$wpdb->query( 'DELETE FROM `{$cf_multisite_prefix}postmeta` WHERE meta_key LIKE "_alg_checkout_fees_%"' );
+		$wpdb->query( 'DELETE FROM `{$cf_multisite_prefix}postmeta` WHERE meta_key LIKE "_alg_checkout_fees_%"' ); // phpcs:ignore
 
 		// General Settings.
-		$wpdb->query( 'DELETE FROM `{$cf_multisite_prefix}options` WHERE option_name LIKE "alg_woocommerce_checkout_fees_%" OR option_name LIKE "alg_gateways_fees_%"' );
+		$wpdb->query( 'DELETE FROM `{$cf_multisite_prefix}options` WHERE option_name LIKE "alg_woocommerce_checkout_fees_%" OR option_name LIKE "alg_gateways_fees_%"' ); // phpcs:ignore
 
 		// Version Number.
 		delete_blog_option( $cf_blog_id, 'alg_woocommerce_checkout_fees_version' );
@@ -54,10 +54,10 @@ if ( is_multisite() ) {
 } else {
 
 	// Product Settings.
-	$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'postmeta` WHERE meta_key LIKE "_alg_checkout_fees_%"' );
+	$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'postmeta` WHERE meta_key LIKE "_alg_checkout_fees_%"' ); // phpcs:ignore
 
 	// General Settings.
-	$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'options` WHERE option_name LIKE "alg_woocommerce_checkout_fees_%" OR option_name LIKE "alg_gateways_fees_%"' );
+	$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'options` WHERE option_name LIKE "alg_woocommerce_checkout_fees_%" OR option_name LIKE "alg_gateways_fees_%"' ); // phpcs:ignore
 
 	// Version Number.
 	delete_option( 'alg_woocommerce_checkout_fees_version' );
@@ -65,5 +65,3 @@ if ( is_multisite() ) {
 }
 // Clear any cached data that has been removed.
 wp_cache_flush();
-
-

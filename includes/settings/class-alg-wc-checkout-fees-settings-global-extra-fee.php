@@ -130,7 +130,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Global_Extra_Fee' ) ) :
 			);
 			return $settings;
 		}
-
 	}
 
 endif;

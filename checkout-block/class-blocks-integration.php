@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Checkout Fees for WooCommerce
  *

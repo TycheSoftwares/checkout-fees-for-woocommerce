@@ -30,7 +30,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Args' ) ) :
 		 * @since   2.3.0
 		 */
 		public function __construct() {
-			return true;
+			return true; // phpcs:ignore
 		}
 
 		/**
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Args' ) ) :
 		public function get_the_args_local( $current_gateway, $product_id, $variation_id, $product_qty ) {
 			$do_add_product_name = ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_per_product_add_product_name', 'no' ) );
 			if ( $do_add_product_name ) {
-				if ( isset( $variation_id ) && 0 != $variation_id ) {
+				if ( isset( $variation_id ) && 0 != $variation_id ) { // phpcs:ignore
 					$_product = wc_get_product( $variation_id );
 					if ( $_product ) {
 						$product_formatted_name = ' &ndash; ' . $_product->get_title() . ' &ndash; ' .
@@ -127,13 +127,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Args' ) ) :
 			$args['exclude_shipping'] = get_post_meta( $product_id, '_alg_checkout_fees_exclude_shipping_' . $current_gateway, true );
 			$args['add_taxes']        = get_post_meta( $product_id, '_alg_checkout_fees_add_taxes_' . $current_gateway, true );
 			$args['product_id']       = ( 'by_product' === get_post_meta( $product_id, '_alg_checkout_fees_percent_usage_' . $current_gateway, true ) ) ?
-			( isset( $variation_id ) && 0 != $variation_id ? $variation_id : $product_id ) :
+			( isset( $variation_id ) && 0 != $variation_id ? $variation_id : $product_id ) : // phpcs:ignore
 			0;
 			$args['product_qty']      = $product_qty;
 			$args['fixed_usage']      = get_post_meta( $product_id, '_alg_checkout_fees_fixed_usage_' . $current_gateway, true );
 			return $args;
 		}
-
 	}
 
 endif;

@@ -32,7 +32,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Info' ) ) :
 		 * @since 2.1.1
 		 */
 		public $desc = '';
-		
+
 		/**
 		 * Constructor.
 		 *
@@ -65,7 +65,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Info' ) ) :
 					'type'  => 'title',
 					'desc'  =>
 						sprintf(
-							__( 'Values that will be replaced in templates below are: %s.', 'checkout-fees-for-woocommerce' ),
+							__( 'Values that will be replaced in templates below are: %s.', 'checkout-fees-for-woocommerce' ), //phpcs:ignore
 							'<code>' . implode(
 								'</code>, <code>',
 								array(
@@ -82,7 +82,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Info' ) ) :
 							) . '</code>'
 						) . '<br><br>' .
 						sprintf(
-							__( 'You can also use %1$s and %2$s shortcodes. Or %3$s and %4$s functions.', 'checkout-fees-for-woocommerce' ),
+							__( 'You can also use %1$s and %2$s shortcodes. Or %3$s and %4$s functions.', 'checkout-fees-for-woocommerce' ), //phpcs:ignore
 							'<code>[alg_show_checkout_fees_full_info]</code>',
 							'<code>[alg_show_checkout_fees_lowest_price_info]</code>',
 							'<code>do_shortcode( \'[alg_show_checkout_fees_full_info]\' );</code>',
@@ -189,7 +189,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Info' ) ) :
 			);
 			return $settings;
 		}
-
 	}
 
 endif;

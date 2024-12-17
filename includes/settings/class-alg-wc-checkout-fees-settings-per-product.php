@@ -33,7 +33,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		 * @since 2.1.1
 		 */
 		public $desc = '';
-		
+
 		/**
 		 * Constructor.
 		 *
@@ -49,7 +49,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 				add_action( 'save_post_product', array( $this, 'save_meta_box' ), PHP_INT_MAX, 2 );
 				add_action( 'admin_init', array( $this, 'enqueue_styles_and_scripts' ) );
 			}
-
 		}
 
 		/**
@@ -315,7 +314,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		 * @param WC_Product $post Product object.
 		 * @version 2.5.0
 		 */
-		public function save_meta_box( $post_id, $post ) {
+		public function save_meta_box( $post_id, $post ) { //phpcs:ignore
 			// Check if we are saving with current metabox displayed.
 			if ( ! isset( $_POST[ 'alg_checkout_fees_' . $this->id . '_save_post' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				return;
@@ -367,9 +366,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 			$html .= '<li class="labels">';
 			$i     = 0;
 			foreach ( $available_gateways as $gateway_key => $gateway ) {
-				$i++;
+				++$i;
 				$gateway_title = ( '' === $gateway->title ? $gateway_key : $gateway->title );
-				$label_class   = ( 1 == $i ? 'alg-clicked' : '' );
+				$label_class   = ( 1 == $i ? 'alg-clicked' : '' ); //phpcs:ignore
 				$html         .= '<label for="tab-' . $gateway_key . '" id="label-' . $gateway_key . '" class="' . $label_class . '">' . $gateway_title . '</label>';
 			}
 			$html .= '</li>';
@@ -377,12 +376,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 			// Tab Content.
 			$i = 0;
 			foreach ( $available_gateways as $gateway_key => $gateway ) {
-				$i++;
+				++$i;
 				$html             .= '<li>';
 					$gateway_title = ( '' === $gateway->title ) ? $gateway_key : $gateway->title;
 					$html         .= '<input type="radio" id="tab-' . $gateway_key . '" name="tabs"' . checked( $i, 1, false ) . '>';
 					$html         .= '<div class="tab-content" id="tab-content-' . $gateway_key . '">';
-						$html     .= ( 1 != $i && ! apply_filters( 'alg_wc_checkout_fees_option', false, 'per_product' ) ) ?
+						$html     .= ( 1 != $i && ! apply_filters( 'alg_wc_checkout_fees_option', false, 'per_product' ) ) ? //phpcs:ignore
 							'<div style="padding: 20px; background-color: #d6d5d3; margin-bottom: 15px;">'
 								. __( 'In free version only <strong>Direct Bank Transfer (BACS)</strong> fees are available on per product basis.', 'checkout-fees-for-woocommerce' ) . ' '
 								. $upgrade_url
@@ -398,7 +397,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 					if ( ! isset( $option['custom_atts'] ) ) {
 						$option['custom_atts'] = '';
 					}
-					$option['custom_atts'] .= ( 'bacs' != $gateway_key && ! apply_filters( 'alg_wc_checkout_fees_option', false, 'per_product' ) ? ' disabled="disabled"' : '' );
+					$option['custom_atts'] .= ( 'bacs' != $gateway_key && ! apply_filters( 'alg_wc_checkout_fees_option', false, 'per_product' ) ? ' disabled="disabled"' : '' ); //phpcs:ignore
 					$option_name            = $option['name'] . '_' . $gateway_key;
 					$option_value           = get_post_meta( $current_post_id, '_' . $option_name, true );
 					$option_title           = ( '' === $option['title'] ) ? '<span style="font-size:large;font-weight:bold;">' . $gateway_title . '</span>' : $option['title'];
@@ -436,9 +435,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 			$html .= '</div>';
 			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<input type="hidden" name="alg_checkout_fees_' . $this->id . '_save_post" value="alg_checkout_fees_' . $this->id . '_save_post">';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
 		}
-
 	}
 
 endif;

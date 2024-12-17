@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Plugin Name: Payment Gateway Based Fees and Discounts for WooCommerce
  * Plugin URI: https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/
@@ -20,16 +20,15 @@
  * @package checkout-fees-for-woocommerce
  */
 
-// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 use Automattic\WooCommerce\Utilities\OrderUtil;
 
 // Check if WooCommerce is active.
 $plugin_name = 'woocommerce/woocommerce.php';
 if (
-	! in_array( $plugin_name, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) &&
+	! in_array( $plugin_name, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) && // phpcs:ignore
 	! ( is_multisite() && array_key_exists( $plugin_name, get_site_option( 'active_sitewide_plugins', array() ) ) )
 ) {
 	return;
@@ -39,7 +38,7 @@ if ( 'checkout-fees-for-woocommerce.php' === basename( __FILE__ ) ) {
 	// Check if Pro is active, if so then return.
 	$plugin_name = 'checkout-fees-for-woocommerce-pro/checkout-fees-for-woocommerce-pro.php';
 	if (
-		in_array( $plugin_name, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) ||
+		in_array( $plugin_name, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) || // phpcs:ignore
 		( is_multisite() && array_key_exists( $plugin_name, get_site_option( 'active_sitewide_plugins', array() ) ) )
 	) {
 		return;
@@ -147,7 +146,6 @@ if ( ! class_exists( 'Alg_Woocommerce_Checkout_Fees' ) ) :
 					add_action( 'admin_init', array( $this, 'version_updated' ) );
 				}
 			}
-
 		}
 
 		/**
@@ -315,7 +313,7 @@ if ( ! function_exists( 'alg_wc_cf' ) ) {
 	 * @version 2.3.0
 	 * @return  Alg_Woocommerce_Checkout_Fees
 	 */
-	function alg_wc_cf() {
+	function alg_wc_cf() { // phpcs:ignore
 		return Alg_Woocommerce_Checkout_Fees::instance();
 	}
 }

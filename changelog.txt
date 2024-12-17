@@ -1,0 +1,255 @@
+*** Payment Gateway Based Fees and Discounts for WooCommerce ***
+2024-11-22 - version 2.15.0
+* Fix - Translation loading was triggered too early, causing errors when changing the site language in WordPress 6.7.
+* Tweak - Removed the call to our tracking server to fetch the deactivation reasons and added them in the plugin itself.
+
+2024-10-22 - version 2.14.0
+* Fix - Deactivation survey request was being sent even though 'Skip & deactivate' was selected while deactivating the plugin.
+* Fix - Compatibility issue with the WooCommerce Authorize.Net Gateway plugin.
+* Fix - The payment gateway fees or discounts are not charged on the 'Pay for this order' page.
+
+2024-06-09 - version 2.13.0
+* Fix - Added a nonce check for Cross-Site Request Forgery (CSRF) vulnerability on the reset button.
+* Fix – Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks.
+* Fix - The maximum fee value option was not working as expected.
+* Fix - A fatal error was shown when activating the 'WooCommerce Table Rate Shipping' plugin with our PGBF lite plugin.
+
+2024-04-01 - version 2.12.2
+* Fix – Cross Site Request Forgery (CSRF) vulnerability.
+
+2024-03-21 - version 2.12.1
+* Fix – Cross Site Request Forgery (CSRF) vulnerability.
+
+2024-02-27 - version 2.12.0
+* Fix - The payment gateway fees are added twice when Woo Discount Rules plugins are activated.
+* Fix - Payment gateway fees are not visible on the checkout block page.
+* Fix - Compatibility with Woo Discount Rules plugins where the payment gateway fees are added twice.
+* Fix - Compatibility with the Almapay payment plugin.
+* Fix - Added hook/filter called  'alg_wc_checkout_fees_after_fees_added' & 'alg_wc_checkout_fees_after_order_updated' to customize fees.
+* Fix - Payment gateway fees are not calculated for one of the Nexi XPay method.
+
+2023-11-21 - version 2.11.0
+* Fix - Tax is being included for Discount.
+* Fix - Option to show fees on cart page based on previously payment method was selected.
+* Fix - Unable to remove fees from Edit Order Page.
+* Fix - WooCommerce Fees are being removed when adding Order Fees in Admin Side.
+* Dev - Percentage Fees option added for 'Global Extra Fee'.
+* Fix - Cross Site Request Forgery (CSRF) vulnerability.
+
+2023-07-13 - version 2.10.3
+* Fix - Fees are not getting recalculated on the backend when the payment gateway is changed after placing the order.
+* Fix - Fatal errors while processing a refund on the edit order page.
+
+2023-07-04 - version 2.10.2
+* Fix - After an order has been placed, fees are being duplicated.
+* Fix - Fatal Errors on the checkout page with PHP 8.1.12.
+* Fix - Added deactivation survey v2.
+* Fix - Payment methods are collapsing a moment after the page loads on the "Change Payment" button of Subscription order.
+
+2023-06-20 - version 2.10.1
+* Fix - Fatal error when High-Performance Order Storage (HPOS) is enabled on store.
+
+2023-06-20 - version 2.10.0
+* Fix - Compatibility with "zipMoney(Zip Co) Payments Plugin for WooCommerce" plugin.
+* Fix - Compatibility with "iyzico WooCommerce" plugin.
+* Fix - Compatibility with the "Bykea.Cash – Online Payments" plugin.
+* Fix - Compatibility with "ECPay" plugin.
+* Fix - Compatibility with "bSecure – Your Universal Checkout" plugin.
+* Fix - Made some changes to solve the conflict with Germanized for WooCommerce plugin.
+* Fix - Incorrect fees amount when the fees are set in a negative value and tax is enabled.
+* Fix - Not possible to select the Payment Gateway on the checkout page when our plugin is activated.
+* Fix - Fees & Discounts are not getting applied for the individual product.
+* Fix - When we access the link from the Invoice to pay the payment, stripe card details fields are hidden.
+* Fix - Fees are not getting recalculated on the backend when the payment gateway is changed after placing the order.
+* Fix - Fatal Errors on the checkout page with PHP 8.1.12.
+* Fix - Fatal Errors on error message after activating the plugin with PHP 8.2.4.
+
+2023-01-17 - version 2.9.0
+* Fix - Fatal Errors on the checkout page with PHP 8.
+* Fix - Fees are getting multiplied when we try to repay the subscription order.
+
+2022-11-15 - version 2.8.0
+* Enhancement - Introduced compatibility with WooCommerce High Performance Order Storage.
+
+2022-07-12 - version 2.7.0
+* Fix - Plugin strings are not getting translated according to the User's selected language.
+* Fix - The fees should be applied after calculating the discounted price.
+* Fix - Credit Card Details Fields are becoming invisible on the payment page.
+* Fix - Compatibility with WooCommerce Subscriptions plugin.
+* Fix - Discount is applied multiple times when customers try to pay for the order.
+
+2021-09-28 - version 2.6.4
+* Fix - Zero priced products were showing the discount in the payment gateway info table on the product page. This is fixed now.
+* Fix - When the order is created manually without any products in it and only WooCommerce fees are added at that time fees were not getting added. This is fixed now.
+* Fix - Style and Script were loading all around admin side and not only on the particular page. This is fixed now.
+* Fix - When taxes were enabled on the payment gateway fees, fatal error was coming on the pay for order page. This is fixed now.
+
+2021-05-12 - version 2.6.3
+* Enhancement - Now the discount/fees will be added or removed on the "Pay for order" endpoint also.
+* Fix - Compatibility with WooCommerce ERIP Gateway Payment plugin.
+* Fix - Compatibility with Klarna payment gateway.
+* Fix - HTML code was coming in the titles of payment gateway on settings page. This is fixed now.
+
+2020-11-12 - version 2.6.2
+* Update compatibility with WooCommerce 4.7.
+* Fix - On backend the gateway fees were accepted only as whole numbers. This is fixed now.
+* Fix - Getting errors in debug log when the option "Enable Tax" were enabled. This is fixed now.
+* Fix - Includes string was not getting translated on the checkout page. This is fixed now.
+* Fix - On checkout page tax name was not getting when the tax was included in the fees. This is fixed now.
+
+2020-03-20 - version 2.6.1
+* Update compatibility with WooCommerce 4.0.0.
+
+2019-08-23 - version 2.6
+* Made the plugin code compliant with WPCS standards.
+* Added UTM tags for the Pro plugin links.
+
+2019-04-18 - version 2.5.9
+* Fix - Fees are not being carried over from the Checkout page to the order.
+* Fix - Discounts are not being applied to renewal orders for subscription products.
+
+2019-04-11 - version 2.5.8
+* Added compatibility with WooCommerce Subscriptions.
+* The plugin goes into continuous loading of the cart at Checkout when precision is left blank for rounding. Fixed the same.
+* Added uninstall.php file to ensure the plugin data is deleted when the plugin is uninstalled.
+
+2019-02-01 - version 2.5.7
+* Author name in the header has been changed.
+
+2018-11-16 - version 2.5.6
+* Author name and URL updated due to handover of the plugins.
+
+2018-10-31 - version 2.5.5
+* Compatibility with WooCommerce 3.5.0 tested.
+
+2018-10-16 - version 2.5.4
+* Dev - Current (i.e. chosen) payment gateway function rewritten (fixes the issue with 100% discount coupons on the checkout page - fees were not reapplied when coupon is removed).
+
+2018-10-12 - version 2.5.3
+* Fix - Coupons usage with "WooCommerce Gift Certificates" plugin fixed.
+* Fix - Settings hook priority increased, so gateways fees settings are not loaded too early (fixes the issue with "Mollie Payments for WooCommerce" plugin).
+
+2018-09-17 - version 2.5.2
+* Dev - Code refactoring.
+
+2018-08-04 - version 2.5.1
+* Fix - Product categories - Calculation type - Categories to exclude - Only for selected products - Option fixed.
+* Dev - Admin settings descriptions updated.
+* Dev - "States to include/exclude" options added.
+
+2018-08-04 - version 2.5.0
+* Dev - Major code refactoring and clean up. Main plugin file and POT file renamed.
+* Dev - Admin settings restyled and descriptions updated.
+* Dev - "Reset section settings" options added.
+* Dev - Raw input now allowed in all "Info" section templates.
+
+2018-07-30 - version 2.4.0
+* Dev - "Merge All Fees" added to "General" section.
+* Dev - "Global Extra Fee" added to "General" section.
+* Dev - Current (i.e. chosen) payment gateway function rewritten (fixes the issue with "zipMoney" payment gateway).
+* Dev - "Customer Countries" options added to both fees separately.
+* Dev - "Europe", "European Union", "Europe excluding EU", "Eurozone", "Africa", "Asia", "Australia and Oceania", "Central America", "North America" and "South America" added as country selection.
+* Dev - Eight more countries added to the list.
+* Dev - "Info" admin settings section added (options moved from "General" section).
+* Dev - Admin settings restyled.
+* Dev - Plugin link updated from <a href="https://wpcodefactory.com">https://wpcodefactory.com</a> to <a href="https://wpfactory.com">https://wpfactory.com</a>.
+* Dev - Code clean up.
+
+2018-01-07 - version 2.3.3
+* Dev - Additional check added in `Alg_WC_Checkout_Fees_Settings_Gateways` (prevents AJAX error on some servers).
+
+2018-01-02 - version 2.3.2
+* Dev - WooCommerce 3.2 compatibility - `WC_Tax::get_tax_total()` replaced with `get_cart_contents_taxes()` and `get_shipping_taxes()`.
+* Dev - Additional check for `WC()->payment_gateways` to be set, added in `add_gateways_fees()`.
+* Dev - Additional checks for tax class to exist added (in Core and Info).
+* Dev - Additional checks if product's price is zero added (in Info).
+* Dev - Per product settings JS file updated.
+* Dev - "WC tested up to" added to the plugin header.
+
+2017-08-26 - version 2.3.1
+* Dev - Info - `%product_price_diff_percent%` replaceable value added.
+* Dev - Wrapping div (class `alg_checkout_fees`) added to meta box settings.
+* Dev - "General" settings restyled.
+
+2017-08-16 - version 2.3.0
+* Dev - "Aelia Currency Switcher for WooCommerce" plugin currency conversion filter added to: `get_max_ranges()`, `min_cart_amount`, `max_cart_amount`, `min_fee`, `max_fee`, `min_fee_2`, `max_fee_2`.
+* Dev - "Coupons Rule" options added.
+* Dev - Code refactoring.
+* Dev - Settings restyled.
+
+2017-07-27 - version 2.2.2
+* Fix - Removed additional check if `add_gateways_fees()` has already been executed (was added in v2.2.1).
+* Dev - "Delete All Plugin Data" option added.
+* Dev - Code cleanup etc.
+
+2017-07-22 - version 2.2.1
+* Fix - Per Product - `custom_atts` for fields (step etc.) fixed.
+* Fix - Additional check if `add_gateways_fees()` has already been executed added (this prevents fees duplicating on some servers).
+
+2017-06-27 - version 2.2.0
+* Dev - WooCommerce 3.x.x compatibility - Deprecated `get_price_excluding_tax()`, `get_price_including_tax()`, `get_display_price()` notices fixed.
+* Dev - WooCommerce 3.x.x compatibility - Deprecated `get_formatted_variation_attributes()` notice fixed.
+* Dev - WooCommerce 3.x.x compatibility - Deprecated `get_country()` notice fixed.
+* Dev - "Add Taxes" option added for both global and per product fees.
+* Dev - `load_plugin_textdomain()` moved from `init` hook to constructor.
+* Dev - Plugin header updated ("Text Domain" and "Domain Path" added).
+* Dev - Plugin link updated from <a href="http://coder.fm">http://coder.fm</a> to <a href="https://wpcodefactory.com">https://wpcodefactory.com</a>.
+
+2016-10-04 - version 2.1.1
+* Fix - Bug when local and global fees have same title, fixed.
+* Fix - Categories restrictions wrongly applied to per product fees, fixed.
+* Dev - "Max Range Options" options section added to "General" settings.
+* Dev - "Override Global Fee" (main and additional) option added to per product settings.
+* Dev - "Minimum Fee Value", "Maximum Fee Value", "Minimum Additional Fee Value" and "Maximum Additional Fee Value" options added to both local and global fees.
+* Dev - "Minimum Cart Amount" and "Maximum Cart Amount" options title modified.
+
+2016-08-20 - version 2.1.0
+* Fix - Tax bug fixed when "Categories to include - Calculation type" is equal to "Only for selected products".
+* Fix - Tax bug fixed in info.
+* Fix - "Categories to include - Calculation type" with value "Only for selected products" fixed when displaying info.
+* Dev - "Categories to exclude - Calculation type." option added.
+* Dev - "Categories to include (additional fee)." and "Categories to exclude (additional fee)." options added.
+* Dev - Version system added.
+* Dev - Author changed.
+* Dev - Plugin renamed.
+
+2016-08-06 - version 2.0.2
+* Fix - `sanitize_title()` added to `add_gateway_fees_settings_hook()` and removed from `output_sections()`.
+* Dev - Multisite support added.
+* Dev - "Variable Products Info" option added.
+* Dev - "Categories to include - Calculation type" option added to global fees.
+* Dev - Language (POT) file added.
+* Dev - Author changed.
+
+2016-03-10 - version 2.0.1
+* Fix - Additional checks in `add_gateway_fees_settings_hook()`.
+
+2016-03-01 - version 2.0.0
+* Fix - Checked tab in admin per product fees is marked now.
+* Fix - Info on Single Product bugs fixed: for variable products; for percent fees.
+* Fix - "General" section in admin settings menu is marked bold by default.
+* Dev - `%product_title%`, `%product_variation_atts%` added.
+* Dev - Info on Single Product - `[alg_show_checkout_fees_full_info]` and `[alg_show_checkout_fees_lowest_price_info]` shortcodes added.
+* Dev - Info on Single Product - Lowest Price Info on Single Product Page added.
+* Dev - Info on Single Product - `%gateway_fee_title%` and `%gateway_fee_value%` removed from info.
+* Dev - "Add Product Title to Fee/Discount Title" option added to "General > Fees/Discounts per Product" settings.
+* Dev - "Hide Gateways Fees and Discounts on Cart Page" option added to "General" settings.
+* Dev - "Exclude Shipping" option added for both global and per product fees.
+* Dev - "Title" option added for optional "Additional fee" (per product and global).
+* Dev - "Customer Countries" (include / exclude) options added to global fees.
+* Dev - "Product Categories" (include / exclude) options added to global fees.
+* Dev - Compatibility with "Aelia Currency Switcher for WooCommerce" plugin added (for fixed fees; for percent fees compatibility was already there).
+* Dev - "Fee Calculation (for Fixed Fees)" options (once / by product quantity) added to per product fees.
+* Dev - "Fee Calculation (for Percent Fees)" options (for all cart / by product) added to per product fees.
+
+2015-10-27 - version 1.3.0
+* Dev - Second optional fee added.
+
+2015-09-30 - version 1.2.0
+* Dev - Checkout fees/discounts info on single product frontend page added.
+
+2015-09-04 - version 1.1.0
+* Dev - Checkout fees/discounts on per product basis added.
+
+2015-08-29 - version 1.0.0
+* Initial Release.
