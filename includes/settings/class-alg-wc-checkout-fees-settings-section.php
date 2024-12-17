@@ -50,7 +50,6 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Section' ) ) :
 		 * @since   2.5.0
 		 */
 		abstract public function get_settings();
-
 	}
 
 endif;

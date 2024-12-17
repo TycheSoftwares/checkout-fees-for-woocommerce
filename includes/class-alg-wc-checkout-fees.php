@@ -384,9 +384,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @param object $the_cart Cart Object.
 		 * @version 2.5.0
 		 */
-		public function add_gateways_fees( $the_cart ) {
+		public function add_gateways_fees( $the_cart ) { // phpcs:ignore
 
-			if ( ! function_exists( 'WC' ) || ! method_exists( WC(), 'payment_gateways' ) || null == WC()->payment_gateways() ) {
+			if ( ! function_exists( 'WC' ) || ! method_exists( WC(), 'payment_gateways' ) || null == WC()->payment_gateways() ) { // phpcs:ignore
 				return;
 			}
 
@@ -508,7 +508,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since   2.0.0
 		 */
 		public function calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, $fee_num ) {
-			if ( 'fee_2' == $fee_num ) {
+			if ( 'fee_2' == $fee_num ) { // phpcs:ignore
 				$fee_type  = $args['fee_type_2'];
 				$fee_value = $args['fee_value_2'];
 				$min_fee   = $args['min_fee_2'];
@@ -528,7 +528,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					$new_fee   = $fixed_fee;
 					break;
 				case 'percent':
-					if ( 0 != $args['product_id'] ) {
+					if ( 0 != $args['product_id'] ) { // phpcs:ignore
 						$_product    = wc_get_product( $args['product_id'] );
 						$sum_for_fee = $_product->get_price() * $args['product_qty'];
 					} else {
@@ -546,11 +546,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			}
 
 			// Max fee.
-			if ($max_fee > 0) {
-				if ( 0 != $max_fee && $new_fee > $max_fee ) {
+			if ( $max_fee > 0 ) {
+				if ( 0 != $max_fee && $new_fee > $max_fee ) { // phpcs:ignore
 					$new_fee = $max_fee;
 				}
-			} elseif ($max_fee < 0) {
+			} elseif ( $max_fee < 0 ) {
 				if ( 0 != $max_fee && $new_fee < $max_fee ) { //phpcs:ignore
 					$new_fee = $max_fee;
 				}
@@ -751,7 +751,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 */
 		public function do_apply_fees_by_categories( $fee_num, $current_gateway, $info_product_id ) {
 			// Global fees override.
-			if ( 0 != $info_product_id ) {
+			if ( 0 != $info_product_id ) { // phpcs:ignore
 				if ( $this->is_override_global_fees_enabled_for_product( $fee_num, $current_gateway, $info_product_id ) ) {
 					return false;
 				}
@@ -835,7 +835,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				);
 			}
 			if ( '' !== $include_cats || '' !== $exclude_cats ) {
-				if ( 0 != $info_product_id ) {
+				if ( 0 != $info_product_id ) { // phpcs:ignore
 					$product_cats = $this->get_product_cats( $info_product_id );
 					if ( ! empty( $include_cats ) ) {
 						$the_intersect = array_intersect( $product_cats, $include_cats );
@@ -917,7 +917,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		public function get_the_fee( $args, $fee_num, $total_in_cart = 0, $is_info_only = false, $info_product_id = 0 ) {
 			$final_fee_to_add = 0;
 			if ( '' !== $args['current_gateway'] && 'yes' === $args['is_enabled'] ) {
-				if ( 0 == $total_in_cart ) {
+				if ( 0 == $total_in_cart ) { // phpcs:ignore
 					$total_in_cart = ( 'yes' === $args['exclude_shipping'] ) ? WC()->cart->cart_contents_total : WC()->cart->cart_contents_total + WC()->cart->shipping_total;
 					if ( 'yes' === $args['add_taxes'] ) {
 						$tax_total = ( $this->is_wc_version_below_3_2() ? WC_Tax::get_tax_total( WC()->cart->taxes ) : array_sum( WC()->cart->get_cart_contents_taxes() ) );
@@ -936,8 +936,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					$args['min_cart_amount'] = 0;
 					$args['max_cart_amount'] = 0;
 				}
-				if ( $total_in_cart >= $args['min_cart_amount'] && ( 0 == $args['max_cart_amount'] || $total_in_cart <= $args['max_cart_amount'] ) ) {
-					if ( 0 != $args['fee_value'] && 'fee_2' !== $fee_num ) {
+				if ( $total_in_cart >= $args['min_cart_amount'] && ( 0 == $args['max_cart_amount'] || $total_in_cart <= $args['max_cart_amount'] ) ) { // phpcs:ignore
+					if ( 0 != $args['fee_value'] && 'fee_2' !== $fee_num ) { // phpcs:ignore
 						if ( 'local' === $args['fee_scope'] || $this->do_apply_fees_by_categories( 'fee_1', $args['current_gateway'], $info_product_id ) ) {
 							if ( ! $is_info_only && 'global' === $args['fee_scope'] ) {
 								$total_in_cart = $this->get_sum_for_fee_by_included_and_excluded_cats( $total_in_cart, 'fee_1', $args['current_gateway'] );
@@ -947,7 +947,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 							}
 						}
 					}
-					if ( 0 != $args['fee_value_2'] && 'fee_1' != $fee_num ) {
+					if ( 0 != $args['fee_value_2'] && 'fee_1' != $fee_num ) { // phpcs:ignore
 						if ( 'local' === $args['fee_scope'] || $this->do_apply_fees_by_categories( 'fee_2', $args['current_gateway'], $info_product_id ) ) {
 							if ( ! $is_info_only && 'global' === $args['fee_scope'] ) {
 								$total_in_cart = $this->get_sum_for_fee_by_included_and_excluded_cats( $total_in_cart, 'fee_2', $args['current_gateway'] );
@@ -1015,7 +1015,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$final_fee_to_add   = $this->get_the_fee( $args, 'fee_1' );
 				$final_fee_to_add_2 = $this->get_the_fee( $args, 'fee_2' );
 			}
-			if ( 0 != $final_fee_to_add || 0 != $final_fee_to_add_2 ) {
+			if ( 0 != $final_fee_to_add || 0 != $final_fee_to_add_2 ) { // phpcs:ignore
 				$taxable        = ( 'yes' === $args['is_taxable'] );
 				$tax_class_name = '';
 				if ( $taxable ) {
@@ -1025,7 +1025,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 				$fees = WC()->cart->get_fees();
 				if ( 0 !== $final_fee_to_add ) {
 					if ( $this->do_merge_fees ) {
-						$this->fees[] = array(
+						$this->fees[]         = array(
 							'title'     => $args['fee_text'],
 							'value'     => $final_fee_to_add,
 							'taxable'   => $taxable,
@@ -1040,9 +1040,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 						$this->last_fee_added = $args['fee_text'];
 					}
 				}
-				if ( 0 != $final_fee_to_add_2 ) {
+				if ( 0 != $final_fee_to_add_2 ) { // phpcs:ignore
 					if ( $this->do_merge_fees ) {
-						$this->fees[] = array(
+						$this->fees[]           = array(
 							'title'     => $args['fee_text_2'],
 							'value'     => $final_fee_to_add_2,
 							'taxable'   => $taxable,
@@ -1096,12 +1096,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @return $recurring
 		 * @since 2.5.8
 		 */
-		public function renewals_set_fees_recurring( $recurring, $fees, $cart ) {
+		public function renewals_set_fees_recurring( $recurring, $fees, $cart ) { // phpcs:ignore
 
 			// If it's fees which have been added from our plugin, return true else return as is.
 			$recurring = ( 0 != $fees->total && ( in_array( $fees->name, $this->fees_added ) || in_array( $fees->name, $this->fees_added_2 ) ) ) ? true : $recurring; //phpcs:ignore
 			return $recurring;
-
 		}
 
 		/**
