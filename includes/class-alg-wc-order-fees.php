@@ -139,9 +139,11 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			}
 			if ( $add_fees ) {
 				$this->add_gateways_fees( $order, $payment_method );
+
 				// Update payment method record in the database.
-				update_post_meta( $order_id, '_payment_method', $payment_method );
-				update_post_meta( $order_id, '_payment_method_title', $payment_method_title );
+				$order->set_payment_method( $payment_method );
+				$order->set_payment_method_title( $payment_method_title );
+				$order->save();
 			}
 
 			// Declare $order again to fetch updates to post meta and serve to payment templte engine.
