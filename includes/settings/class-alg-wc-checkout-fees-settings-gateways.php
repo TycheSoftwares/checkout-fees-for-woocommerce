@@ -57,6 +57,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 					if ( 'alma' === $key ) {
 						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
 					}
+					if ( 'woocommerce_payments_bancontact' === $key || 'woocommerce_payments_sepa_debit' === $key || 'woocommerce_payments_giropay' === $key || 'woocommerce_payments_sofort' === $key || 'woocommerce_payments_p24' === $key || 'woocommerce_payments_ideal' === $key || 'woocommerce_payments_au_becs_debit' === $key || 'woocommerce_payments_eps' === $key || 'woocommerce_payments_affirm' === $key || 'woocommerce_payments_afterpay_clearpay' === $key || 'woocommerce_payments_klarna' === $key ) {
+						$sections[ sanitize_title( $key ) ] = $gateway->get_title();
+					}
 				}
 			}
 			return $sections;
