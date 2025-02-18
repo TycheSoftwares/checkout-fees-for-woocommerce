@@ -409,6 +409,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 			if ( strpos( $current_gateway, 'xpay_paypal' ) !== false ) {
 				$current_gateway = 'xpay';
 			}
+			if ( strpos( $current_gateway, 'everypay' ) !== false ) {
+				$current_gateway = 'everypay';
+			}
 			// This function is being called twice for carts that contain Subscription products, hence if it's the second time, return.
 			if ( in_array( 'woocommerce-subscriptions/woocommerce-subscriptions.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) { //phpcs:ignore
 				$cart_contains_subscription = WC_Subscriptions_Cart::cart_contains_subscription();
