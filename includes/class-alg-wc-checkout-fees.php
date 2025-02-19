@@ -934,6 +934,15 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 							$total_in_cart     += $tax_total + $shipping_tax_total;
 						}
 					}
+					if ( WC()->cart->get_fees() ) {
+						foreach ( WC()->cart->get_fees() as $fee ) {
+							// Use a filter to allow external modification.
+							$apply_fee = apply_filters( 'external_fee_include_in_gateway_fee', false, $fee );
+							if ( $apply_fee ) {
+								$total_in_cart += $fee->amount;
+							}
+						}
+					}
 					if ( ! empty( WC()->cart->credit_used ) && is_array( WC()->cart->credit_used ) ) { // for "WooCommerce Gift Certificates" plugin.
 						$total_in_cart -= array_sum( WC()->cart->credit_used );
 					}
