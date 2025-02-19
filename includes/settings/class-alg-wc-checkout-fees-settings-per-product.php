@@ -353,7 +353,8 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		public function create_meta_box() {
 
 			$current_post_id    = get_the_ID();
-			$available_gateways = WC()->payment_gateways->payment_gateways();
+			$wc_gateways        = new WC_Payment_Gateways();
+			$available_gateways = $wc_gateways->payment_gateways();
 
 			$html  = '';
 			$html .= '<div class="alg_checkout_fees">';
@@ -366,6 +367,21 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 			$html .= '<li class="labels">';
 			$i     = 0;
 			foreach ( $available_gateways as $gateway_key => $gateway ) {
+				if ( $gateway_key === 'zipmoney' ) { //phpcs:ignore
+					$gateway_title = $gateway->method_title;
+				}
+				if ( 'Wooecpay_Gateway_Credit' === $gateway_key || 'Wooecpay_Gateway_Webatm' === $gateway_key || 'Wooecpay_Gateway_Atm' === $gateway_key || 'Wooecpay_Gateway_Credit_Installment' === $gateway_key || 'Wooecpay_Gateway_Cvs' === $gateway_key || 'Wooecpay_Gateway_Barcode' === $gateway_key || 'Wooecpay_Gateway_Applepay' === $gateway_key ) {
+					$gateway_title = str_replace( '_', ' ', $gateway_key );
+				}
+				if ( 'iyzico_pwi' === $gateway_key ) {
+					$gateway_title = $gateway->method_title;
+				}
+				if ( 'alma' === $gateway_key ) {
+					$gateway_title = $gateway->method_title;
+				}
+				if ( 'woocommerce_payments' === $gateway_key || 'woocommerce_payments_bancontact' === $gateway_key || 'woocommerce_payments_sepa_debit' === $gateway_key || 'woocommerce_payments_giropay' === $gateway_key || 'woocommerce_payments_sofort' === $gateway_key || 'woocommerce_payments_p24' === $gateway_key || 'woocommerce_payments_ideal' === $gateway_key || 'woocommerce_payments_au_becs_debit' === $gateway_key || 'woocommerce_payments_eps' === $gateway_key || 'woocommerce_payments_affirm' === $gateway_key || 'woocommerce_payments_afterpay_clearpay' === $gateway_key || 'woocommerce_payments_klarna' === $gateway_key ) {
+					$gateway_title = $gateway->get_title();
+				}
 				++$i;
 				$gateway_title = ( '' === $gateway->title ? $gateway_key : $gateway->title );
 				$label_class   = ( 1 == $i ? 'alg-clicked' : '' ); //phpcs:ignore
