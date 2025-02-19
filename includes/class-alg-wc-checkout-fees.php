@@ -66,6 +66,12 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 */
 		public $fees_added_2 = array();
 		/**
+		 * Holds the merged fees array.
+		 *
+		 * @var array
+		 */
+		public $fees = array();
+		/**
 		 * Last fee added
 		 *
 		 * @var $last_fee_added
