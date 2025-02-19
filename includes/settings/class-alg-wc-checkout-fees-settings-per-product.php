@@ -353,7 +353,25 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 		public function create_meta_box() {
 
 			$current_post_id    = get_the_ID();
-			$available_gateways = WC()->payment_gateways->payment_gateways();
+			$wc_gateways        = new WC_Payment_Gateways();
+			$available_gateways = $wc_gateways->payment_gateways();
+			foreach ( $available_gateways as $key => $gateway ) {
+				if ( $key === 'zipmoney' ) { //phpcs:ignore
+					$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+				}
+				if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
+					$sections[ sanitize_title( $key ) ] = str_replace( '_', ' ', $key );
+				}
+				if ( 'iyzico_pwi' === $key ) {
+					$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+				}
+				if ( 'alma' === $key ) {
+					$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+				}
+				if ( 'woocommerce_payments' === $key || 'woocommerce_payments_bancontact' === $key || 'woocommerce_payments_sepa_debit' === $key || 'woocommerce_payments_giropay' === $key || 'woocommerce_payments_sofort' === $key || 'woocommerce_payments_p24' === $key || 'woocommerce_payments_ideal' === $key || 'woocommerce_payments_au_becs_debit' === $key || 'woocommerce_payments_eps' === $key || 'woocommerce_payments_affirm' === $key || 'woocommerce_payments_afterpay_clearpay' === $key || 'woocommerce_payments_klarna' === $key ) {
+					$sections[ sanitize_title( $key ) ] = $gateway->get_title();
+				}
+			}
 
 			$html  = '';
 			$html .= '<div class="alg_checkout_fees">';
