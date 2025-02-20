@@ -45,7 +45,7 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 
 			parent::__construct();
 
-			add_action( 'woocommerce_update_options_' . $this->id, array( $this, 'maybe_reset_settings' ) );
+			add_action( 'admin_init', array( $this, 'maybe_reset_settings' ), PHP_INT_MAX );
 			add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'maybe_unclean_option' ), PHP_INT_MAX, 3 );
 			add_action( 'woocommerce_admin_field_alg_woocommerce_checkout_fees_custom_link', array( $this, 'output_custom_link' ) );
 			add_action( 'woocommerce_admin_field_link', array( $this, 'add_admin_field_reset_button' ) );
@@ -101,12 +101,12 @@ if ( ! class_exists( 'Alg_WC_Settings_Checkout_Fees' ) ) :
 			if ( 'yes' === get_option( 'alg_woocommerce_checkout_fees_' . $current_section . '_reset', 'no' ) ) {
 				foreach ( $this->get_settings() as $value ) {
 					if ( isset( $value['id'] ) ) {
-						if ( false !== strpos( $value['id'], '[' ) ) {
-							$id = explode( '[', $value['id'] );
-							$id = $id[0];
-							delete_option( $id );
-						} else {
-							delete_option( $value['id'] );
+						if ( isset( $value['id'] ) ) {
+							$option_id = $value['id'];
+							if ( false !== strpos( $option_id, '[' ) ) {
+								$option_id = explode( '[', $option_id )[0];
+							}
+							delete_option( $option_id );
 						}
 					}
 				}
