@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.7.1
-Stable tag: 2.15.0
+Tested up to: 6.7.2
+Stable tag: 2.16.0
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -101,6 +101,12 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+= 2.16.0 - 20/02/2025 =
+* Fix - Titles of different payment gateways from the WooCommerce Payments plugin were not appearing on the payment gateway based settings page and under the per-product settings.
+* Fix - The EveryPay payment gateway fees were not displayed on the checkout page, though the fees were still charged for the order.
+* Fix - Percentage-based payment gateway fees did not account for Tip fees added via the WPC Order Tip for WooCommerce plugin. Added the 'external_fee_include_in_gateway_fee' filter to handle this.
+* Fix - PHP Deprecated notice: Creation of dynamic property Alg_WC_Checkout_Fees::$fees is deprecated.
+* Fix - The Global Extra Fee was not added on the checkout page when the WooCommerce Checkout Block was enabled and the WooCommerce Subscriptions plugin was active.
 
 = 2.15.0 - 22/11/2024 =
 * Fix - Translation loading was triggered too early, causing errors when changing the site language in WordPress 6.7.
