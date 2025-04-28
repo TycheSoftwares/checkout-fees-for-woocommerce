@@ -187,8 +187,8 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 		 */
 		public function clear_existing_fees( $order ) {
 			foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-				$is_added_by_plugin = wc_get_order_item_meta( $item_id, '_added_by_alg_wc_cf', true );
-				if ( 'yes' === $is_added_by_plugin ) {
+				// Check if the fee's title matches 'fee'
+				if ( 'Fee' === $item->get_name() ) {
 					$order->remove_item( $item_id );
 				}
 			}
@@ -296,11 +296,6 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 					$order->add_item( $item_fee );
 					$order->calculate_totals();
 					$order->save();
-					foreach ( $order->get_items( 'fee' ) as $item_id => $item ) {
-						if ( $item->get_name() === $item_fee->get_name() && '' === wc_get_order_item_meta( $item_id, '_added_by_alg_wc_cf', true ) ) {
-							wc_add_order_item_meta( $item_id, '_added_by_alg_wc_cf', 'yes' );
-						}
-					}
 					$this->fees_added[] = $merged_fee['title'];
 				}
 			}
