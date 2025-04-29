@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.7.2
-Stable tag: 2.16.0
+Tested up to: 6.8.0
+Stable tag: 2.17.0
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -101,6 +101,12 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+= 2.17.0 - 29/04/2025 =
+* Fix - Issue where, if the fee title was left empty, the gateway fees were incorrectly added when changing the payment method or reloading the "Pay for Order" page.
+* Fix - The "Reset Section" option is not working in the Payment Methods tab.
+* Tweak - Updated for compatibility with WordPress 6.8.0
+* Tweak - Updated for compatibility with WooCommerce 9.8.2
+
 = 2.16.0 - 20/02/2025 =
 * Fix - Titles of different payment gateways from the WooCommerce Payments plugin were not appearing on the payment gateway based settings page and under the per-product settings.
 * Fix - The EveryPay payment gateway fees were not displayed on the checkout page, though the fees were still charged for the order.
