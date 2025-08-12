@@ -44,6 +44,10 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				$wc_gateways        = new WC_Payment_Gateways();
 				$available_gateways = $wc_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
+					if ( strpos( $key, 'mollie_wc_gateway_' ) === 0 ) {
+						$sections[ sanitize_title( $key ) ] = method_exists( $gateway, 'get_title' ) ? $gateway->get_title() : $key;
+						continue;
+					}
 					$sections[ sanitize_title( $key ) ] = $gateway->title;
 					if ( $key === 'zipmoney' ) { //phpcs:ignore
 						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
@@ -127,6 +131,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			$gateway = '';
 			if ( isset( $available_gateways[ $key ] ) ) {
 				$gateway = $available_gateways[ $key ];
+			}
+			if ( strpos( $key, 'mollie_wc_gateway_' ) === 0 && method_exists( $gateway, 'get_title' ) ) {
+				$gateway->title = $gateway->get_title();
 			}
 			if ( null === $gateway || '' === $gateway ) {
 				$gateway = $available_gateways[ strtoupper( $key ) ];

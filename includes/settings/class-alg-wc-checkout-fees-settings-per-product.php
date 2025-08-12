@@ -367,6 +367,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Per_Product' ) ) :
 			$html .= '<li class="labels">';
 			$i     = 0;
 			foreach ( $available_gateways as $gateway_key => $gateway ) {
+				if ( strpos( $gateway_key, 'mollie_wc_gateway_' ) === 0 && method_exists( $gateway, 'get_title' ) ) {
+					$gateway_title = $gateway->get_title();
+				}
 				if ( $gateway_key === 'zipmoney' ) { //phpcs:ignore
 					$gateway_title = $gateway->method_title;
 				}
