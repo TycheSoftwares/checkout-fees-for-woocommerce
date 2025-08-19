@@ -45,24 +45,24 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 				$available_gateways = $wc_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
 					if ( strpos( $key, 'mollie_wc_gateway_' ) === 0 ) {
-						$sections[ sanitize_title( $key ) ] = method_exists( $gateway, 'get_title' ) ? $gateway->get_title() : $key;
+						$sections[ 'pgbf-' . sanitize_title( $key ) ] = method_exists( $gateway, 'get_title' ) ? $gateway->get_title() : $key;
 						continue;
 					}
-					$sections[ sanitize_title( $key ) ] = $gateway->title;
+					$sections[ 'pgbf-' . sanitize_title( $key ) ] = $gateway->title;
 					if ( $key === 'zipmoney' ) { //phpcs:ignore
-						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+						$sections[ 'pgbf-' .sanitize_title( $key ) ] = $gateway->method_title;
 					}
 					if ( 'Wooecpay_Gateway_Credit' === $key || 'Wooecpay_Gateway_Webatm' === $key || 'Wooecpay_Gateway_Atm' === $key || 'Wooecpay_Gateway_Credit_Installment' === $key || 'Wooecpay_Gateway_Cvs' === $key || 'Wooecpay_Gateway_Barcode' === $key || 'Wooecpay_Gateway_Applepay' === $key ) {
-						$sections[ sanitize_title( $key ) ] = str_replace( '_', ' ', $key );
+						$sections[ 'pgbf-' .sanitize_title( $key ) ] = str_replace( '_', ' ', $key );
 					}
 					if ( 'iyzico_pwi' === $key ) {
-						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+						$sections[ 'pgbf-' .sanitize_title( $key ) ] = $gateway->method_title;
 					}
 					if ( 'alma' === $key ) {
-						$sections[ sanitize_title( $key ) ] = $gateway->method_title;
+						$sections[ 'pgbf-' .sanitize_title( $key ) ] = $gateway->method_title;
 					}
 					if ( 'woocommerce_payments' === $key || 'woocommerce_payments_bancontact' === $key || 'woocommerce_payments_sepa_debit' === $key || 'woocommerce_payments_giropay' === $key || 'woocommerce_payments_sofort' === $key || 'woocommerce_payments_p24' === $key || 'woocommerce_payments_ideal' === $key || 'woocommerce_payments_au_becs_debit' === $key || 'woocommerce_payments_eps' === $key || 'woocommerce_payments_affirm' === $key || 'woocommerce_payments_afterpay_clearpay' === $key || 'woocommerce_payments_klarna' === $key ) {
-						$sections[ sanitize_title( $key ) ] = $gateway->get_title();
+						$sections[ 'pgbf-' . sanitize_title( $key ) ] = $gateway->get_title();
 					}
 				}
 			}
@@ -102,7 +102,11 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			if ( function_exists( 'WC' ) ) {
 				$available_gateways = WC()->payment_gateways->payment_gateways();
 				foreach ( $available_gateways as $key => $gateway ) {
-					add_filter( 'woocommerce_get_settings_alg_checkout_fees_' . sanitize_title( $key ), array( $this, 'get_settings' ), PHP_INT_MAX );
+					add_filter(
+						'woocommerce_get_settings_alg_checkout_fees_pgbf-' . sanitize_title( $key ),
+						array( $this, 'get_settings' ),
+						PHP_INT_MAX
+					);
 				}
 			}
 		}
@@ -120,6 +124,9 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Settings_Gateways' ) ) :
 			}
 			$available_gateways = WC()->payment_gateways->payment_gateways();
 			$key                = sanitize_title( wp_unslash( $_GET['section'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+			if ( strpos( $key, 'pgbf-' ) === 0 ) {
+				$key = substr( $key, 5 );
+			}
 			if ( 'wooecpay_gateway_credit' === $key || 'wooecpay_gateway_webatm' === $key || 'wooecpay_gateway_atm' === $key || 'wooecpay_gateway_credit_installment' === $key || 'wooecpay_gateway_cvs' === $key || 'wooecpay_gateway_barcode' === $key || 'wooecpay_gateway_applepay' === $key ) {
 				$key = str_replace( '_', ' ', $key );
 				$key = ucwords( $key );
