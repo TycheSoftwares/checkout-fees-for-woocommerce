@@ -977,6 +977,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 					}
 				}
 			}
+			$final_fee_to_add = apply_filters( 'alg_wc_gateway_fee_before_final_fee', $final_fee_to_add, $args, $this );
 			return $final_fee_to_add;
 		}
 
