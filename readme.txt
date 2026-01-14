@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.8.2
-Stable tag: 2.18.0
+Tested up to: 6.9.0
+Stable tag: 2.19.0
 Requires PHP: 7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -101,6 +101,11 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+= 2.19.0 - 14/01/2026 =
+* Fix - Added the alg_wc_gateway_fee_before_final_fee filter to modify the payment gateway final fees on checkout.
+* Tweak - Updated for compatibility with WordPress 6.9.0
+* Tweak - Updated for compatibility with WooCommerce 10.4.3
+
 = 2.18.0 - 19/08/2025 =
 * Fix - Mollie Payments for WooCommerce payment method labels not showing on the payment gateway settings page.
 * Fix - Compatibility issue where default payment gateway settings tabs were not working with WooCommerce 10.1.0.
