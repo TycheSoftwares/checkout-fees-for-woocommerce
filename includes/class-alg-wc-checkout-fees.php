@@ -1089,20 +1089,34 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees' ) ) :
 		 * @since 2.5.8
 		 */
 		public function modify_fee_html_for_taxes( $cart_fee_html, $fees ) {
-			$tax_label = 'Tax';
-			$tax_data  = WC()->cart->get_tax_totals();
-			foreach ( $tax_data as $code => $tax ) {
-				$tax_label = $tax->label;
-			}
+			$tax_data = WC()->cart->get_tax_totals();
 			if ( 'incl' === get_option( 'woocommerce_tax_display_cart' ) && isset( $fees->tax ) && $fees->tax > 0 && ( in_array( $fees->name, $this->fees_added ) || in_array( $fees->name, $this->fees_added_2 ) ) ) { //phpcs:ignore
-				$cart_fee_html .= '<small class="includes_tax">' . sprintf( __( '(includes %s %s)', 'checkout-fees-for-woocommerce' ), wc_price( $fees->tax ), $tax_label ) . '</small>'; // phpcs:ignore
+				$tax_html_parts = array();
+				// Get total of all tax amounts in cart (for proportion).
+				$total_tax_in_cart = 0;
+				foreach ( $tax_data as $tax ) {
+					$total_tax_in_cart += $tax->amount;
+				}
+				foreach ( $tax_data as $tax ) {
+					$share = ( $total_tax_in_cart > 0 )
+						? ( $tax->amount / $total_tax_in_cart ) * $fees->tax
+						: 0;
+					$share = round( $share, wc_get_price_decimals() );
+					if ( $share > 0 ) {
+						$tax_html_parts[] = wc_price( $share ) . ' ' . $tax->label;
+					}
+				}
+				if ( ! empty( $tax_html_parts ) ) {
+					$cart_fee_html .= '<small class="includes_tax">' . sprintf(
+						__( '(includes %s)', 'checkout-fees-for-woocommerce' ),
+						implode( ', ', $tax_html_parts )
+					) . '</small>';
+				}
 			}
 			$cart_fee_html = str_replace( '-', '', $cart_fee_html );
-
 			if ( 0 > $fees->amount ) {
 				$cart_fee_html = '-' . rtrim( $cart_fee_html );
 			}
-
 			return $cart_fee_html;
 		}
 
