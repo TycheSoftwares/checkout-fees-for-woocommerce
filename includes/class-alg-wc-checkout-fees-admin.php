@@ -94,7 +94,7 @@ if ( ! class_exists( 'Alg_WC_Checkout_Fees_Admin' ) ) :
 		public function maybe_delete_all_plugin_data() {
 			if ( isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data'] ) ) {
 				// Checking nonce & user role.
-				if ( ! isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'] ) || ! wp_verify_nonce( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'], 'alg_woocommerce_checkout_fees_delete_all_data' ) || ! current_user_can( 'manage_woocommerce' ) ) { // phpcs:ignore
+				if ( ! isset( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'] ) || ! wp_verify_nonce( $_GET['alg_woocommerce_checkout_fees_delete_all_data_nonce'], 'alg_woocommerce_checkout_fees_delete_all_data' ) || ! current_user_can( 'manage_woocommerce' ) || ! current_user_can( 'manage_options' ) ) { // phpcs:ignore
 					add_action( 'admin_notices', array( $this, 'admin_notice_delete_all_plugin_data_error' ) );
 					return;
 				}
