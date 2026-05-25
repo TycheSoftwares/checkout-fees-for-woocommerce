@@ -133,10 +133,15 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			}
 
 			$order = wc_get_order( $order_id );
-			if ( $order ) {
-				$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
-				$this->remove_fees( $order );
+
+			// Security check: ensure current user owns the order or can manage orders.
+			if ( ! $order
+				|| ( get_current_user_id() !== $order->get_customer_id()
+					&& ! current_user_can( 'edit_shop_orders' ) ) ) {
+				wp_send_json_error( array( 'message' => 'forbidden' ), 403 );
 			}
+			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
+			$this->remove_fees( $order );
 			if ( $add_fees ) {
 				$this->add_gateways_fees( $order, $payment_method );
 
