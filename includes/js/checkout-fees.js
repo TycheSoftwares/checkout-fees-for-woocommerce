@@ -3,6 +3,7 @@
  */
 
 jQuery(($) => {
+    let debounceTimer = null;    // To prevent double-firing.
 
 	const orderPayReferrer = $('input[name="_wp_http_referer"]').val();
 	let referrerArr = '';
@@ -10,8 +11,7 @@ jQuery(($) => {
 	if( orderPayReferrer != undefined ) {
 	  referrerArr = orderPayReferrer.split('/');
 	}
-  
-	$('form#order_review').on('click', 'input[name="payment_method"]', () => {
+	const triggerUpdateFees = () => {
 
 		const order_id = ( pgf_checkout_order_id.order_id ) ? pgf_checkout_order_id.order_id : referrerArr[3];
 
@@ -49,6 +49,10 @@ jQuery(($) => {
 				$(document.body).trigger('updated_checkout');
 			}
 		});
+	}
+	$('form#order_review').on('click', 'input[name="payment_method"]', () => {
+		clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(triggerUpdateFees, 150);
 	});
 
 	$('body').on('change', 'input[name="payment_method"]', function() {
