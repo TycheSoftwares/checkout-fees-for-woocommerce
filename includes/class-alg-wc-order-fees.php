@@ -129,19 +129,44 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 			$payment_method_title = isset( $_POST['payment_method_title'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method_title'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 			if ( $order_id <= 0 ) {
-				wp_die();
+				wp_send_json_error( 'Invalid order ID' );
 			}
-
 			$order = wc_get_order( $order_id );
 
-			// Security check: ensure current user owns the order or can manage orders.
-			if ( ! $order
-				|| ( get_current_user_id() !== $order->get_customer_id()
-					&& ! current_user_can( 'edit_shop_orders' ) ) ) {
-				wp_send_json_error( array( 'message' => 'forbidden' ), 403 );
+			if ( ! $order ) {
+				wp_send_json_error( 'Order not found' );
+    	}
+
+      $current_user_id = get_current_user_id();
+      $order_user_id   = (int) $order->get_user_id();
+
+      // Allow admins
+      if ( current_user_can( 'manage_woocommerce' ) ) {
+          $authorized = true;
+      } 
+      // Allow order owner (logged-in users)
+      elseif ( $current_user_id && $current_user_id === $order_user_id ) {
+          $authorized = true;
+      } 
+      // Allow guest ONLY if order key matches (order-pay scenario).
+      elseif ( ! is_user_logged_in() ) {
+          $posted_order_key = isset( $_POST['order_key'] ) 
+              ? wc_clean( wp_unslash( $_POST['order_key'] ) ) 
+              : '';
+
+          $authorized = hash_equals( $order->get_order_key(), $posted_order_key );
+      } 
+      else {
+          $authorized = false;
+      }
+
+      if ( ! $authorized ) {
+          wp_send_json_error( 'Unauthorized access' );
+      }
+      if ( $order ) {
+				$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
+				$this->remove_fees( $order );
 			}
-			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
-			$this->remove_fees( $order );
 			if ( $add_fees ) {
 				$this->add_gateways_fees( $order, $payment_method );
 
