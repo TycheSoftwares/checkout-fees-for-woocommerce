@@ -3,9 +3,9 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 6.9.1
-Stable tag: 3.0.0
-Requires PHP: 7.3
+Tested up to: 7.0.0
+Stable tag: 3.1.0
+Requires PHP: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,11 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+= 3.1.0 - 02/06/2026 =
+* Fix - Payment gateway fees are now correctly calculated on the deposit amount when using WooCommerce Deposits.
+* Fix - Credit card payment charges were being added multiple times on the Pay for Order page after refreshing the Pay for Order page.
+* Fix - Security vulnerability reported by Patchstack that allowed unauthenticated users to change the payment method for orders.
+
 = 3.0.0 - 10/03/2026 =
 * Fix - In Block Checkout, the Place Order button is now temporarily disabled while recalculating fees/discounts after switching payment gateways, preventing incorrect fee application.
 * Fix - Issue where multiple taxes for payment gateway fees were not displayed correctly in Classic Cart and Checkout.
