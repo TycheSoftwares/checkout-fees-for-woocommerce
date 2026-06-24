@@ -32,6 +32,7 @@ jQuery(($) => {
 			payment_method: paymentMethod,
 			payment_method_title: paymentMethodTitle,
 			order_id: order_id,
+			order_key: pgf_checkout_order_id.order_key || '',
 			security: pgf_checkout_params.update_payment_method_nonce
 		};
 

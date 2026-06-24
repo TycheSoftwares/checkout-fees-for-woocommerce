@@ -135,35 +135,28 @@ if ( ! class_exists( 'Alg_WC_Order_Fees' ) ) :
 
 			if ( ! $order ) {
 				wp_send_json_error( 'Order not found' );
-    	}
+			}
 
-      $current_user_id = get_current_user_id();
-      $order_user_id   = (int) $order->get_user_id();
+			$current_user_id = get_current_user_id();
+			$order_user_id   = (int) $order->get_user_id();
 
-      // Allow admins
-      if ( current_user_can( 'manage_woocommerce' ) ) {
-          $authorized = true;
-      } 
-      // Allow order owner (logged-in users)
-      elseif ( $current_user_id && $current_user_id === $order_user_id ) {
-          $authorized = true;
-      } 
-      // Allow guest ONLY if order key matches (order-pay scenario).
-      elseif ( ! is_user_logged_in() ) {
-          $posted_order_key = isset( $_POST['order_key'] ) 
-              ? wc_clean( wp_unslash( $_POST['order_key'] ) ) 
-              : '';
+			// Allow admins.
+			if ( current_user_can( 'manage_woocommerce' ) ) {
+				$authorized = true;
+			} elseif ( $current_user_id && $current_user_id === $order_user_id ) {
+				$authorized = true;
+			} elseif ( ! is_user_logged_in() ) {
+				$posted_order_key = isset( $_POST['order_key'] ) ? wc_clean( wp_unslash( $_POST['order_key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+				$authorized       = hash_equals( $order->get_order_key(), $posted_order_key );
+			} else {
+				$authorized = false;
+			}
 
-          $authorized = hash_equals( $order->get_order_key(), $posted_order_key );
-      } 
-      else {
-          $authorized = false;
-      }
-
-      if ( ! $authorized ) {
-          wp_send_json_error( 'Unauthorized access' );
-      }
-      if ( $order ) {
+			if ( ! $authorized ) {
+				wp_send_json_error( 'Unauthorized access' );
+			}
+			$add_fees = false;
+			if ( $order ) {
 				$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
 				$this->remove_fees( $order );
 			}
