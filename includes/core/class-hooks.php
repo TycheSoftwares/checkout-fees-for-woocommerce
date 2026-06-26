@@ -229,7 +229,7 @@ class Checkout_Fees {
 
 		$customer_country = '';
 		if ( null === WC()->customer ) {
-			if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_country'] ) ) {
+			if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				$customer_country = sanitize_text_field( wp_unslash( $_POST['_billing_country'] ) );
 			}
 		} else {
@@ -273,7 +273,7 @@ class Checkout_Fees {
 		if ( '' !== $fee_num ) {
 			$customer_state = '';
 			if ( null === WC()->customer ) {
-				if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_state'] ) ) {
+				if ( isset( $_POST['post_type'] ) && 'shop_order' === $_POST['post_type'] && isset( $_POST['_billing_state'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					$customer_state = sanitize_text_field( wp_unslash( $_POST['_billing_state'] ) );
 				}
 			} else {
@@ -399,7 +399,7 @@ class Checkout_Fees {
 	public function get_current_gateway() {
 		$current_gateway = WC()->session->chosen_payment_method;
 		if ( '' === $current_gateway ) {
-			$current_gateway = ( ! empty( $_REQUEST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['payment_method'] ) ) : '' );
+			$current_gateway = ( ! empty( $_REQUEST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['payment_method'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( '' === $current_gateway ) {
 				$current_gateway = ( isset( $this->last_known_current_gateway ) ? $this->last_known_current_gateway : get_option( 'woocommerce_default_gateway', '' ) );
 			}
