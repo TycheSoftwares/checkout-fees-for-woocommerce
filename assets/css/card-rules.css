@@ -1,0 +1,134 @@
+/* Base table style */
+.alg-card-rules-table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+
+.alg-card-rules-table th,
+.alg-card-rules-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ccd0d4;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 13px;
+}
+
+.alg-card-rules-table th {
+    background: #f1f1f1;
+    font-weight: 600;
+    color: #23282d;
+    text-transform: none;
+}
+
+.alg-card-rules-table tr:nth-child(even) td {
+    background: #f9f9f9;
+}
+
+.alg-card-rules-table tr:hover td {
+    background-color: #f0f0f0;
+}
+
+body.woocommerce_page_wc-settings table.form-table td .select2-container {
+    min-width: 200px !important;
+}
+
+/* Input fields and selects inside cells */
+.alg-card-rules-table input[type="text"],
+.alg-card-rules-table input[type="number"],
+.alg-card-rules-table select,
+.alg-card-rules-table textarea {
+    width: 100%;
+    font-size: 13px;
+    border: 1px solid #ccd0d4;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+}
+
+.alg-card-rules-table textarea {
+    min-height: 45px;
+    resize: vertical;
+}
+
+/* Buttons inside the table */
+.alg-card-rules-table .button.alg-remove-card-rule {
+    color: #a00;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.alg-card-rules-table .button.alg-remove-card-rule:hover {
+    color: #dc3232;
+}
+
+/* Bulk actions */
+.alg-card-rules-bulk-actions {
+    margin: 10px 0 8px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+}
+.alg-bulk-action-select {
+    
+}
+
+.alg-card-rules-bulk-actions select {
+    height: auto;
+    width: 150px !important;
+}
+
+.alg-card-rules-bulk-actions button {
+    padding: 5px 10px;
+}
+
+/* Responsive styles for small screens */
+@media screen and (max-width: 768px) {
+    .alg-card-rules-table,
+    .alg-card-rules-table thead,
+    .alg-card-rules-table tbody,
+    .alg-card-rules-table th,
+    .alg-card-rules-table td,
+    .alg-card-rules-table tr {
+        display: block;
+    }
+
+    .alg-card-rules-table thead {
+        display: none;
+    }
+
+    .alg-card-rules-table tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border: 1px solid #ccd0d4;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .alg-card-rules-table td {
+        padding: 6px 8px;
+        position: relative;
+        text-align: left;
+        border: none;
+    }
+
+    .alg-card-rules-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 4px;
+        color: #555;
+    }
+
+    .alg-card-rules-bulk-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

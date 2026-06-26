@@ -5,7 +5,7 @@
 	"version": "1.0.0",
 	"title": "Payment Gateway Based Fees and Discounts",
 	"category": "woocommerce",
-    "parent": [ "woocommerce/checkout-shipping-address-block" ],
+	"parent": [ "woocommerce/checkout-shipping-address-block" ],
 	"attributes": {
 		"lock": {
 			"type": "object",
@@ -16,5 +16,5 @@
 		}
 	},
 	"textdomain": "checkout-fees-for-woocommerce",
-	"editorScript": "file:./build/index.js"
+	"editorScript": "file:../build/index.js"
 }
