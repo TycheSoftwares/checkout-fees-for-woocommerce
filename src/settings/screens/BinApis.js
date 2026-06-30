@@ -18,7 +18,7 @@ import ProNotice from '../components/ProNotice';
 import { useForm } from 'react-hook-form';
 import SettingsCard from '../components/SettingsCard';
 import HelpTip      from '../components/HelpTip';
-import { updateSettings, resetSection, testBinApiConnection } from '../api';
+import { updateSettings, resetSection } from '../api';
 import { useSettings } from '../context/SettingsContext';
 
 const DEFAULTS = {
@@ -37,9 +37,7 @@ const DEFAULTS = {
 
 function BinApis( { noticeOperations, noticeUI } ) {
     const [ showLoader,   setShowLoader   ] = useState( false );
-    const [ testingApi,   setTestingApi   ] = useState( false );
     const [ isResetOpen,  setIsResetOpen  ] = useState( false );
-    const [ testResult,   setTestResult   ] = useState( null ); // { status: 'success'|'error', message: string }
 
     const { settings, isLoading: globalLoading, loadedSections, fetchSection, updateSettingsData } = useSettings();
 
@@ -84,21 +82,6 @@ function BinApis( { noticeOperations, noticeUI } ) {
         } finally { setShowLoader( false ); }
     };
 
-    const handleTestConnection = async ( formData ) => {
-        setTestingApi( true );
-        setTestResult( null );
-        try {
-            await testBinApiConnection(
-                formData.provider,
-                formData.neutrinoapi?.user_id,
-                formData.neutrinoapi?.api_key
-            );
-            setTestResult( { status: 'success', message: __( 'BIN API connection successful!', 'checkout-fees-for-woocommerce' ) } );
-        } catch ( err ) {
-            setTestResult( { status: 'error', message: err?.message || __( 'Connection test failed.', 'checkout-fees-for-woocommerce' ) } );
-        } finally { setTestingApi( false ); }
-    };
-
     if ( globalLoading && ! loadedSections.settings ) return <Spinner />;
 
     const mainFields = [
@@ -106,8 +89,8 @@ function BinApis( { noticeOperations, noticeUI } ) {
             name: 'enabled', label: __( 'Enable Card-Based Fee Rules', 'checkout-fees-for-woocommerce' ), defaultValue: false,
             render: ( field ) => (
                 <div>
-                    <CheckboxControl 
-                        help={ 
+                    <CheckboxControl
+                        help={
                             <div style={{ marginLeft: '-24px' }}>
                                 {__( 'Enable this option to apply fees/discounts based on card issuing country and bank.', 'checkout-fees-for-woocommerce' ) }
                             </div>
@@ -140,7 +123,7 @@ function BinApis( { noticeOperations, noticeUI } ) {
             render: ( field ) => (
                 <CheckboxControl
                     help={
-                        <div style={{ marginLeft: '-24px' }}> 
+                        <div style={{ marginLeft: '-24px' }}>
                             { __( 'Enable caching to improve performance and reduce API calls to Binlist.', 'checkout-fees-for-woocommerce' ) }
                         </div>
                     }
@@ -164,31 +147,6 @@ function BinApis( { noticeOperations, noticeUI } ) {
         {
             name: 'neutrinoapi.api_key', label: __( 'Neutrino API Key', 'checkout-fees-for-woocommerce' ), defaultValue: '',
             render: ( field ) => <InputControl value={ field.value } onChange={ field.onChange } type="password" />,
-        },
-        {
-            name: '__test_connection', label: '', defaultValue: '',
-            render: () => (
-                <div style={ { display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' } }>
-                    <Button
-                        variant="secondary"
-                        isBusy={ testingApi }
-                        disabled={ testingApi }
-                        onClick={ handleSubmit( handleTestConnection ) }
-                        style={ { width: 'fit-content' } }
-                    >
-                        { __( 'Test Connection', 'checkout-fees-for-woocommerce' ) }
-                    </Button>
-                    { testResult && (
-                        <Text style={ {
-                            fontSize   : '13px',
-                            color      : testResult.status === 'success' ? '#16a34a' : '#d63638',
-                            fontWeight : 500,
-                        } }>
-                            { testResult.status === 'success' ? '✓' : '✕' } { testResult.message }
-                        </Text>
-                    ) }
-                </div>
-            ),
         },
     ];
 

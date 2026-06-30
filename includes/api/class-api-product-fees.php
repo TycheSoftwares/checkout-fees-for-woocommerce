@@ -168,6 +168,15 @@ class Api_Product_Fees extends Api_Base {
 			);
 		}
 
+		$validation_error = $this->validate_fees_structure( $data );
+		if ( $validation_error ) {
+			return $this->error(
+				'pgbf_invalid_structure',
+				$validation_error,
+				400
+			);
+		}
+
 		$sanitised = $this->sanitise_fees( $data );
 
 		update_post_meta( $product_id, self::NEW_META_KEY, wp_json_encode( $sanitised ) );
@@ -186,6 +195,70 @@ class Api_Product_Fees extends Api_Base {
 				'product_id' => $product_id,
 			)
 		);
+	}
+
+	/**
+	 * Validate that the fees data has the required structure.
+	 *
+	 * Expected: [
+	 *   'gateway_id' => [
+	 *       'enabled' => bool,
+	 *       'fee_1'   => array,
+	 *       'fee_2'   => array,
+	 *       'general' => array,
+	 *   ],
+	 *   ...
+	 * ]
+	 *
+	 * @param array $data
+	 * @return string|false  Error message or false on success.
+	 */
+	private function validate_fees_structure( array $data ) {
+		foreach ( $data as $gateway_id => $gateway_data ) {
+			if ( ! is_string( $gateway_id ) || '' === $gateway_id ) {
+				return __( 'Invalid gateway ID (must be a non‑empty string).', 'checkout-fees-for-woocommerce' );
+			}
+
+			if ( ! is_array( $gateway_data ) ) {
+				return sprintf(
+					__( 'Data for gateway "%s" must be an array.', 'checkout-fees-for-woocommerce' ),
+					$gateway_id
+				);
+			}
+
+			// Check required top‑level keys
+			$required = array( 'enabled', 'fee_1', 'fee_2', 'general' );
+			foreach ( $required as $key ) {
+				if ( ! array_key_exists( $key, $gateway_data ) ) {
+					return sprintf(
+						__( 'Missing required key "%s" for gateway "%s".', 'checkout-fees-for-woocommerce' ),
+						$key,
+						$gateway_id
+					);
+				}
+			}
+
+			// Verify 'enabled' is boolean
+			if ( ! is_bool( $gateway_data['enabled'] ) ) {
+				return sprintf(
+					__( '"enabled" for gateway "%s" must be a boolean.', 'checkout-fees-for-woocommerce' ),
+					$gateway_id
+				);
+			}
+
+			// Verify fee_1, fee_2, general are arrays
+			foreach ( array( 'fee_1', 'fee_2', 'general' ) as $section ) {
+				if ( ! is_array( $gateway_data[ $section ] ) ) {
+					return sprintf(
+						__( '"%s" for gateway "%s" must be an array.', 'checkout-fees-for-woocommerce' ),
+						$section,
+						$gateway_id
+					);
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**

@@ -11,7 +11,6 @@ export { default as updateGatewaySettings                         } from './upda
 export { default as resetGatewaySection                           } from './resetGatewaySection';
 export { default as getProductFees                                 } from './getProductFees';
 export { default as updateProductFees                             } from './updateProductFees';
-export { default as testBinApiConnection                          } from './testBinApiConnection';
 export { default as getOptions,         clearOptionsCache         } from './getOptions';
 export { default as searchCategories                              } from './searchCategories';
 export { default as deleteAllData                                 } from './deleteAllData';
