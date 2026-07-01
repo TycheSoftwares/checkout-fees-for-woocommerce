@@ -185,7 +185,7 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
         setShowLoader( true );
         try {
             await updateGatewaySettings( selectedGateway.id, data );
-            await refreshSection( 'settings' );
+            await refreshSection( 'gateways' );
             noticeOperations.removeAllNotices();
             noticeOperations.createNotice( { status: 'success', content: __( 'Gateway settings saved successfully.', 'checkout-fees-for-woocommerce' ) } );
         } catch {

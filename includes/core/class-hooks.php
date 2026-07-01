@@ -399,7 +399,7 @@ class Checkout_Fees {
 	public function get_current_gateway() {
 		$current_gateway = WC()->session->chosen_payment_method;
 		if ( '' === $current_gateway ) {
-			$current_gateway = ( ! empty( $_REQUEST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['payment_method'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$current_gateway = ( ! empty( $_REQUEST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['payment_method'] ) ) : '' );// phpcs:ignore WordPress.Security.NonceVerification
 			if ( '' === $current_gateway ) {
 				$current_gateway = ( isset( $this->last_known_current_gateway ) ? $this->last_known_current_gateway : get_option( 'woocommerce_default_gateway', '' ) );
 			}
