@@ -1,0 +1,2763 @@
+# Copyright (C) 2026 Tyche Softwares
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Payment Gateway Based Fees and Discounts for WooCommerce 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/checkout-fees-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-27T13:15:24+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: checkout-fees-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: checkout-fees-for-woocommerce.php
+msgid "Payment Gateway Based Fees and Discounts for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: checkout-fees-for-woocommerce.php
+msgid "https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/"
+msgstr ""
+
+#. Description of the plugin
+#: checkout-fees-for-woocommerce.php
+msgid "Set payment gateways fees and discounts in WooCommerce."
+msgstr ""
+
+#. Author of the plugin
+#: checkout-fees-for-woocommerce.php
+msgid "Tyche Softwares"
+msgstr ""
+
+#. Author URI of the plugin
+#: checkout-fees-for-woocommerce.php
+msgid "https://www.tychesoftwares.com/"
+msgstr ""
+
+#: includes/admin/class-admin-page.php:45
+msgid "Payment Gateway Fees"
+msgstr ""
+
+#: includes/admin/class-admin.php:33
+msgid "Plugin data successfully deleted."
+msgstr ""
+
+#: includes/admin/class-admin.php:40
+msgid "Wrong user role or nonce not verified."
+msgstr ""
+
+#: includes/admin/class-order-fees.php:156
+msgid "Apply payment gateway fees."
+msgstr ""
+
+#: includes/admin/class-order-fees.php:1013
+msgid "Pay for order"
+msgstr ""
+
+#: includes/admin/class-product-metabox.php:43
+msgid "Payment Gateway Based Fees and Discounts"
+msgstr ""
+
+#: includes/api/class-api-base.php:46
+msgid "You do not have permission to manage Payment Gateway Fees settings."
+msgstr ""
+
+#: includes/api/class-api-gateways.php:94
+msgid "Gateway section to reset: fee_1, fee_2, general, or card_rules."
+msgstr ""
+
+#: includes/api/class-api-gateways.php:166
+#: includes/api/class-api-gateways.php:203
+#: includes/api/class-api-gateways.php:241
+#: includes/api/class-api-gateways.php:292
+msgid "Gateway ID is required."
+msgstr ""
+
+#. translators: %s: section key
+#: includes/api/class-api-gateways.php:251
+msgid "Unknown gateway section: %s"
+msgstr ""
+
+#: includes/api/class-api-license.php:92
+msgid "License key to activate."
+msgstr ""
+
+#: includes/api/class-api-license.php:151
+msgid "Please enter a license key."
+msgstr ""
+
+#: includes/api/class-api-license.php:171
+msgid "Invalid response from the licensing server. Please try again."
+msgstr ""
+
+#: includes/api/class-api-license.php:210
+msgid "No active license key found."
+msgstr ""
+
+#: includes/api/class-api-license.php:258
+msgid "Neutrino API requires User ID and API Key."
+msgstr ""
+
+#: includes/api/class-api-license.php:268
+msgid "Unknown BIN API provider."
+msgstr ""
+
+#: includes/api/class-api-license.php:418
+#: build/settings.js:1
+msgid "Your license key has expired. Please renew your license."
+msgstr ""
+
+#: includes/api/class-api-license.php:419
+#: build/settings.js:1
+msgid "Your license key has been disabled. Please contact support."
+msgstr ""
+
+#: includes/api/class-api-license.php:420
+#: build/settings.js:1
+msgid "Invalid license key. Please check and try again."
+msgstr ""
+
+#: includes/api/class-api-license.php:421
+#: build/settings.js:1
+msgid "License key does not match this product."
+msgstr ""
+
+#: includes/api/class-api-license.php:422
+#: build/settings.js:1
+msgid "Your license key is not active for this URL."
+msgstr ""
+
+#: includes/api/class-api-license.php:423
+#: build/settings.js:1
+msgid "License key does not match this product name."
+msgstr ""
+
+#: includes/api/class-api-license.php:424
+#: build/settings.js:1
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: includes/api/class-api-license.php:431
+msgid "License activation failed. Please check your license key or contact support."
+msgstr ""
+
+#: includes/api/class-api-options.php:164
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Standard rate"
+msgstr ""
+
+#: includes/api/class-api-options.php:228
+#: build/settings.js:1
+msgid "Any"
+msgstr ""
+
+#: includes/api/class-api-product-fees.php:129
+#: includes/api/class-api-product-fees.php:156
+msgid "Invalid product ID."
+msgstr ""
+
+#: includes/api/class-api-product-fees.php:166
+msgid "Invalid fees data."
+msgstr ""
+
+#: includes/api/class-api-settings.php:78
+msgid "Settings section key to reset."
+msgstr ""
+
+#: includes/api/class-api-settings.php:153
+msgid "Settings must be a valid object."
+msgstr ""
+
+#. translators: %s: section key
+#: includes/api/class-api-settings.php:185
+msgid "Unknown settings section: %s"
+msgstr ""
+
+#: includes/api/class-api-settings.php:421
+msgid "Plugin settings object."
+msgstr ""
+
+#: includes/api/class-api-settings.php:439
+msgid "Full settings object to persist."
+msgstr ""
+
+#: includes/class-payment-gateway-fees-pro.php:168
+msgid "Cloning is not allowed."
+msgstr ""
+
+#: includes/class-payment-gateway-fees-pro.php:175
+msgid "Unserializing is not allowed."
+msgstr ""
+
+#: includes/class-payment-gateway-fees-pro.php:370
+msgid "Settings"
+msgstr ""
+
+#: includes/class-payment-gateway-fees-pro.php:479
+msgid "Payment Gateway Fees — Product Data Migration"
+msgstr ""
+
+#. translators: %1$d: done count, %2$d: total count, %3$d: percent, %4$d: pending
+#: includes/class-payment-gateway-fees-pro.php:485
+msgid "Migrating product fee data: %1$d of %2$d done (%3$d%%), %4$d pending."
+msgstr ""
+
+#: includes/class-payment-gateway-fees-pro.php:498
+msgid "Some products failed — original data preserved. Check WooCommerce → Status → Logs (channel: pgbf-migration)."
+msgstr ""
+
+#. translators: %s: Tax amount
+#: includes/core/class-hooks.php:1011
+msgid "(includes %s Tax)"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:250
+msgid "Card type mismatch detected"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:251
+msgid "The card type selected at checkout does not match the card actually used for payment."
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:253
+msgid "Payment Method:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:254
+msgid "Card Selected at Checkout:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:255
+msgid "Card Used for Payment:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:339
+msgid "Payment Details:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:341
+msgid "Card Scheme:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:344
+msgid "Card Type:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:347
+msgid "Card Location:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:350
+msgid "Bank Name:"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:434
+#: includes/frontend/class-bin-frontend.php:461
+msgid "Please select a card scheme."
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:437
+#: includes/frontend/class-bin-frontend.php:464
+msgid "Please select a card type."
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:440
+#: includes/frontend/class-bin-frontend.php:467
+msgid "Please select a bank name."
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:443
+#: includes/frontend/class-bin-frontend.php:470
+msgid "Please select card country."
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:496
+msgid "Card Payment Details"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:507
+#: build/settings.js:1
+msgid "Card Type"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:510
+msgid "Select Card Type"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:511
+msgid "Credit Card"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:512
+msgid "Debit Card"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:525
+msgid "Card Scheme"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:527
+msgid "Select Scheme"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:540
+msgid "Bank Name"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:542
+#: includes/functions/functions.php:651
+msgid "Select Bank"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:554
+msgid "Card Location"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:556
+msgid "Select Location"
+msgstr ""
+
+#: includes/frontend/class-bin-frontend.php:1069
+msgid "Card Fee"
+msgstr ""
+
+#: includes/functions/functions.php:52
+msgid "Africa"
+msgstr ""
+
+#: includes/functions/functions.php:53
+msgid "Asia"
+msgstr ""
+
+#: includes/functions/functions.php:54
+msgid "Australia & Oceania"
+msgstr ""
+
+#: includes/functions/functions.php:55
+msgid "Central America"
+msgstr ""
+
+#: includes/functions/functions.php:56
+msgid "European Union"
+msgstr ""
+
+#: includes/functions/functions.php:57
+msgid "Europe"
+msgstr ""
+
+#: includes/functions/functions.php:58
+msgid "Europe excluding EU"
+msgstr ""
+
+#: includes/functions/functions.php:59
+msgid "Eurozone"
+msgstr ""
+
+#: includes/functions/functions.php:60
+msgid "North America"
+msgstr ""
+
+#: includes/functions/functions.php:61
+msgid "South America"
+msgstr ""
+
+#: includes/functions/functions.php:75
+msgid "Afghanistan"
+msgstr ""
+
+#: includes/functions/functions.php:76
+msgid "&#197;land Islands"
+msgstr ""
+
+#: includes/functions/functions.php:77
+msgid "Albania"
+msgstr ""
+
+#: includes/functions/functions.php:78
+msgid "Algeria"
+msgstr ""
+
+#: includes/functions/functions.php:79
+msgid "Andorra"
+msgstr ""
+
+#: includes/functions/functions.php:80
+msgid "Angola"
+msgstr ""
+
+#: includes/functions/functions.php:81
+msgid "Anguilla"
+msgstr ""
+
+#: includes/functions/functions.php:82
+msgid "Antarctica"
+msgstr ""
+
+#: includes/functions/functions.php:83
+msgid "Antigua and Barbuda"
+msgstr ""
+
+#: includes/functions/functions.php:84
+msgid "Argentina"
+msgstr ""
+
+#: includes/functions/functions.php:85
+msgid "Armenia"
+msgstr ""
+
+#: includes/functions/functions.php:86
+msgid "Aruba"
+msgstr ""
+
+#: includes/functions/functions.php:87
+msgid "Australia"
+msgstr ""
+
+#: includes/functions/functions.php:88
+msgid "Austria"
+msgstr ""
+
+#: includes/functions/functions.php:89
+msgid "Azerbaijan"
+msgstr ""
+
+#: includes/functions/functions.php:90
+msgid "Bahamas"
+msgstr ""
+
+#: includes/functions/functions.php:91
+msgid "Bahrain"
+msgstr ""
+
+#: includes/functions/functions.php:92
+msgid "Bangladesh"
+msgstr ""
+
+#: includes/functions/functions.php:93
+msgid "Barbados"
+msgstr ""
+
+#: includes/functions/functions.php:94
+msgid "Belarus"
+msgstr ""
+
+#: includes/functions/functions.php:95
+msgid "Belgium"
+msgstr ""
+
+#: includes/functions/functions.php:96
+msgid "Belau"
+msgstr ""
+
+#: includes/functions/functions.php:97
+msgid "Belize"
+msgstr ""
+
+#: includes/functions/functions.php:98
+msgid "Benin"
+msgstr ""
+
+#: includes/functions/functions.php:99
+msgid "Bermuda"
+msgstr ""
+
+#: includes/functions/functions.php:100
+msgid "Bhutan"
+msgstr ""
+
+#: includes/functions/functions.php:101
+msgid "Bolivia"
+msgstr ""
+
+#: includes/functions/functions.php:102
+msgid "Bonaire, Saint Eustatius and Saba"
+msgstr ""
+
+#: includes/functions/functions.php:103
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: includes/functions/functions.php:104
+msgid "Botswana"
+msgstr ""
+
+#: includes/functions/functions.php:105
+msgid "Bouvet Island"
+msgstr ""
+
+#: includes/functions/functions.php:106
+msgid "Brazil"
+msgstr ""
+
+#: includes/functions/functions.php:107
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: includes/functions/functions.php:108
+msgid "British Virgin Islands"
+msgstr ""
+
+#: includes/functions/functions.php:109
+msgid "Brunei"
+msgstr ""
+
+#: includes/functions/functions.php:110
+msgid "Bulgaria"
+msgstr ""
+
+#: includes/functions/functions.php:111
+msgid "Burkina Faso"
+msgstr ""
+
+#: includes/functions/functions.php:112
+msgid "Burundi"
+msgstr ""
+
+#: includes/functions/functions.php:113
+msgid "Cambodia"
+msgstr ""
+
+#: includes/functions/functions.php:114
+msgid "Cameroon"
+msgstr ""
+
+#: includes/functions/functions.php:115
+msgid "Canada"
+msgstr ""
+
+#: includes/functions/functions.php:116
+msgid "Cape Verde"
+msgstr ""
+
+#: includes/functions/functions.php:117
+msgid "Cayman Islands"
+msgstr ""
+
+#: includes/functions/functions.php:118
+msgid "Central African Republic"
+msgstr ""
+
+#: includes/functions/functions.php:119
+msgid "Chad"
+msgstr ""
+
+#: includes/functions/functions.php:120
+msgid "Chile"
+msgstr ""
+
+#: includes/functions/functions.php:121
+msgid "China"
+msgstr ""
+
+#: includes/functions/functions.php:122
+msgid "Christmas Island"
+msgstr ""
+
+#: includes/functions/functions.php:123
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: includes/functions/functions.php:124
+msgid "Colombia"
+msgstr ""
+
+#: includes/functions/functions.php:125
+msgid "Comoros"
+msgstr ""
+
+#: includes/functions/functions.php:126
+msgid "Congo (Brazzaville)"
+msgstr ""
+
+#: includes/functions/functions.php:127
+msgid "Congo (Kinshasa)"
+msgstr ""
+
+#: includes/functions/functions.php:128
+msgid "Cook Islands"
+msgstr ""
+
+#: includes/functions/functions.php:129
+msgid "Costa Rica"
+msgstr ""
+
+#: includes/functions/functions.php:130
+msgid "Croatia"
+msgstr ""
+
+#: includes/functions/functions.php:131
+msgid "Cuba"
+msgstr ""
+
+#: includes/functions/functions.php:132
+msgid "Cura&Ccedil;ao"
+msgstr ""
+
+#: includes/functions/functions.php:133
+msgid "Cyprus"
+msgstr ""
+
+#: includes/functions/functions.php:134
+msgid "Czech Republic"
+msgstr ""
+
+#: includes/functions/functions.php:135
+msgid "Denmark"
+msgstr ""
+
+#: includes/functions/functions.php:136
+msgid "Djibouti"
+msgstr ""
+
+#: includes/functions/functions.php:137
+msgid "Dominica"
+msgstr ""
+
+#: includes/functions/functions.php:138
+msgid "Dominican Republic"
+msgstr ""
+
+#: includes/functions/functions.php:139
+msgid "Ecuador"
+msgstr ""
+
+#: includes/functions/functions.php:140
+msgid "Egypt"
+msgstr ""
+
+#: includes/functions/functions.php:141
+msgid "El Salvador"
+msgstr ""
+
+#: includes/functions/functions.php:142
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: includes/functions/functions.php:143
+msgid "Eritrea"
+msgstr ""
+
+#: includes/functions/functions.php:144
+msgid "Estonia"
+msgstr ""
+
+#: includes/functions/functions.php:145
+msgid "Ethiopia"
+msgstr ""
+
+#: includes/functions/functions.php:146
+msgid "Falkland Islands"
+msgstr ""
+
+#: includes/functions/functions.php:147
+msgid "Faroe Islands"
+msgstr ""
+
+#: includes/functions/functions.php:148
+msgid "Fiji"
+msgstr ""
+
+#: includes/functions/functions.php:149
+msgid "Finland"
+msgstr ""
+
+#: includes/functions/functions.php:150
+msgid "France"
+msgstr ""
+
+#: includes/functions/functions.php:151
+msgid "French Guiana"
+msgstr ""
+
+#: includes/functions/functions.php:152
+msgid "French Polynesia"
+msgstr ""
+
+#: includes/functions/functions.php:153
+msgid "French Southern Territories"
+msgstr ""
+
+#: includes/functions/functions.php:154
+msgid "Gabon"
+msgstr ""
+
+#: includes/functions/functions.php:155
+msgid "Gambia"
+msgstr ""
+
+#: includes/functions/functions.php:156
+msgid "Georgia"
+msgstr ""
+
+#: includes/functions/functions.php:157
+msgid "Germany"
+msgstr ""
+
+#: includes/functions/functions.php:158
+msgid "Ghana"
+msgstr ""
+
+#: includes/functions/functions.php:159
+msgid "Gibraltar"
+msgstr ""
+
+#: includes/functions/functions.php:160
+msgid "Greece"
+msgstr ""
+
+#: includes/functions/functions.php:161
+msgid "Greenland"
+msgstr ""
+
+#: includes/functions/functions.php:162
+msgid "Grenada"
+msgstr ""
+
+#: includes/functions/functions.php:163
+msgid "Guadeloupe"
+msgstr ""
+
+#: includes/functions/functions.php:164
+msgid "Guatemala"
+msgstr ""
+
+#: includes/functions/functions.php:165
+msgid "Guernsey"
+msgstr ""
+
+#: includes/functions/functions.php:166
+msgid "Guinea"
+msgstr ""
+
+#: includes/functions/functions.php:167
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: includes/functions/functions.php:168
+msgid "Guyana"
+msgstr ""
+
+#: includes/functions/functions.php:169
+msgid "Haiti"
+msgstr ""
+
+#: includes/functions/functions.php:170
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: includes/functions/functions.php:171
+msgid "Honduras"
+msgstr ""
+
+#: includes/functions/functions.php:172
+msgid "Hong Kong"
+msgstr ""
+
+#: includes/functions/functions.php:173
+msgid "Hungary"
+msgstr ""
+
+#: includes/functions/functions.php:174
+msgid "Iceland"
+msgstr ""
+
+#: includes/functions/functions.php:175
+msgid "India"
+msgstr ""
+
+#: includes/functions/functions.php:176
+msgid "Indonesia"
+msgstr ""
+
+#: includes/functions/functions.php:177
+msgid "Iran"
+msgstr ""
+
+#: includes/functions/functions.php:178
+msgid "Iraq"
+msgstr ""
+
+#: includes/functions/functions.php:179
+msgid "Republic of Ireland"
+msgstr ""
+
+#: includes/functions/functions.php:180
+msgid "Isle of Man"
+msgstr ""
+
+#: includes/functions/functions.php:181
+msgid "Israel"
+msgstr ""
+
+#: includes/functions/functions.php:182
+msgid "Italy"
+msgstr ""
+
+#: includes/functions/functions.php:183
+msgid "Ivory Coast"
+msgstr ""
+
+#: includes/functions/functions.php:184
+msgid "Jamaica"
+msgstr ""
+
+#: includes/functions/functions.php:185
+msgid "Japan"
+msgstr ""
+
+#: includes/functions/functions.php:186
+msgid "Jersey"
+msgstr ""
+
+#: includes/functions/functions.php:187
+msgid "Jordan"
+msgstr ""
+
+#: includes/functions/functions.php:188
+msgid "Kazakhstan"
+msgstr ""
+
+#: includes/functions/functions.php:189
+msgid "Kenya"
+msgstr ""
+
+#: includes/functions/functions.php:190
+msgid "Kiribati"
+msgstr ""
+
+#: includes/functions/functions.php:191
+msgid "Kuwait"
+msgstr ""
+
+#: includes/functions/functions.php:192
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: includes/functions/functions.php:193
+msgid "Laos"
+msgstr ""
+
+#: includes/functions/functions.php:194
+msgid "Latvia"
+msgstr ""
+
+#: includes/functions/functions.php:195
+msgid "Lebanon"
+msgstr ""
+
+#: includes/functions/functions.php:196
+msgid "Lesotho"
+msgstr ""
+
+#: includes/functions/functions.php:197
+msgid "Liberia"
+msgstr ""
+
+#: includes/functions/functions.php:198
+msgid "Libya"
+msgstr ""
+
+#: includes/functions/functions.php:199
+msgid "Liechtenstein"
+msgstr ""
+
+#: includes/functions/functions.php:200
+msgid "Lithuania"
+msgstr ""
+
+#: includes/functions/functions.php:201
+msgid "Luxembourg"
+msgstr ""
+
+#: includes/functions/functions.php:202
+msgid "Macao S.A.R., China"
+msgstr ""
+
+#: includes/functions/functions.php:203
+msgid "Macedonia"
+msgstr ""
+
+#: includes/functions/functions.php:204
+msgid "Madagascar"
+msgstr ""
+
+#: includes/functions/functions.php:205
+msgid "Malawi"
+msgstr ""
+
+#: includes/functions/functions.php:206
+msgid "Malaysia"
+msgstr ""
+
+#: includes/functions/functions.php:207
+msgid "Maldives"
+msgstr ""
+
+#: includes/functions/functions.php:208
+msgid "Mali"
+msgstr ""
+
+#: includes/functions/functions.php:209
+msgid "Malta"
+msgstr ""
+
+#: includes/functions/functions.php:210
+msgid "Marshall Islands"
+msgstr ""
+
+#: includes/functions/functions.php:211
+msgid "Martinique"
+msgstr ""
+
+#: includes/functions/functions.php:212
+msgid "Mauritania"
+msgstr ""
+
+#: includes/functions/functions.php:213
+msgid "Mauritius"
+msgstr ""
+
+#: includes/functions/functions.php:214
+msgid "Mayotte"
+msgstr ""
+
+#: includes/functions/functions.php:215
+msgid "Mexico"
+msgstr ""
+
+#: includes/functions/functions.php:216
+msgid "Micronesia"
+msgstr ""
+
+#: includes/functions/functions.php:217
+msgid "Moldova"
+msgstr ""
+
+#: includes/functions/functions.php:218
+msgid "Monaco"
+msgstr ""
+
+#: includes/functions/functions.php:219
+msgid "Mongolia"
+msgstr ""
+
+#: includes/functions/functions.php:220
+msgid "Montenegro"
+msgstr ""
+
+#: includes/functions/functions.php:221
+msgid "Montserrat"
+msgstr ""
+
+#: includes/functions/functions.php:222
+msgid "Morocco"
+msgstr ""
+
+#: includes/functions/functions.php:223
+msgid "Mozambique"
+msgstr ""
+
+#: includes/functions/functions.php:224
+msgid "Myanmar"
+msgstr ""
+
+#: includes/functions/functions.php:225
+msgid "Namibia"
+msgstr ""
+
+#: includes/functions/functions.php:226
+msgid "Nauru"
+msgstr ""
+
+#: includes/functions/functions.php:227
+msgid "Nepal"
+msgstr ""
+
+#: includes/functions/functions.php:228
+msgid "Netherlands"
+msgstr ""
+
+#: includes/functions/functions.php:229
+msgid "Netherlands Antilles"
+msgstr ""
+
+#: includes/functions/functions.php:230
+msgid "New Caledonia"
+msgstr ""
+
+#: includes/functions/functions.php:231
+msgid "New Zealand"
+msgstr ""
+
+#: includes/functions/functions.php:232
+msgid "Nicaragua"
+msgstr ""
+
+#: includes/functions/functions.php:233
+msgid "Niger"
+msgstr ""
+
+#: includes/functions/functions.php:234
+msgid "Nigeria"
+msgstr ""
+
+#: includes/functions/functions.php:235
+msgid "Niue"
+msgstr ""
+
+#: includes/functions/functions.php:236
+msgid "Norfolk Island"
+msgstr ""
+
+#: includes/functions/functions.php:237
+msgid "North Korea"
+msgstr ""
+
+#: includes/functions/functions.php:238
+msgid "Norway"
+msgstr ""
+
+#: includes/functions/functions.php:239
+msgid "Oman"
+msgstr ""
+
+#: includes/functions/functions.php:240
+msgid "Pakistan"
+msgstr ""
+
+#: includes/functions/functions.php:241
+msgid "Palestinian Territory"
+msgstr ""
+
+#: includes/functions/functions.php:242
+msgid "Panama"
+msgstr ""
+
+#: includes/functions/functions.php:243
+msgid "Papua New Guinea"
+msgstr ""
+
+#: includes/functions/functions.php:244
+msgid "Paraguay"
+msgstr ""
+
+#: includes/functions/functions.php:245
+msgid "Peru"
+msgstr ""
+
+#: includes/functions/functions.php:246
+msgid "Philippines"
+msgstr ""
+
+#: includes/functions/functions.php:247
+msgid "Pitcairn"
+msgstr ""
+
+#: includes/functions/functions.php:248
+msgid "Poland"
+msgstr ""
+
+#: includes/functions/functions.php:249
+msgid "Portugal"
+msgstr ""
+
+#: includes/functions/functions.php:250
+msgid "Qatar"
+msgstr ""
+
+#: includes/functions/functions.php:251
+msgid "Reunion"
+msgstr ""
+
+#: includes/functions/functions.php:252
+msgid "Romania"
+msgstr ""
+
+#: includes/functions/functions.php:253
+msgid "Russia"
+msgstr ""
+
+#: includes/functions/functions.php:254
+msgid "Rwanda"
+msgstr ""
+
+#: includes/functions/functions.php:255
+msgid "Saint Barth&eacute;lemy"
+msgstr ""
+
+#: includes/functions/functions.php:256
+msgid "Saint Helena"
+msgstr ""
+
+#: includes/functions/functions.php:257
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+#: includes/functions/functions.php:258
+msgid "Saint Lucia"
+msgstr ""
+
+#: includes/functions/functions.php:259
+msgid "Saint Martin (French part)"
+msgstr ""
+
+#: includes/functions/functions.php:260
+msgid "Saint Martin (Dutch part)"
+msgstr ""
+
+#: includes/functions/functions.php:261
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: includes/functions/functions.php:262
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: includes/functions/functions.php:263
+msgid "San Marino"
+msgstr ""
+
+#: includes/functions/functions.php:264
+msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
+msgstr ""
+
+#: includes/functions/functions.php:265
+msgid "Saudi Arabia"
+msgstr ""
+
+#: includes/functions/functions.php:266
+msgid "Senegal"
+msgstr ""
+
+#: includes/functions/functions.php:267
+msgid "Serbia"
+msgstr ""
+
+#: includes/functions/functions.php:268
+msgid "Seychelles"
+msgstr ""
+
+#: includes/functions/functions.php:269
+msgid "Sierra Leone"
+msgstr ""
+
+#: includes/functions/functions.php:270
+msgid "Singapore"
+msgstr ""
+
+#: includes/functions/functions.php:271
+msgid "Slovakia"
+msgstr ""
+
+#: includes/functions/functions.php:272
+msgid "Slovenia"
+msgstr ""
+
+#: includes/functions/functions.php:273
+msgid "Solomon Islands"
+msgstr ""
+
+#: includes/functions/functions.php:274
+msgid "Somalia"
+msgstr ""
+
+#: includes/functions/functions.php:275
+msgid "South Africa"
+msgstr ""
+
+#: includes/functions/functions.php:276
+msgid "South Georgia/Sandwich Islands"
+msgstr ""
+
+#: includes/functions/functions.php:277
+msgid "South Korea"
+msgstr ""
+
+#: includes/functions/functions.php:278
+msgid "South Sudan"
+msgstr ""
+
+#: includes/functions/functions.php:279
+msgid "Spain"
+msgstr ""
+
+#: includes/functions/functions.php:280
+msgid "Sri Lanka"
+msgstr ""
+
+#: includes/functions/functions.php:281
+msgid "Sudan"
+msgstr ""
+
+#: includes/functions/functions.php:282
+msgid "Suriname"
+msgstr ""
+
+#: includes/functions/functions.php:283
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+#: includes/functions/functions.php:284
+msgid "Swaziland"
+msgstr ""
+
+#: includes/functions/functions.php:285
+msgid "Sweden"
+msgstr ""
+
+#: includes/functions/functions.php:286
+msgid "Switzerland"
+msgstr ""
+
+#: includes/functions/functions.php:287
+msgid "Syria"
+msgstr ""
+
+#: includes/functions/functions.php:288
+msgid "Taiwan"
+msgstr ""
+
+#: includes/functions/functions.php:289
+msgid "Tajikistan"
+msgstr ""
+
+#: includes/functions/functions.php:290
+msgid "Tanzania"
+msgstr ""
+
+#: includes/functions/functions.php:291
+msgid "Thailand"
+msgstr ""
+
+#: includes/functions/functions.php:292
+msgid "Timor-Leste"
+msgstr ""
+
+#: includes/functions/functions.php:293
+msgid "Togo"
+msgstr ""
+
+#: includes/functions/functions.php:294
+msgid "Tokelau"
+msgstr ""
+
+#: includes/functions/functions.php:295
+msgid "Tonga"
+msgstr ""
+
+#: includes/functions/functions.php:296
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: includes/functions/functions.php:297
+msgid "Tunisia"
+msgstr ""
+
+#: includes/functions/functions.php:298
+msgid "Turkey"
+msgstr ""
+
+#: includes/functions/functions.php:299
+msgid "Turkmenistan"
+msgstr ""
+
+#: includes/functions/functions.php:300
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: includes/functions/functions.php:301
+msgid "Tuvalu"
+msgstr ""
+
+#: includes/functions/functions.php:302
+msgid "Uganda"
+msgstr ""
+
+#: includes/functions/functions.php:303
+msgid "Ukraine"
+msgstr ""
+
+#: includes/functions/functions.php:304
+msgid "United Arab Emirates"
+msgstr ""
+
+#: includes/functions/functions.php:305
+msgid "United Kingdom (UK)"
+msgstr ""
+
+#: includes/functions/functions.php:306
+msgid "United States (US)"
+msgstr ""
+
+#: includes/functions/functions.php:307
+msgid "Uruguay"
+msgstr ""
+
+#: includes/functions/functions.php:308
+msgid "Uzbekistan"
+msgstr ""
+
+#: includes/functions/functions.php:309
+msgid "Vanuatu"
+msgstr ""
+
+#: includes/functions/functions.php:310
+msgid "Vatican"
+msgstr ""
+
+#: includes/functions/functions.php:311
+msgid "Venezuela"
+msgstr ""
+
+#: includes/functions/functions.php:312
+msgid "Vietnam"
+msgstr ""
+
+#: includes/functions/functions.php:313
+msgid "Wallis and Futuna"
+msgstr ""
+
+#: includes/functions/functions.php:314
+msgid "Western Sahara"
+msgstr ""
+
+#: includes/functions/functions.php:315
+msgid "Western Samoa"
+msgstr ""
+
+#: includes/functions/functions.php:316
+msgid "Yemen"
+msgstr ""
+
+#: includes/functions/functions.php:317
+msgid "Zambia"
+msgstr ""
+
+#: includes/functions/functions.php:318
+msgid "Zimbabwe"
+msgstr ""
+
+#: includes/functions/functions.php:320
+msgid "France, Metropolitan"
+msgstr ""
+
+#: includes/functions/functions.php:321
+msgid "African Regional Industrial Property Organization"
+msgstr ""
+
+#: includes/functions/functions.php:322
+msgid "American Samoa"
+msgstr ""
+
+#: includes/functions/functions.php:323
+msgid "Guam"
+msgstr ""
+
+#: includes/functions/functions.php:324
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: includes/functions/functions.php:325
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+#: includes/functions/functions.php:326
+msgid "Puerto Rico"
+msgstr ""
+
+#: includes/functions/functions.php:327
+msgid "Virgin Islands, U.S."
+msgstr ""
+
+#. translators: %s: License activation URL
+#: includes/tyche/components/plugin-license/class-license-activation.php:89
+msgid "The license for Payment Gateway Based Fees and Discounts for WooCommerce is not active. To receive automatic updates & support, please activate the license <a href=\"%s\">here</a>."
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:52
+#: build/settings.js:1
+msgid "License"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:95
+#: build/settings.js:1
+msgid "Plugin License Options"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:99
+msgid "Status"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:103
+#: includes/tyche/components/plugin-license/class-settings-license.php:107
+#: build/settings.js:1
+msgid "Active"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:104
+#: includes/tyche/components/plugin-license/class-settings-license.php:106
+#: build/settings.js:1
+msgid "Inactive"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:114
+#: build/settings.js:1
+msgid "License Key"
+msgstr ""
+
+#: includes/tyche/components/plugin-license/class-settings-license.php:120
+#: build/settings.js:1
+msgid "Enter your license key"
+msgstr ""
+
+#: includes/tyche/components/plugin-tracking/class-cf-plugin-tracking.php:43
+msgid "Reset usage tracking"
+msgstr ""
+
+#: includes/tyche/components/plugin-tracking/class-cf-plugin-tracking.php:45
+msgid "This will reset your usage tracking settings, causing it to show the opt-in banner again and not sending any data"
+msgstr ""
+
+#: includes/tyche/components/plugin-tracking/class-plugin-tracking.php:255
+msgid "Want to help make %1$s even more awesome? Allow %1$s to collect non-sensitive diagnostic data and usage information and get 20%% off on your next purchase. <a href=\"%2$s\">Find out more</a>."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Min cart amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Leave 0 for no limit."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Max cart amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Round Fee to Decimal Places"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Rounds fee to the set decimal places before adding to order total (round half up)."
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Rounding precision (decimal places)"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Apply Tax to This Fee"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Enable only if your tax rules require fees to be taxed."
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Tax class"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Reduced rate"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Zero rate"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Cart Calculation"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Control what is included in the cart total when calculating percentage-based fees"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Exclude shipping from cart total when calculating fees"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Include taxes in cart total when calculating fees"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee calc (Percent)"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "For all cart"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "For each item"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee calc (Fixed)"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Once"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Per item"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Per item qty"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fees saved."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Error saving fees."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee label"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Displayed to customer at checkout."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "e.g., Payment processing fee"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Override global fee"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "No"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Yes"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee type"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Fixed Amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Percentage"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Minimum fee amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Set 0 to disable."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Maximum fee amount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Coupons Rule"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Control whether the fee applies when coupons are used"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Disabled"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Only if no coupons applied"
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Only if coupons are applied"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Enable fees for this gateway"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Fee / Discount"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Primary fee or discount applied when this gateway is selected."
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "Secondary Fee (Optional)"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Add a second fee — e.g., a fixed handling fee plus a percentage processing fee."
+msgstr ""
+
+#: build/pgbf-product.js:1
+#: build/settings.js:1
+msgid "General Options"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Cart thresholds and calculation settings for this gateway."
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "Save Fees"
+msgstr ""
+
+#: build/pgbf-product.js:1
+msgid "No active payment gateways found."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Dismiss"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Payment Gateway Fees — Product Data Migration In Progress"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Migrating product fee settings to a more efficient storage format. This runs in the background and will not affect your store."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Total:"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Completed:"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Pending:"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Failed:"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product Data Migration Complete"
+msgstr ""
+
+#: build/settings.js:1
+msgid "products migrated successfully. Product fee settings are now stored in the optimised format."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product Data Migration Completed With Errors"
+msgstr ""
+
+#: build/settings.js:1
+msgid "of"
+msgstr ""
+
+#: build/settings.js:1
+msgid "products migrated."
+msgstr ""
+
+#: build/settings.js:1
+msgid "product(s) could not be migrated — their original data is preserved and fees will continue to work as before."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Check"
+msgstr ""
+
+#: build/settings.js:1
+msgid "WooCommerce → Status → Logs (channel: pgbf-migration)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "for details. If fees are not applying correctly, consider switching to the previous plugin version and contacting support."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product Fee Data Migration Available"
+msgstr ""
+
+#: build/settings.js:1
+msgid "product(s) have fee settings stored in the old format. Migrating them to the new format improves performance by reducing database queries."
+msgstr ""
+
+#: build/settings.js:1
+msgid "The migration runs in the background and your store will not be affected. Original data is never deleted."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Start Background Migration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable the plugin"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set up a payment gateway fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set up global extra fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure BIN APIs"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Dashboard"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Get started with Payment Gateway Based Fees and Discounts"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Getting Started"
+msgstr ""
+
+#: build/settings.js:1
+msgid "completed"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Plugin Summary"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Plugin Status"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enabled"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Active Gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Global Fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Card-Based Fee Detection"
+msgstr ""
+
+#: build/settings.js:1
+msgid "All steps complete! Your plugin is fully configured."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Quick Tip"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Visit the "
+msgstr ""
+
+#: build/settings.js:1
+msgid "General tab"
+msgstr ""
+
+#: build/settings.js:1
+msgid " to configure global settings. Configure fees per gateway under "
+msgstr ""
+
+#: build/settings.js:1
+msgid "Payment Gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid " or a fee for all gateways under "
+msgstr ""
+
+#: build/settings.js:1
+msgid "Global Extra Fee."
+msgstr ""
+
+#: build/settings.js:1
+msgid " Enable "
+msgstr ""
+
+#: build/settings.js:1
+msgid "BIN APIs"
+msgstr ""
+
+#: build/settings.js:1
+msgid " to apply fees based on card issuing country and bank."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Documentation"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Learn how to configure fees and discounts for your store"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Get Support"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Need help? Contact our support team for assistance"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Settings saved successfully."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Error saving settings. Please try again."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure the basic settings for Payment Gateway Based Fees and Discounts"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable Plugin"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product-Level Fee Overrides"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Adds fee settings to each product's edit page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable per-product fees/discounts"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Add product title to fees (helps with variable products)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Combine Gateway Fees into One Line"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show all fees for a gateway as a single line at checkout."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Max Range Options"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set maximum limits for discounts and fees"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Negative number. Set 0 to disable."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum Total Discount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum Total Fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Hide Fees on Cart Page"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fees are still charged — this only hides them from the cart view."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Delete All Plugin Data"
+msgstr ""
+
+#: build/settings.js:1
+msgid "⚠️ Permanently deletes all fees, rules, and settings. Cannot be undone."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Delete all plugin data"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset Usage Tracking"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Clear all stored usage tracking data for this plugin."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Save Changes"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset Settings"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Settings reset to defaults."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset failed. Please try again."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset General settings to defaults?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "All plugin data deleted successfully."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Delete failed. Please try again."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Are you sure? This will permanently delete ALL plugin data and cannot be undone."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Tracking has been successfully reset."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Failed to reset tracking."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Are you sure you want to reset all usage tracking data?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Credit"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Debit"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Domestic"
+msgstr ""
+
+#: build/settings.js:1
+msgid "International"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fixed"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Percent"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Select…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Remove rule"
+msgstr ""
+
+#: build/settings.js:1
+msgid "No card rules configured. Click \"Add Card Rule\" to get started."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Scheme"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Country"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Location"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Bank"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee Type"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Action"
+msgstr ""
+
+#: build/settings.js:1
+msgid "+ Add Card Rule"
+msgstr ""
+
+#: build/settings.js:1
+msgid "rule configured"
+msgstr ""
+
+#: build/settings.js:1
+msgid "rules configured"
+msgstr ""
+
+#: build/settings.js:1
+msgid "evaluated in order, first match wins."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable fees for"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee Label (shown at checkout)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Name shown to customers at checkout. Example: 'Card Processing Fee'."
+msgstr ""
+
+#: build/settings.js:1
+msgid "e.g. Payment processing fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set the fee type and amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee or discount type. Percentage or fixed value"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee or discount amount. For discount, enter negative value."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee Amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Minimum & Maximum Fees Amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Useful for Percentage fees. Enter 0 for no limit."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Minimum"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Customer Billing Countries"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Based on billing address. Leave blank to apply to all countries."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if customer's billing country is in the list. Leave empty to apply for all countries."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Countries to include…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if customer's billing country is NOT in the list. Ignored if empty."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Countries to exclude…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Customer Billing States"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Based on billing address. Leave blank to apply to all states."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if customer's billing state is in the list. Comma separated list of states codes. Leave empty to apply for all states."
+msgstr ""
+
+#: build/settings.js:1
+msgid "States to include…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "States to exclude…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product Categories (Fee Condition)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply fee only when cart contains items from selected categories."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if product of selected category(-ies) is in the cart. Leave empty to apply for all categories.."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Categories to include…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if NO product of selected category(-ies) is in the cart. Ignored if empty."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Categories to exclude…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Shipping Methods to Include / Exclude"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply this fee only when a specific shipping method is selected. Leave blank to apply to all methods."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if any shipping method selected here will be selected on checkout. Leave empty to apply for all shipping methods."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Shipping methods to include…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if NO shipping method selected here is selected on the checkout page. Ignored if empty."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Shipping methods to exclude…"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure fees and discounts for each payment gateway available in your store"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Gateway settings saved successfully."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Card Rules"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set specific fees based on card type, scheme, issuing country, and bank. Requires BIN API to be configured. Rules are evaluated in order — first match wins."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable Card-Based Fee Rules"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply fees or discounts based on the customer's card details for this payment gateway. Once enabled, the fees will be automatically applied at checkout according to the rules you configure below."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure fees based on card properties. Each rule can match on Card Type, Scheme, Country, Location, and Bank."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Card Details Field at Checkout"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Adds card fields to checkout so BIN-based fees can be calculated when using"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Useful for gateways that do not directly capture card details (e.g. PayPal, Braintree, Stripe), allowing you to manually collect the customer's card BIN details."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Add a second fee — e.g., a fixed handling fee plus a percentage processing fee. This fee is applied automatically when a fee amount is set."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure cart thresholds, tax handling, and fee calculation behaviour for this gateway"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Cart Amount Requirements"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply fees only when cart total is within these amounts (leave 0 for no limit)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Minimum cart amount for adding the fee (or discount). Ignored if set to zero."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Minimum cart amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum cart amount for adding the fee (or discount). Ignored if set to zero."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum cart amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Customer Countries"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Gateway-level country filter applied to all fees for this gateway. Leave blank for all countries."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if customer's billing country is in the list. Leave empty to apply for all countries.. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or discount) will only be added if customer's billing country is NOT in the list. Ignored if empty. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Product categories - Calculation type"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Only for selected products"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Categories to include."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Categories to exclude."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Gateway settings reset to defaults."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset all settings for this gateway to defaults? This cannot be undone."
+msgstr ""
+
+#: build/settings.js:1
+msgid "No active payment gateways found. Please enable at least one payment gateway in WooCommerce → Settings → Payments."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Global Fee Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Set up a fee that will be applied across all payment gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable a Fee for All Gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Applies a single flat fee across every payment gateway at checkout, regardless of which gateway the customer selects. This fee is not taxable. For gateway-specific fees, configure them under the Payment Gateways tab instead."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply Only When Gateway Fee Exists"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Only charges this fee if the selected gateway already has its own fee."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Exclude Specific Gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Select gateways that should not have this fee applied."
+msgstr ""
+
+#: build/settings.js:1
+msgid "e.g., Direct bank transfer, Check payments"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee (or Discount) label to show to customer."
+msgstr ""
+
+#: build/settings.js:1
+msgid "e.g., Global processing fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Choose fees type that can be either fixed or percentage based. For discount enter a negative number to Fee Amount."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Cart Total Threshold"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Apply fee when cart subtotal is within this range. Enter 0 for no limit."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Minimum Cart Amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Maximum Cart Amount"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset Global Extra Fee settings to defaults?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Inside product summary"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Before product summary"
+msgstr ""
+
+#: build/settings.js:1
+msgid "After product summary"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Before add to cart button"
+msgstr ""
+
+#: build/settings.js:1
+msgid "After add to cart button"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Values that will be replaced in templates below are:"
+msgstr ""
+
+#: build/settings.js:1
+msgid "You can also use"
+msgstr ""
+
+#: build/settings.js:1
+msgid "and"
+msgstr ""
+
+#: build/settings.js:1
+msgid "shortcodes. Or"
+msgstr ""
+
+#: build/settings.js:1
+msgid "functions."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Error saving settings."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Info on single product page"
+msgstr ""
+
+#: build/settings.js:1
+msgid "This option displays gateway fees on each product page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Start HTML"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Fee Row Layout (HTML Template)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Use template variables above to customise each fee row's display."
+msgstr ""
+
+#: build/settings.js:1
+msgid "End HTML"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Position"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Position priority (i.e. order)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Lowest price info on single product page"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Highlights the gateway with the lowest total price on each product page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Template HTML"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Hide Fee Info for Out-of-Stock Products"
+msgstr ""
+
+#: build/settings.js:1
+msgid "When the Product is Out of stock, it will hide gateway fee/discount info on a single product frontend page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Variable Product Fee Display"
+msgstr ""
+
+#: build/settings.js:1
+msgid "For each variation"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Ranges"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset failed."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset Info settings to defaults?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "BIN API connection successful!"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Connection test failed."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable this option to apply fees/discounts based on card issuing country and bank."
+msgstr ""
+
+#: build/settings.js:1
+msgid "BIN Lookup Provider"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Binlist (Free)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Neutrino API"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Choose which BIN lookup service to use."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Cache BIN Lookup Results"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enable caching to improve performance and reduce API calls to Binlist."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Cache Duration (Hours)"
+msgstr ""
+
+#: build/settings.js:1
+msgid "How long to cache BIN lookup results."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Neutrino API User ID"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Neutrino API Key"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Test Connection"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Card Details Section at Checkout"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Enabling this option adds a Card Details Selection Section above the payment gateway options on your checkout page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Card Type"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show the Card Type field in the Card Payment Details Section."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Card Scheme"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show the Card Scheme field in the Card Payment Details Section."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Card Location"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show the Card Location field in the Card Payment Details Section."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show Bank Name"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Show the Bank Name field in the Card Payment Details Section."
+msgstr ""
+
+#: build/settings.js:1
+msgid "BIN APIs Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure BIN (Bank Identification Number) APIs to detect card issuing country and bank for applying specific fees/discounts."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Binlist Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Neutrino API Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Card Details Section Configuration"
+msgstr ""
+
+#: build/settings.js:1
+msgid "This section has the option to show the Card Payment Details Selection section on the Checkout page."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Reset BIN APIs settings to defaults?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "License is active"
+msgstr ""
+
+#: build/settings.js:1
+msgid "You have access to all premium features, updates, and support"
+msgstr ""
+
+#: build/settings.js:1
+msgid "An unknown error occurred. Please try again."
+msgstr ""
+
+#: build/settings.js:1
+msgid "License has expired"
+msgstr ""
+
+#: build/settings.js:1
+msgid "License is inactive"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Automatic Updates"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Get the latest features and security patches automatically"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Premium Support"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Access to priority support from our expert team"
+msgstr ""
+
+#: build/settings.js:1
+msgid "All Premium Features"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Unlock advanced fee and discount rules for any payment gateway at checkout"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Documentation Access"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Complete guides and tutorials for all features"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Activate your license to receive updates and premium support."
+msgstr ""
+
+#: build/settings.js:1
+msgid "License deactivated. Please activate your license to receive updates."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Failed to deactivate license. Please try again."
+msgstr ""
+
+#: build/settings.js:1
+msgid "License activated successfully."
+msgstr ""
+
+#: build/settings.js:1
+msgid "Please enter the license key."
+msgstr ""
+
+#: build/settings.js:1
+msgid "You can find your license key in your purchase confirmation email or account dashboard"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Deactivate License"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Activate License"
+msgstr ""
+
+#: build/settings.js:1
+msgid "License Benefits"
+msgstr ""
+
+#: build/settings.js:1
+msgid "What you get with an active license"
+msgstr ""
+
+#: build/settings.js:1
+msgid "General"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Info"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Global Extra Fee"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Payment Gateway Based Fees and Discounts"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Configure fees and discounts for WooCommerce payment gateways"
+msgstr ""
+
+#: build/settings.js:1
+msgid "Need support?"
+msgstr ""
+
+#: build/settings.js:1
+msgid "We're always happy to help you."
+msgstr ""
+
+#: build/settings.js:1
+msgid "If this plugin helped you,"
+msgstr ""
+
+#: build/settings.js:1
+msgid "please rate it"
+msgstr ""
+
+#: build/block.json
+msgctxt "block title"
+msgid "Payment Gateway Based Fees and Discounts"
+msgstr ""

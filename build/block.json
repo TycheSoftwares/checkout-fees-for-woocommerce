@@ -18,5 +18,5 @@
     }
   },
   "textdomain": "checkout-fees-for-woocommerce",
-  "editorScript": "file:./build/index.js"
+  "editorScript": "file:../build/index.js"
 }

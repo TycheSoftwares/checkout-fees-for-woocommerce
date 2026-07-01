@@ -1,0 +1,332 @@
+/**
+ * src/app.scss
+ *
+ * PGBF Pro Settings UI — adapted from COS Pro app.scss.
+ * Replaces all .cos- prefixes with .pgbf- equivalents.
+ * Table classes also use pgbf- prefix to match SettingsCard.js.
+ */
+ 
+/* ── Tab navigation ──────────────────────────────────────────────────────── */
+
+.pgbf-header-dashboard-tabs {
+    display        : flex;
+    justify-content: flex-start;
+}
+
+.pgbf-dashboard-tab {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 6px;
+    text-decoration: none;
+    margin-right   : 4px;
+    padding        : 12px 14px;
+    color          : #1d2327;
+    font-weight    : 500;
+    font-size      : 13px;
+    border-bottom  : 3px solid transparent;
+    transition     : color 0.15s, border-color 0.15s;
+    white-space    : nowrap;
+
+    svg {
+        opacity   : 0.55;
+        transition: opacity 0.15s;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        color        : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+        svg { opacity: 1; }
+    }
+}
+
+.pgbf-dashboard-tab.is-active {
+    color        : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+    border-bottom: 3px solid var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+    box-shadow   : none;
+    font-weight  : 600;
+
+    svg { opacity: 1; }
+}
+
+.pgbf-active-progress, .pgbf-steps-done, .pgbf-dashboard-quick-tip {
+    background : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+}
+
+.pgbf-configure-success-border{
+    border-left: 4px solid var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+}
+
+.pgbf-configure-success-msg {
+    color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1)) !important;
+}
+
+/* Hide the WooCommerce native save button — we have our own per screen */
+.woocommerce-save-button.components-button.is-primary {
+    display: none;
+}
+
+/* ── Settings table (SettingsCard two-column layout) ─────────────────────── */
+
+.pgbf-settings-table {
+    width          : 100%;
+    border-collapse: collapse;
+    table-layout   : fixed;
+
+    &__label-col { width: 240px; }
+    &__field-col { width: auto; }
+
+    &__row td {
+        padding-top   : 0;
+        padding-bottom: 24px;
+        vertical-align: top;
+    }
+
+    &__row:last-child td { padding-bottom: 0; }
+
+    &__label {
+        padding-right: 24px;
+        padding-top  : 6px;
+        font-size    : 13px;
+        color        : #1d2327;
+        word-break   : break-word;
+    }
+
+    &__field {
+        max-width: 480px;
+
+        .components-input-control,
+        .components-select-control,
+        .components-textarea-control,
+        .components-text-control {
+            max-width: 100%;
+        }
+
+        .components-input-control__input,
+        .components-select-control__input,
+        .components-textarea-control__input {
+            width     : 100%;
+            max-width : 100%;
+            box-sizing: border-box;
+        }
+
+        .components-number-control  { max-width: 140px; }
+        .components-select-control,
+        .components-input-control   { max-width: 340px; }
+        input[type="color"]         { width: 60px; }
+    }
+}
+
+#pgbf-settings-root .pgbf-settings-label {
+    font-weight: 600;
+}
+
+/* ── Gateway sidebar (GatewaySettings screen) ────────────────────────────── */
+
+.pgbf-gateway-sidebar {
+    width        : 180px;
+    flex-shrink  : 0;
+    border-right : 1px solid #e5e5e5;
+    padding-right: 0;
+}
+
+.pgbf-gateway-tab {
+    display    : block;
+    width      : 100%;
+    padding    : 10px 16px;
+    text-align : left;
+    border     : none;
+    background : none;
+    cursor     : pointer;
+    font-size  : 13px;
+    color      : #1d2327;
+    border-left: 3px solid transparent;
+
+    &:hover     { background: #f6f7f7; }
+    &.is-active {
+        font-weight : 600;
+        border-left : 3px solid var(--wp-admin-theme-color, #2271b1);
+        background  : #f0f6fc;
+        color       : var(--wp-admin-theme-color, #2271b1);
+    }
+}
+
+/* ── Help tip ────────────────────────────────────────────────────────────── */
+
+.pgbf-help-tip {
+    cursor      : help;
+    margin-left : 8px;
+    color       : #787c82;
+    display     : inline-flex;
+    align-items : center;
+    font-size   : 14px;
+    font-weight : normal;
+
+    &:hover { color: #2271b1; }
+}
+
+/* ── react-select — match WP admin input style ───────────────────────────── */
+
+.pgbf-select,
+[class*="pgbf-select"] {
+    /* target react-select classNamePrefix="" */
+}
+
+/* react-select default class override (no classNamePrefix set) */
+.css-13cymwt-control,
+.css-t3ipsp-control {
+    border-color : #8c8f94 !important;
+    border-radius: 4px !important;
+    min-height   : 38px !important;
+    box-shadow   : none !important;
+}
+
+/* ── Product metabox table ───────────────────────────────────────────────── */
+
+.pgbf-product-fee-table {
+    width          : 100%;
+    border-collapse: collapse;
+
+    td {
+        padding    : 6px 8px;
+        font-size  : 13px;
+        vertical-align: middle;
+
+        &:first-child {
+            width      : 200px;
+            font-weight: 500;
+            color      : #1d2327;
+        }
+    }
+
+    tr:not(:last-child) td {
+        border-bottom: 1px solid #f0f0f0;
+    }
+}
+
+.pgbf-product-tab {
+    padding       : 8px 16px;
+    cursor        : pointer;
+    border        : none;
+    border-bottom : 2px solid transparent;
+    background    : none;
+    font-weight   : 400;
+    color         : #1d2327;
+    transition    : color 0.15s, border-color 0.15s;
+
+    &:hover {
+        color        : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+        border-color : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+    }
+
+    &.is-active {
+        font-weight  : 600;
+        color        : var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+        border-bottom: 2px solid var(--wp-components-color-accent, var(--wp-admin-theme-color, #2271b1));
+    }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media screen and ( max-width: 960px ) {
+    #pgbf-settings-root {
+        margin: 20px 10px 40px 0;
+    }
+
+    .pgbf-header-dashboard-tabs {
+        flex-wrap  : wrap;
+        gap        : 2px;
+        padding-top: 6px;
+    }
+
+    .pgbf-dashboard-tab {
+        padding    : 8px 10px;
+        font-size  : 13px;
+        margin-right: 2px;
+    }
+}
+
+@media screen and ( max-width: 782px ) {
+    .pgbf-settings-table {
+        table-layout: auto;
+
+        &__label-col,
+        &__field-col { width: auto; }
+
+        &__row,
+        &__label,
+        &__field {
+            display  : block;
+            width    : 100%;
+            max-width: 100%;
+        }
+
+        &__label {
+            padding-right : 0;
+            padding-top   : 0;
+            padding-bottom: 4px;
+            font-weight   : 500;
+            color         : #50575e;
+            font-size     : 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        &__field {
+            padding-bottom: 20px;
+            max-width     : 100%;
+
+            .components-number-control { max-width: 100%; }
+        }
+
+        &__row:last-child &__field { padding-bottom: 0; }
+    }
+
+    .pgbf-gateway-sidebar {
+        width: 100%;
+        border-right : none;
+        border-bottom: 1px solid #e5e5e5;
+        display      : flex;
+        flex-wrap    : wrap;
+        padding-right: 0;
+    }
+
+    .pgbf-gateway-tab {
+        width      : auto;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+
+        &.is-active {
+            border-left  : none;
+            border-bottom: 2px solid var(--wp-admin-theme-color, #2271b1);
+        }
+    }
+
+    .components-card__body   { padding: 16px !important; }
+    .components-card__header { padding: 12px 16px !important; }
+}
+
+@media screen and ( max-width: 600px ) {
+    #pgbf-settings-root {
+        margin: 8px 6px 24px 0;
+    }
+
+    .pgbf-dashboard-tab {
+        padding  : 6px 8px;
+        font-size: 12px;
+    }
+}
+
+/* ── Action button row — ensure Save/Reset buttons are auto-width ─────────── */
+#pgbf-settings-root .components-h-stack > .components-button {
+    width: fit-content !important;
+    flex-shrink: 0;
+}
+
+.components-tooltip {
+    max-width: 250px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    text-align: left;
+    line-height: 1.4;
+    padding: 6px 12px;
+}
