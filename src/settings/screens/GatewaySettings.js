@@ -338,146 +338,152 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
                 </VStack>
             </SettingRow>
 
-            { /* Coupons Rule – with ProInlineNotice and disabled */ }
+            { /* Coupons Rule */ }
             <SettingRow
                 label={ __( 'Coupons Rule', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Control whether the fee applies when coupons are used', 'checkout-fees-for-woocommerce' ) }
             >
-                <Controller name={ `${ prefix }.coupons_rule` } control={ control }
-                    render={ ( { field } ) => (
-                        <div className="pgbf-select-div" style={{ marginLeft: '32px', maxWidth: '360px' }}>
-                            <ProInlineNotice />
-                            <div style={{ marginTop: '8px' }}>
-                                <SelectControl value={ field.value } onChange={ field.onChange }
-                                    disabled={ ! IS_PRO }
-                                    options={ [
-                                        { value: 'disabled',           label: __( 'Disabled',      'checkout-fees-for-woocommerce' ) },
-                                        { value: 'only_if_no_coupons', label: __( 'Only if no coupons applied',  'checkout-fees-for-woocommerce' ) },
-                                        { value: 'only_if_coupons',    label: __( 'Only if coupons are applied', 'checkout-fees-for-woocommerce' ) },
-                                    ] }
-                                    style={ { maxWidth: '360px', width: '360px' } }
-                                />
-                            </div>
-                        </div>
-                    ) }
-                />
+                <div style={{ marginLeft: '32px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap' }}>
+                    <Controller name={ `${ prefix }.coupons_rule` } control={ control }
+                        render={ ( { field } ) => (
+                            <SelectControl
+                                value={ field.value }
+                                onChange={ field.onChange }
+                                disabled={ ! IS_PRO }
+                                options={ [
+                                    { value: 'disabled',           label: __( 'Disabled',      'checkout-fees-for-woocommerce' ) },
+                                    { value: 'only_if_no_coupons', label: __( 'Only if no coupons applied',  'checkout-fees-for-woocommerce' ) },
+                                    { value: 'only_if_coupons',    label: __( 'Only if coupons are applied', 'checkout-fees-for-woocommerce' ) },
+                                ] }
+                                style={ { maxWidth: '360px', width: '360px' } }
+                            />
+                        ) }
+                    />
+                    <ProInlineNotice />
+                </div>
             </SettingRow>
 
-            { /* Customer Billing Countries – with notice and disabled */ }
+            { /* Customer Billing Countries */ }
             <SettingRow
                 label={ __( 'Customer Billing Countries', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Based on billing address. Leave blank to apply to all countries.', 'checkout-fees-for-woocommerce' ) }
             >
-                <div style={{ marginLeft: '32px', maxWidth: '360px', width: '100%' }}>
-                    <ProInlineNotice />
-                    <div style={{ marginTop: '12px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is in the list. Leave empty to apply for all countries.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect className="pgbf-multiselect" name={ `${ prefix }.countries_include` } options={ countryOptions }
-                                placeholder={ __( 'Countries to include…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect className="pgbf-multiselect" name={ `${ prefix }.countries_exclude` } options={ countryOptions }
-                                placeholder={ __( 'Countries to exclude…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
+                <div style={{ width: '100%' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is in the list. Leave empty to apply for all countries.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            className="pgbf-multiselect"
+                            name={ `${ prefix }.countries_include` }
+                            options={ countryOptions }
+                            placeholder={ __( 'Countries to include…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            className="pgbf-multiselect"
+                            name={ `${ prefix }.countries_exclude` }
+                            options={ countryOptions }
+                            placeholder={ __( 'Countries to exclude…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                        <ProInlineNotice />
                     </div>
                 </div>
             </SettingRow>
 
-            { /* Customer Billing States – with notice and disabled */ }
+            { /* Customer Billing States */ }
             <SettingRow
                 label={ __( 'Customer Billing States', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Comma‑separated list of state codes (e.g., MH, UP, CA). Leave blank to apply to all states.', 'checkout-fees-for-woocommerce' ) }
             >
-                <div style={{ marginLeft: '32px', maxWidth: '360px', width: '100%' }}>
-                    <ProInlineNotice />
-                    <div style={{ marginTop: '12px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing state is in the list. Leave empty to apply for all states.', 'checkout-fees-for-woocommerce' ) } />
-                            <Controller name={ `${ prefix }.states_include` } control={ control }
-                                render={ ( { field } ) => (
-                                    <InputControl
-                                        disabled={ ! IS_PRO }
-                                        value={ Array.isArray( field.value ) ? field.value.join( ',' ) : field.value || '' }
-                                        onChange={ ( val ) => field.onChange( val ? val.split( ',' ).map( s => s.trim() ) : [] ) }
-                                        placeholder={ __( 'e.g., MH, UP, CA', 'checkout-fees-for-woocommerce' ) }
-                                        style={ { maxWidth: '360px', width: '360px' } }
-                                    />
-                                ) }
-                            />
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing state is NOT in the list. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
-                            <Controller name={ `${ prefix }.states_exclude` } control={ control }
-                                render={ ( { field } ) => (
-                                    <InputControl
-                                        disabled={ ! IS_PRO }
-                                        value={ Array.isArray( field.value ) ? field.value.join( ',' ) : field.value || '' }
-                                        onChange={ ( val ) => field.onChange( val ? val.split( ',' ).map( s => s.trim() ) : [] ) }
-                                        placeholder={ __( 'e.g., RJ, DL, NY', 'checkout-fees-for-woocommerce' ) }
-                                        style={ { maxWidth: '360px', width: '360px' } }
-                                    />
-                                ) }
-                            />
-                        </div>
+                <div style={{ width: '100%' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing state is in the list. Leave empty to apply for all states.', 'checkout-fees-for-woocommerce' ) } />
+                        <Controller name={ `${ prefix }.states_include` } control={ control }
+                            render={ ( { field } ) => (
+                                <InputControl
+                                    disabled={ ! IS_PRO }
+                                    value={ Array.isArray( field.value ) ? field.value.join( ',' ) : field.value || '' }
+                                    onChange={ ( val ) => field.onChange( val ? val.split( ',' ).map( s => s.trim() ) : [] ) }
+                                    placeholder={ __( 'e.g., MH, UP, CA', 'checkout-fees-for-woocommerce' ) }
+                                    style={ { maxWidth: '360px', width: '360px' } }
+                                />
+                            ) }
+                        />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing state is NOT in the list. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
+                        <Controller name={ `${ prefix }.states_exclude` } control={ control }
+                            render={ ( { field } ) => (
+                                <InputControl
+                                    disabled={ ! IS_PRO }
+                                    value={ Array.isArray( field.value ) ? field.value.join( ',' ) : field.value || '' }
+                                    onChange={ ( val ) => field.onChange( val ? val.split( ',' ).map( s => s.trim() ) : [] ) }
+                                    placeholder={ __( 'e.g., RJ, DL, NY', 'checkout-fees-for-woocommerce' ) }
+                                    style={ { maxWidth: '360px', width: '360px' } }
+                                />
+                            ) }
+                        />
+                        <ProInlineNotice />
                     </div>
                 </div>
             </SettingRow>
 
-            { /* Product Categories – with notice and disabled */ }
+            { /* Product Categories */ }
             <SettingRow
                 label={ __( 'Product Categories (Fee Condition)', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Apply fee only when cart contains items from selected categories.', 'checkout-fees-for-woocommerce' ) }
             >
-                <div style={{ marginLeft: '32px', maxWidth: '360px', width: '100%' }}>
-                    <ProInlineNotice />
-                    <div style={{ marginTop: '12px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if product of selected category(-ies) is in the cart. Leave empty to apply for all categories..', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name={ `${ prefix }.cats_include` } options={ catOptions }
-                                placeholder={ __( 'Categories to include…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if NO product of selected category(-ies) is in the cart. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name={ `${ prefix }.cats_exclude` } options={ catOptions }
-                                placeholder={ __( 'Categories to exclude…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
+                <div style={{ width: '100%' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if product of selected category(-ies) is in the cart. Leave empty to apply for all categories..', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name={ `${ prefix }.cats_include` }
+                            options={ catOptions }
+                            placeholder={ __( 'Categories to include…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if NO product of selected category(-ies) is in the cart. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name={ `${ prefix }.cats_exclude` }
+                            options={ catOptions }
+                            placeholder={ __( 'Categories to exclude…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                        <ProInlineNotice />
                     </div>
                 </div>
             </SettingRow>
 
-            { /* Shipping Methods – with notice and disabled */ }
+            { /* Shipping Methods */ }
             <SettingRow
                 label={ __( 'Shipping Methods to Include / Exclude', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Apply this fee only when a specific shipping method is selected. Leave blank to apply to all methods.', 'checkout-fees-for-woocommerce' ) }
                 noBorder
             >
-                <div style={{ marginLeft: '32px', maxWidth: '360px', width: '100%' }}>
-                    <ProInlineNotice />
-                    <div style={{ marginTop: '12px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if any shipping method selected here will be selected on checkout. Leave empty to apply for all shipping methods.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name={ `${ prefix }.shipping_include` } options={ shippingOptions }
-                                placeholder={ __( 'Shipping methods to include…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if NO shipping method selected here is selected on the checkout page. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name={ `${ prefix }.shipping_exclude` } options={ shippingOptions }
-                                placeholder={ __( 'Shipping methods to exclude…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
+                <div style={{ width: '100%' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if any shipping method selected here will be selected on checkout. Leave empty to apply for all shipping methods.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name={ `${ prefix }.shipping_include` }
+                            options={ shippingOptions }
+                            placeholder={ __( 'Shipping methods to include…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if NO shipping method selected here is selected on the checkout page. Ignored if empty.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name={ `${ prefix }.shipping_exclude` }
+                            options={ shippingOptions }
+                            placeholder={ __( 'Shipping methods to exclude…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                        <ProInlineNotice />
                     </div>
                 </div>
             </SettingRow>
@@ -496,17 +502,21 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
             <SettingRow
                 label={ __( 'Enable Card-Based Fee Rules', 'checkout-fees-for-woocommerce' ) }
             >
-                <Controller name="card_rules.enabled" control={ control }
-                    render={ ( { field } ) => (
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Apply fees or discounts based on the customer\'s card details for this payment gateway. Once enabled, the fees will be automatically applied at checkout according to the rules you configure below.', 'checkout-fees-for-woocommerce' ) } />
-                            <CheckboxControl
-                                checked={ !! field.value } onChange={ field.onChange }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
-                    ) }
-                />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Controller name="card_rules.enabled" control={ control }
+                        render={ ( { field } ) => (
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                                <HelpTip message={ __( 'Apply fees or discounts based on the customer\'s card details for this payment gateway. Once enabled, the fees will be automatically applied at checkout according to the rules you configure below.', 'checkout-fees-for-woocommerce' ) } />
+                                <CheckboxControl
+                                    checked={ !! field.value }
+                                    onChange={ field.onChange }
+                                    disabled={ ! IS_PRO }
+                                />
+                            </div>
+                        ) }
+                    />
+                    <ProInlineNotice />
+                </div>
             </SettingRow>
 
             { cardRulesEnabled && (
@@ -536,17 +546,21 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
                 <SettingRow
                     label={ __( 'Show Card Details Field at Checkout', 'checkout-fees-for-woocommerce' ) }
                 >
-                    <Controller name="card_rules.show_card_payment_display" control={ control }
-                        render={ ( { field } ) => (
-                            <div style={{ display: 'flex', gap: '8px' }}>
-                                <HelpTip message={ `${ __( 'Adds card fields to checkout so BIN-based fees can be calculated when using', 'checkout-fees-for-woocommerce' ) } ${ gwTitle }. ${ __( 'Useful for gateways that do not directly capture card details (e.g. PayPal, Braintree, Stripe), allowing you to manually collect the customer\'s card BIN details.', 'checkout-fees-for-woocommerce' ) }` } />
-                                <CheckboxControl
-                                    checked={ !! field.value } onChange={ field.onChange }
-                                    disabled={ ! IS_PRO }
-                                />
-                            </div>
-                        ) }
-                    />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Controller name="card_rules.show_card_payment_display" control={ control }
+                            render={ ( { field } ) => (
+                                <div style={{ display: 'flex', gap: '8px' }}>
+                                    <HelpTip message={ `${ __( 'Adds card fields to checkout so BIN-based fees can be calculated when using', 'checkout-fees-for-woocommerce' ) } ${ gwTitle }. ${ __( 'Useful for gateways that do not directly capture card details (e.g. PayPal, Braintree, Stripe), allowing you to manually collect the customer\'s card BIN details.', 'checkout-fees-for-woocommerce' ) }` } />
+                                    <CheckboxControl
+                                        checked={ !! field.value }
+                                        onChange={ field.onChange }
+                                        disabled={ ! IS_PRO }
+                                    />
+                                </div>
+                            ) }
+                        />
+                        <ProInlineNotice />
+                    </div>
                 </SettingRow>
             ) }
         </SectionCard>
@@ -683,29 +697,31 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
                 </VStack>
             </SettingRow>
 
-            { /* Customer Countries (general level) – with notice and disabled */ }
+            { /* Customer Countries (general level) */ }
             <SettingRow
                 label={ __( 'Customer Countries', 'checkout-fees-for-woocommerce' ) }
                 description={ __( 'Gateway-level country filter applied to all fees for this gateway. Leave blank for all countries.', 'checkout-fees-for-woocommerce' ) }
                 noBorder
             >
-                <div style={{ marginLeft: '32px', maxWidth: '360px', width: '100%' }}>
-                    <ProInlineNotice />
-                    <div style={{ marginTop: '12px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is in the list. Leave empty to apply for all countries.. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name="general.countries_include" options={ countryOptions }
-                                placeholder={ __( 'Countries to include…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list. Ignored if empty. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ) } />
-                            <MultiSelect name="general.countries_exclude" options={ countryOptions }
-                                placeholder={ __( 'Countries to exclude…', 'checkout-fees-for-woocommerce' ) }
-                                disabled={ ! IS_PRO }
-                            />
-                        </div>
+                <div style={{ width: '100%' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is in the list. Leave empty to apply for all countries.. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name="general.countries_include"
+                            options={ countryOptions }
+                            placeholder={ __( 'Countries to include…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <HelpTip message={ __( 'Fee (or discount) will only be added if customer\'s billing country is NOT in the list. Ignored if empty. This is applied to both main and additional fees. Alternatively you can also set customer countries for each fee individually.', 'checkout-fees-for-woocommerce' ) } />
+                        <MultiSelect
+                            name="general.countries_exclude"
+                            options={ countryOptions }
+                            placeholder={ __( 'Countries to exclude…', 'checkout-fees-for-woocommerce' ) }
+                            disabled={ ! IS_PRO }
+                        />
+                        <ProInlineNotice />
                     </div>
                 </div>
             </SettingRow>

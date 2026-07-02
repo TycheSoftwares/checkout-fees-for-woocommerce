@@ -357,6 +357,7 @@ final class Plugin {
 	public function action_links( $links ): array {
 		$custom_links = array(
 			'<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=payment-gateway-fees-for-woocommerce' ) ) . '">' . esc_html__( 'Settings', 'checkout-fees-for-woocommerce' ) . '</a>',
+			'<a href="https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=pgbflite&utm_medium=notice&utm_campaign=upgrade">' . __( 'Unlock All', 'checkout-fees-for-woocommerce' ) . '</a>'
 		);
 		return array_merge( $custom_links, $links );
 	}

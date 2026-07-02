@@ -239,7 +239,7 @@ function GlobalExtraFee( { noticeOperations, noticeUI } ) {
                             <VStack spacing={ 3 }>
                                 <div style={{ display: 'flex', gap: '8px' }}>
                                     <HelpTip message={ __( 'Choose fees type that can be either fixed or percentage based. For discount enter a negative number to Fee Amount.', 'checkout-fees-for-woocommerce' ) } />
-                                        
+
                                     <Text style={ { fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' } }>
                                         { __( 'Fee Type', 'checkout-fees-for-woocommerce' ) }
                                     </Text>
@@ -259,7 +259,7 @@ function GlobalExtraFee( { noticeOperations, noticeUI } ) {
                                         ) }
                                     />
                                 </div>
-                                
+
                                 <div style={ { marginLeft: '32px' } }>
                                     <Text style={ { fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' } }>
                                         { __( 'Fee Amount', 'checkout-fees-for-woocommerce' ) }
@@ -284,12 +284,12 @@ function GlobalExtraFee( { noticeOperations, noticeUI } ) {
                             noBorder
                         >
                             <VStack spacing={ 3 }>
-                                <ProInlineNotice />
-                                <div style={{ display: 'flex', gap: '8px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap' }}>
                                     <HelpTip message={ __( 'Apply fee when cart subtotal is within this range. Enter 0 for no limit.', 'checkout-fees-for-woocommerce' ) } />
                                     <Text style={ { fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' } }>
                                         { __( 'Minimum Cart Amount', 'checkout-fees-for-woocommerce' ) }
                                     </Text>
+                                    <ProInlineNotice />
                                 </div>
                                 <div style={{ marginLeft: '32px'} }>
                                     <Controller name="min_cart_amount" control={ control }

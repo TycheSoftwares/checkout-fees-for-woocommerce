@@ -42,8 +42,6 @@ class Files {
 
 		self::require( 'includes/admin/class-order-fees.php' );
 		self::require_if_exists( 'includes/blocks/blocks.php' );
-		self::require_if_exists( 'includes/frontend/class-card-rules-ajax.php' );
-		self::require_if_exists( 'includes/frontend/class-bin-frontend.php' );
 
 		if ( is_admin() ) {
 			self::load_admin();

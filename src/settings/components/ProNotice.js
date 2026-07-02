@@ -1,10 +1,10 @@
 // src/components/ProNotice.js
-import { Notice, Button } from '@wordpress/components';
+import { Notice, Button, ExternalLink } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
 
-const UPGRADE_URL = 'https://www.tychesoftwares.com/products/custom-order-statuses-woocommerce-pro/?utm_source=coslite&utm_medium=notice&utm_campaign=upgrade';
+const UPGRADE_URL = 'https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=pgbflite&utm_medium=notice&utm_campaign=upgrade';
 
-// Default export: full‑width notice (used above cards)
+// Full‑width notice (used above cards)
 export default function ProNotice({ feature }) {
     return (
         <div style={{ display: 'inline-block', maxWidth: '100%', marginBottom: '16px' }}>
@@ -14,11 +14,11 @@ export default function ProNotice({ feature }) {
                         <span className="dashicons dashicons-info-outline" style={{ fontSize: '20px', color: '#dba617' }} />
                         <span>
                             {feature && <strong style={{ marginRight: '4px' }}>{feature}</strong>}
-                            {__('is only available in the Pro version.', 'custom-order-statuses-woocommerce')}
+                            {__('is only available in the Pro version.', 'checkout-fees-for-woocommerce')}
                         </span>
                     </div>
                     <Button variant="primary" href={UPGRADE_URL} target="_blank" rel="noreferrer">
-                        {__('Upgrade to Pro', 'custom-order-statuses-woocommerce')}
+                        {__('Upgrade to Pro', 'checkout-fees-for-woocommerce')}
                         <span className="dashicons dashicons-external" style={{ fontSize: '16px', marginLeft: '6px', verticalAlign: 'middle' }} />
                     </Button>
                 </div>
@@ -27,41 +27,18 @@ export default function ProNotice({ feature }) {
     );
 }
 
-// Named export: inline notice (used next to toggles)
-export function ProInlineNotice({ feature, message, inline = false, className = '' }) {
-    const defaultMessage = feature
-        ? sprintf( __('%s is only available in the Pro version.', 'custom-order-statuses-woocommerce'), feature )
-        : __('This option is only available in the Pro version.', 'custom-order-statuses-woocommerce');
-
-    const displayMessage = message || defaultMessage;
-
-    const style = {
-        display      : inline ? 'inline-flex' : 'flex',
-        alignItems   : 'center',
-        gap          : '6px',
-        marginTop    : inline ? 0 : '8px',
-        padding      : '8px 10px',
-        background   : '#fef9ec',
-        borderLeft   : '2px solid #f0c040',
-        fontSize     : '12px',
-        color        : '#1d2327',
-        lineHeight   : 1.4,
-    };
-
+// Inline notice: just a link, no extra text
+export function ProInlineNotice({ className = '' }) {
     return (
-        <div style={ style } className={ className }>
-            <span>
-                { displayMessage }
-                { ' ' }
-                <a
-                    href={ UPGRADE_URL }
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: '#2271b1', fontWeight: 600, textDecoration: 'underline' }}
-                >
-                    { __( 'Upgrade to Pro', 'custom-order-statuses-woocommerce' ) }
-                </a>
-            </span>
-        </div>
+        <span className={className} style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '8px', flexShrink: 0, whiteSpace: 'nowrap' }}>
+            <ExternalLink
+                href={UPGRADE_URL}
+                style={{ textDecoration: 'none', fontWeight: 600, whiteSpace: 'nowrap' }}
+            >
+                <span style={{ textDecoration: 'underline' }}>
+                    {__('Upgrade to Pro', 'checkout-fees-for-woocommerce')}
+                </span>
+            </ExternalLink>
+        </span>
     );
 }

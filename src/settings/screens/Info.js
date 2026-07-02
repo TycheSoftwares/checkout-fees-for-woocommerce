@@ -34,6 +34,10 @@ import { useForm, Controller } from 'react-hook-form';
 import { updateSettings, resetSection } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import HelpTip from '../components/HelpTip';
+import { ProInlineNotice } from '../components/ProNotice';
+
+// ─── Toggle this constant for Lite / Pro ───────────────────────────────────
+const IS_PRO = false; // Set to true for Pro version
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -291,7 +295,7 @@ function Info( { noticeOperations, noticeUI } ) {
                                     render={ ( { field } ) => (
                                         <div style={{ display: 'flex', gap: '8px' }}>
                                             <HelpTip message={ __( 'This option displays gateway fees on each product page.', 'checkout-fees-for-woocommerce' ) } />
-                                            
+
                                             <CheckboxControl
                                                 checked={ !! field.value }
                                                 onChange={ field.onChange }
@@ -408,21 +412,25 @@ function Info( { noticeOperations, noticeUI } ) {
                             </VStack>
                         </SettingRow>
 
-                        { /* ── Row 3: Hide info when Out of Stock ── */ }
+                        { /* ── Row 3: Hide info when Out of Stock (Pro-only in Lite) ── */ }
                         <SettingRow
                             label={ __( 'Hide Fee Info for Out-of-Stock Products', 'checkout-fees-for-woocommerce' ) }
                         >
-                            <Controller name="hide_on_out_of_stock" control={ control }
-                                render={ ( { field } ) => (
-                                    <div style={{ display: 'flex', gap: '8px' }}>
-                                        <HelpTip message={ __( 'When the Product is Out of stock, it will hide gateway fee/discount info on a single product frontend page.', 'checkout-fees-for-woocommerce' ) }/>                                            
-                                        <CheckboxControl
-                                            checked={ !! field.value }
-                                            onChange={ field.onChange }
-                                        />
-                                    </div>
-                                ) }
-                            />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Controller name="hide_on_out_of_stock" control={ control }
+                                    render={ ( { field } ) => (
+                                        <div style={{ display: 'flex', gap: '8px' }}>
+                                            <HelpTip message={ __( 'When the Product is Out of stock, it will hide gateway fee/discount info on a single product frontend page.', 'checkout-fees-for-woocommerce' ) } />
+                                            <CheckboxControl
+                                                checked={ !! field.value }
+                                                onChange={ field.onChange }
+                                                disabled={ ! IS_PRO }
+                                            />
+                                        </div>
+                                    ) }
+                                />
+                                <ProInlineNotice />
+                            </div>
                         </SettingRow>
 
                         { /* ── Row 4: Variable products info ── */ }
