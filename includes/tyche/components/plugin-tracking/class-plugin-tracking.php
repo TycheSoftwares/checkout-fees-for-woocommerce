@@ -118,7 +118,7 @@ class Plugin_Tracking {
 	public function cron_schedule( $schedules ) {
 		$schedules['once_in_week'] = array(
 			'interval' => 604800,  // one week in seconds.
-			'display'  => __( 'Once in a Week', $this->plugin_locale ), // phpcs:ignore
+			'display'  => 'Once in a Week',
 		);
 
 		return $schedules;

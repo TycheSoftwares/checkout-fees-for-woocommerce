@@ -189,7 +189,7 @@ function App() {
                     </HStack>
                     <HStack justify="center">
                         <Text>{ __( 'If this plugin helped you,', 'checkout-fees-for-woocommerce' ) }</Text>
-                        <ExternalLink href="https://www.tychesoftwares.com/submit-review/" className="pgbf-link">
+                        <ExternalLink href="https://wordpress.org/support/plugin/checkout-fees-for-woocommerce/reviews/#new-post" className="pgbf-link">
                             { __( 'please rate it', 'checkout-fees-for-woocommerce' ) }
                         </ExternalLink>
                         <Text style={ { fontSize: '17px', color: '#FFBA00' } }>★★★★★</Text>

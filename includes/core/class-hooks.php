@@ -565,7 +565,18 @@ class Checkout_Fees {
 					$_product    = wc_get_product( $args['product_id'] );
 					$sum_for_fee = $_product->get_price() * $args['product_qty'];
 				} else {
-					$sum_for_fee = $total_in_cart;
+					// IF cart has depsoit then use it as base for fee calculation instead of total.
+					$deposit_base  = 0;
+					$deposit_found = false;
+					foreach ( WC()->cart->get_cart() as $_item ) {
+						if ( isset( $_item['deposit_amount'] ) && (float) $_item['deposit_amount'] > 0 ) {
+							$deposit_base += (float) $_item['deposit_amount'] * (int) $_item['quantity'];
+							$deposit_found = true;
+						} else {
+							$deposit_base += (float) $_item['line_total'];
+						}
+					}
+					$sum_for_fee = $deposit_found ? $deposit_base : $total_in_cart;
 				}
 				$new_fee = ( (float) $fee_value / 100 ) * $sum_for_fee;
 				break;
@@ -983,6 +994,8 @@ class Checkout_Fees {
 				}
 			}
 		}
+
+		$final_fee_to_add = apply_filters( 'alg_wc_gateway_fee_before_final_fee', $final_fee_to_add, $args, $this );
 
 		return $final_fee_to_add;
 	}
