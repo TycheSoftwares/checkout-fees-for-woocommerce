@@ -368,6 +368,12 @@ class Checkout_Fees {
 				} else {
 					$payment_method = get_post_meta( $order_id, '_payment_method', true );
 				}
+
+				$order_key = '';
+				if ( isset( $_GET['key'] ) ) { // phpcs:ignore
+					$order_key = wc_clean( wp_unslash( $_GET['key'] ) ); // phpcs:ignore
+				}
+
 				if ( '' !== get_query_var( 'order-pay' ) ) {
 					wp_localize_script(
 						'alg-payment-gateways-checkout',
@@ -375,6 +381,7 @@ class Checkout_Fees {
 						array(
 							'order_id'       => get_query_var( 'order-pay' ),
 							'payment_method' => $payment_method,
+							'order_key'      => $order_key,
 						)
 					);
 				}
