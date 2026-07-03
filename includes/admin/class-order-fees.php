@@ -131,16 +131,18 @@ class Checkout_Order_Fees {
 	 * AJAX handler for updating fees on order‑pay page.
 	 */
 	public function update_checkout_fees_ajax() {
+		global $wp;
 		check_ajax_referer( 'update-payment-method', 'security' );
 
-		$payment_method       = isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : '';
-		$order_id             = isset( $_POST['order_id'] ) ? absint( $_POST['order_id'] ) : 0;
-		$payment_method_title = isset( $_POST['payment_method_title'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method_title'] ) ) : '';
+		$payment_method       = isset( $_POST['payment_method'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		$order_id             = isset( $_POST['order_id'] ) ? sanitize_key( $_POST['order_id'] ): 0; // phpcs:ignore
+		$payment_method_title = isset( $_POST['payment_method_title'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_method_title'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 		if ( $order_id <= 0 ) {
 			wp_send_json_error( 'Invalid order ID' );
 		}
 		$order = wc_get_order( $order_id );
+
 		if ( ! $order ) {
 			wp_send_json_error( 'Order not found' );
 		}
@@ -148,13 +150,14 @@ class Checkout_Order_Fees {
 		$current_user_id = get_current_user_id();
 		$order_user_id   = (int) $order->get_user_id();
 
+		// Allow admins.
 		if ( current_user_can( 'manage_woocommerce' ) ) {
 			$authorized = true;
 		} elseif ( $current_user_id && $current_user_id === $order_user_id ) {
 			$authorized = true;
 		} elseif ( ! is_user_logged_in() ) {
-			$posted_order_key = isset( $_POST['order_key'] ) ? wc_clean( wp_unslash( $_POST['order_key'] ) ) : '';
-			$authorized = hash_equals( $order->get_order_key(), $posted_order_key );
+			$posted_order_key = isset( $_POST['order_key'] ) ? wc_clean( wp_unslash( $_POST['order_key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+			$authorized       = hash_equals( $order->get_order_key(), $posted_order_key );
 		} else {
 			$authorized = false;
 		}
@@ -162,17 +165,23 @@ class Checkout_Order_Fees {
 		if ( ! $authorized ) {
 			wp_send_json_error( 'Unauthorized access' );
 		}
-
-		$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
-		if ( $add_fees ) {
+		$add_fees = false;
+		if ( $order ) {
+			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
 			$this->remove_fees( $order );
+		}
+		if ( $add_fees ) {
 			$this->add_gateways_fees( $order, $payment_method );
+
+			// Update payment method record in the database.
 			$order->set_payment_method( $payment_method );
 			$order->set_payment_method_title( $payment_method_title );
 			$order->save();
 		}
 
+		// Declare $order again to fetch updates to post meta and serve to payment templte engine.
 		$order = wc_get_order( $order_id );
+
 		ob_start();
 		$this->woocommerce_order_pay( $order );
 		$woocommerce_order_pay = ob_get_clean();

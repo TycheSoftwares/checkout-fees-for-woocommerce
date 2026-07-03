@@ -4,7 +4,7 @@
 
 jQuery(($) => {
   const orderPayReferrer = $('input[name="_wp_http_referer"]').val();
-  
+
   let referrerArr = '';
 
   if (undefined !== orderPayReferrer) {
@@ -66,6 +66,7 @@ jQuery(($) => {
       payment_method: paymentMethod,
       payment_method_title: paymentMethodTitle,
       order_id: order_id,
+      order_key: pgf_checkout_order_id.order_key || '',
       security: pgf_checkout_params.update_payment_method_nonce
     };
 
@@ -80,7 +81,7 @@ jQuery(($) => {
 				$(`input[name="payment_method"][value=${paymentMethod}]`).prop('checked', true);
 				$(`.payment_method_${paymentMethod}`).css('display', 'block');
 				$(`div.payment_box:not(".payment_method_${paymentMethod}")`).filter(':visible').slideUp(0);
-        
+
         // Fix for Woocommerce Square Payment Issue #114.
         if ('square_credit_card' === currentPaymentMethod && window.wc_square_credit_card_payment_form_handler && pgf_checkout_params && pgf_checkout_params.alg_wc_square_card_payment_args) {
 
