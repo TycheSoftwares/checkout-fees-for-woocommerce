@@ -2,14 +2,6 @@
  * src/settings/screens/GatewaySettings.js
  *
  * Payment Gateway settings screen.
- *
- * Layout:
- *  - Horizontal gateway tab bar (Direct bank transfer | Check payments | Cash on delivery …)
- *  - Below tabs: three separate SectionCards matching the General/GlobalExtraFee pattern
- *      1. Gateway Fee Configuration   (fee_1)
- *      2. Additional Fee (Optional)   (fee_2)
- *      3. General Options             (general)
- *  - Save Changes + per-section Reset buttons at the bottom
  */
 
 import { useState, useEffect } from '@wordpress/element';
@@ -349,7 +341,6 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
                             <SelectControl
                                 value={ field.value }
                                 onChange={ field.onChange }
-                                disabled={ ! IS_PRO }
                                 options={ [
                                     { value: 'disabled',           label: __( 'Disabled',      'checkout-fees-for-woocommerce' ) },
                                     { value: 'only_if_no_coupons', label: __( 'Only if no coupons applied',  'checkout-fees-for-woocommerce' ) },
@@ -359,7 +350,6 @@ function GatewaySettings( { noticeOperations, noticeUI } ) {
                             />
                         ) }
                     />
-                    <ProInlineNotice />
                 </div>
             </SettingRow>
 

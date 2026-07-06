@@ -196,10 +196,6 @@ export default function Dashboard() {
             label: __( 'Set up global extra fee',        'checkout-fees-for-woocommerce' ),
             done : !! globalFee.enabled,
         },
-        {
-            label: __( 'Configure BIN APIs',             'checkout-fees-for-woocommerce' ),
-            done : !! binApis.enabled,
-        },
     ], [ general, globalFee, binApis, gateways, settings ] );
 
     const completedCount     = steps.filter( ( s ) => s.done ).length;
@@ -302,15 +298,6 @@ export default function Dashboard() {
                                 : __( 'Inactive', 'checkout-fees-for-woocommerce' ) }
                             valueColor={ globalFee.enabled ? '#16a34a' : '#646970' }
                         />
-                        <SummaryTile
-                            icon={ IconScan }
-                            iconBg="#ffedd5" iconColor="#ea580c"
-                            label={ __( 'Card-Based Fee Detection', 'checkout-fees-for-woocommerce' ) }
-                            value={ binApis.enabled
-                                ? __( 'Enabled', 'checkout-fees-for-woocommerce' )
-                                : __( 'Disabled', 'checkout-fees-for-woocommerce' ) }
-                            valueColor={ binApis.enabled ? '#16a34a' : '#646970' }
-                        />
                     </div>
 
                     { allDone && (
@@ -358,12 +345,6 @@ export default function Dashboard() {
                                 style={ { background: 'none', border: 'none', padding: 0, color: '#2271b1', cursor: 'pointer', textDecoration: 'underline', fontSize: 'inherit' } }>
                                 { __( 'Global Extra Fee.', 'checkout-fees-for-woocommerce' ) }
                             </button>
-                            { __( ' Enable ', 'checkout-fees-for-woocommerce' ) }
-                            <button type="button" onClick={ () => navigate( '/bin-apis' ) }
-                                style={ { background: 'none', border: 'none', padding: 0, color: '#2271b1', cursor: 'pointer', textDecoration: 'underline', fontSize: 'inherit' } }>
-                                { __( 'BIN APIs', 'checkout-fees-for-woocommerce' ) }
-                            </button>
-                            { __( ' to apply fees based on card issuing country and bank.', 'checkout-fees-for-woocommerce' ) }
                         </Text>
                     </div>
                 </div>
