@@ -4,7 +4,7 @@
  * Lite version restrictions:
  * - Only the FIRST payment gateway is fully configurable.
  * - All other gateways are completely disabled (locked).
- * - A top-level ProNotice explains the upgrade option.
+ * - A notice appears inside the panel for locked gateways.
  */
 
 import { useState, useEffect, useRef, useCallback } from '@wordpress/element';
@@ -20,7 +20,6 @@ import {
     withNotices,
 } from '@wordpress/components';
 import { useForm, Controller, useWatch } from 'react-hook-form';
-import ProNotice from '../components/ProNotice';
 import { getProductFees, updateProductFees, getGateways, getOptions } from '../api';
 
 // ─── Toggle this constant for Lite / Pro ───────────────────────────────────
@@ -293,7 +292,7 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
                 } );
                 reset( defaults );
             } catch ( err ) {
-                console.error( '[PGBF Pro] ProductMetabox load error:', err );
+                console.error( '[PGBF] ProductMetabox load error:', err );
             } finally {
                 setIsLoading( false );
             }
@@ -310,7 +309,7 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
             noticeOperations.removeAllNotices();
             noticeOperations.createNotice( { status: 'success', content: __( 'Fees saved successfully.', 'checkout-fees-for-woocommerce' ) } );
         } catch ( err ) {
-            console.error( '[PGBF Pro] Save failed:', err );
+            console.error( '[PGBF] Save failed:', err );
             noticeOperations.createNotice( { status: 'error', content: __( 'Error saving fees. Please try again.', 'checkout-fees-for-woocommerce' ) } );
         }
     }, [ productId ] );
@@ -332,6 +331,37 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
 
         return (
             <div key={ gwId } style={ { display: active ? 'block' : 'none' } }>
+
+                { /* ── Notice for locked gateways ── */ }
+                { ! isEditable && (
+                    <div style={ {
+                        background: '#fef9ec',
+                        border: '1px solid #f0c040',
+                        borderRadius: '4px',
+                        padding: '12px 16px',
+                        marginBottom: '16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        flexWrap: 'wrap',
+                    } }>
+                        <span className="dashicons dashicons-info-outline" style={ { color: '#dba617', fontSize: '20px' } } />
+                        <span style={ { fontSize: '13px', color: '#1d2327' } }>
+                            { __( 'Only the first payment gateway is configurable in the Lite version.', 'checkout-fees-for-woocommerce' ) }
+                            &nbsp;
+                            <a
+                                href="https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=pgbflite&utm_medium=notice&utm_campaign=upgrade"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={ { fontWeight: 600, color: '#2271b1', textDecoration: 'underline' } }
+                            >
+                                { __( 'Upgrade to Pro', 'checkout-fees-for-woocommerce' ) }
+                            </a>
+                            &nbsp;
+                            { __( 'to enable fee overrides for all gateways.', 'checkout-fees-for-woocommerce' ) }
+                        </span>
+                    </div>
+                ) }
 
                 { /* Enable toggle */ }
                 <div style={ {
@@ -501,22 +531,8 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
         </div>
     );
 
-    // Show top-level upgrade notice when there are multiple gateways
-    const showUpgradeNotice = !IS_PRO && gateways.length > 1;
-
     return (
         <div style={ { padding: '16px', fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif' } }>
-
-            { /* ── Top-level Upgrade Notice ── */ }
-            { showUpgradeNotice && (
-                <ProNotice>
-                    { __( 'Fee overrides are available for all payment gateways in the Pro version.', 'checkout-fees-for-woocommerce' ) }
-                    &nbsp;
-                    <a href="https://www.tychesoftwares.com/checkout-fees-for-woocommerce-pro/" target="_blank" rel="noreferrer">
-                        { __( 'Upgrade to Pro', 'checkout-fees-for-woocommerce' ) }
-                    </a>
-                </ProNotice>
-            ) }
 
             { /* ── Tab bar ── */ }
             <div style={ {
