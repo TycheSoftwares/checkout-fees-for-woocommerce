@@ -271,7 +271,16 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
                     getOptions(),
                 ] );
                 setGateways( gwList );
-                if ( gwList.length ) setActiveGw( gwList[ 0 ].id );
+
+                // In Lite, only BACS is editable. If BACS not found, no gateway is editable.
+                const bacsGw = gwList.find( g => g.id === 'bacs' );
+                if ( bacsGw ) {
+                    setActiveGw( bacsGw.id );
+                } else if ( gwList.length ) {
+                    setActiveGw( gwList[ 0 ].id );
+                } else {
+                    setActiveGw( null );
+                }
 
                 const taxClasses = optionsData?.tax_classes || [];
                 const mappedTaxClasses = taxClasses.map( ( item ) => ( {
@@ -322,12 +331,15 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
 
     // ── Fee panel for one gateway ─────────────────────────────────────────────
 
-    const renderGatewayPanel = ( gw, index ) => {
+    const renderGatewayPanel = ( gw ) => {
         const gwId   = gw.id;
         const active = gwId === activeGw;
 
-        // Only the first gateway is editable in Lite (Pro allows all)
-        const isEditable = IS_PRO || index === 0;
+        // Only BACS is editable in Lite (when present)
+        const isEditable = IS_PRO || gwId === 'bacs';
+
+        // Check if BACS exists in the list
+        const bacsExists = gateways.some( g => g.id === 'bacs' );
 
         return (
             <div key={ gwId } style={ { display: active ? 'block' : 'none' } }>
@@ -347,7 +359,7 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
                     } }>
                         <span className="dashicons dashicons-info-outline" style={ { color: '#dba617', fontSize: '20px' } } />
                         <span style={ { fontSize: '13px', color: '#1d2327' } }>
-                            { __( 'Only the first payment gateway is configurable in the Lite version.', 'checkout-fees-for-woocommerce' ) }
+                            { __( 'Only BACS (Direct Bank Transfer) is configurable in the Lite version.', 'checkout-fees-for-woocommerce' ) }
                             &nbsp;
                             <a
                                 href="https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=pgbflite&utm_medium=notice&utm_campaign=upgrade"
@@ -541,9 +553,9 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
                 borderBottom: '1px solid #ddd',
                 marginBottom: '16px',
             } }>
-                { gateways.map( ( gw, index ) => {
+                { gateways.map( ( gw ) => {
                     const active = activeGw === gw.id;
-                    const isEditable = IS_PRO || index === 0;
+                    const isEditable = IS_PRO || gw.id === 'bacs';
 
                     return (
                         <button
@@ -577,7 +589,7 @@ function ProductMetabox( { productId, noticeOperations, noticeUI } ) {
             </div>
 
             { /* ── All gateway panels ── */ }
-            { gateways.map( ( gw, index ) => renderGatewayPanel( gw, index ) ) }
+            { gateways.map( ( gw ) => renderGatewayPanel( gw ) ) }
 
             { /* ── Save button ── */ }
             <div style={ { display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px' } }>
