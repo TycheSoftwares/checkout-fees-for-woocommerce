@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
 Tested up to: 7.0.0
-Stable tag: 3.1.0
+Stable tag: 3.2.0
 Requires PHP: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -101,6 +101,16 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+
+= 3.2.0 - 07/07/2026 =
+* New – React-based admin interface for General, Payment Gateways, Global Extra Fee, and Info pages.
+* Dev – Introduced a REST API layer (pgbf-pro/v1) for plugin settings operations.
+* Dev – Consolidated settings storage from individual alg_gateways_fees_* and alg_woocommerce_checkout_fees_* options into pgbf_pro_settings and pgbf_pro_gateway_settings JSON objects.
+* Dev – Consolidated product fee meta keys into _pgbf_pro_product_fees JSON meta key.
+* Fix – Fixed payment gateway fees not being applied or changed when the Pay for order page is visited in incognito mode.
+* Update – Compatibility with WordPress 7.0.
+* Update – Compatibility with WooCommerce 10.9.3.
+
 = 3.1.0 - 02/06/2026 =
 * Fix - Payment gateway fees are now correctly calculated on the deposit amount when using WooCommerce Deposits.
 * Fix - Credit card payment charges were being added multiple times on the Pay for Order page after refreshing the Pay for Order page.

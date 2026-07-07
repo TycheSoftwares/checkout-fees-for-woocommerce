@@ -1,4 +1,14 @@
 *** Payment Gateway Based Fees and Discounts for WooCommerce ***
+
+2026-07-07 - version 3.2.0
+* New – React-based admin interface for General, Payment Gateways, Global Extra Fee, and Info pages.
+* Dev – Introduced a REST API layer (pgbf-pro/v1) for plugin settings operations.
+* Dev – Consolidated settings storage from individual alg_gateways_fees_* and alg_woocommerce_checkout_fees_* options into pgbf_pro_settings and pgbf_pro_gateway_settings JSON objects.
+* Dev – Consolidated product fee meta keys into _pgbf_pro_product_fees JSON meta key.
+* Fix – Fixed payment gateway fees not being applied or changed when the Pay for order page is visited in incognito mode.
+* Update – Compatibility with WordPress 7.0.
+* Update – Compatibility with WooCommerce 10.9.3.
+
 2025-04-29 - version 2.17.0
 * Fix - Issue where, if the fee title was left empty, the gateway fees were incorrectly added when changing the payment method or reloading the "Pay for Order" page.
 * Fix - The "Reset Section" option is not working in the Payment Methods tab.
