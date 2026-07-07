@@ -172,7 +172,7 @@ class Checkout_Fees_Info {
 				pgbf_lite()->core->get_max_ranges();
 
 				$global_fee = 0;
-				if ( pgbf_lite()->core->check_countries_or_shipping_methods( $gid ) ) {
+				if ( pgbf_lite()->core->check_countries( $gid ) ) {
 					$args       = pgbf_lite()->core->args_manager->get_the_args_global( $gid );
 					$global_fee = pgbf_lite()->core->get_the_fee( $args, 'fee_both', $the_price_excl_tax, true, $product_id );
 				}

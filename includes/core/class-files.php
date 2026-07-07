@@ -37,10 +37,12 @@ class Files {
 		self::require( 'includes/helper/class-fees-helper.php' );
 		self::require( 'includes/helper/class-fees-args.php' );
 		self::require( 'includes/frontend/class-fees-info.php' );
+		new Checkout_Fees_Info();
 
 		$core = self::require( 'includes/core/class-hooks.php' );
 
 		self::require( 'includes/admin/class-order-fees.php' );
+		new Checkout_Order_Fees();
 		self::require_if_exists( 'includes/blocks/blocks.php' );
 
 		if ( is_admin() ) {
