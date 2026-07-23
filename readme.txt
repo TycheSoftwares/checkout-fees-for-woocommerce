@@ -13,60 +13,118 @@ Set fees and discounts for WooCommerce payment gateways.
 
 == Description ==
 
-**[Payment Gateway Based Fees and Discounts for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=WCPGBasedFees)** plugin extends WooCommerce by adding options to set **fees or discounts based on customer selected payment gateway**.
+Many WooCommerce stores charge different payment methods differently. For example, you might want to add a small handling fee for Cash on Delivery orders, encourage customers to pay by bank transfer with a discount, or recover the transaction fees charged by payment providers.
 
-Payment gateway based fees and discounts can be added to **all payment gateways** including:
+Payment Gateway-Based Fees and Discounts for WooCommerce lets you automatically add a fixed amount or percentage-based fee or offer a discount based on the payment method your customer selects during checkout. It works with WooCommerce's built-in payment gateways, such as Cash on Delivery, Direct Bank Transfer (BACS), and third-party payment gateways such as PayPal, added by other WooCommerce extensions.
 
-* standard WooCommerce payment gateways (Direct Bank Transfer (BACS), Cheque Payment, Cash on Delivery and PayPal),
-* custom payment gateways added with any other plugin.
+= Key Features =
 
-Fees and discounts can be set:
+### Charge Extra or Offer Discounts Based on Payment Method
+Different payment methods come with different costs. This plugin lets you automatically add an extra fee or offer a discount based on the payment option your customer selects during checkout.
 
-* globally for all products, or
-* on per product basis.
+### Set Up Fee Rules That Match Your Store
+Every store has different pricing needs, so the plugin gives you flexibility without making setup complicated.
 
-### Check out the PRO version of [Payment Gateway Based Fees and Discounts for WooCommerce plugin](https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=prolink2&utm_campaign=WCPGBasedFees).
+You can:
+* Charge a fixed amount or a percentage of the order total.
+* Add extra fixed or percentage-based fees when required.
+* Set minimum and maximum fee or discount values.
+* Apply fees only when the cart total falls within a specific range.
+* Combine multiple gateway fees into a single line at checkout.
+* Limit the maximum total fee or discount applied to an order.
 
-Plugin requires **minimum setup**: after enabling the fee/discount for selected gateway (in WooCommerce > Settings > Payment Gateway Based Fees and Discounts), you can set:
+### Show Clear Pricing at Checkout
+Unexpected charges can confuse customers. The plugin lets you control how payment gateway fees and discounts are displayed throughout the shopping experience.
 
-* fee/discount value,
-* fee/discount type: fixed or percent,
-* additional fee/discount,
-* minimum and maximum fee/discount values,
-* minimum and/or maximum cart amount for adding the fee/discount,
-* rounding options,
-* taxation options,
-* shipping options,
-* product categories,
-* customer countries and more.
+You can:
+* Customize the fee or discount label shown during checkout.
+* Hide fee information on the Cart page if preferred.
+* Display payment method fee information on the product page so customers know what to expect before they checkout.
 
-### Some of our Pro plugins
+### Configure Fees the Way Your Business Needs
+Whether you include shipping costs in your calculations or need taxes applied to gateway fees, you can configure the plugin to match the way your store operates.
 
-1. **[Payment Gateway Based Fees and Discounts for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Payment Gateway Based Fees and Discounts for WooCommerce - Pro")**
+The Lite version allows you to:
+* Apply taxes to payment gateway fees.
+* Round calculated fee values automatically.
+* Include or exclude shipping charges when calculating fees.
 
-2. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-abandoned-cart-pro/?utm_source=wprepo&utm_medium=otherprolink&utm_campaign=WCPGBasedFees "Abandoned Cart Pro for WooCommerce")**
+### Works with WooCommerce Payment Gateways
+The plugin supports WooCommerce's default payment methods, including:
+* Direct Bank Transfer (BACS)
+* Cash on Delivery (COD)
+* Cheque Payments
 
-3. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-booking-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Booking & Appointment Plugin for WooCommerce")**
+It also works with payment gateways added by third-party WooCommerce plugins, so you can apply the same fee or discount rules across your preferred payment methods.
 
-4. **[Order Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/order-delivery-date-for-woocommerce-pro-21/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Order Delivery Date Pro for WooCommerce")**
+= Common Use Cases =
 
-5. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/product-delivery-date-pro-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Product Delivery Date Pro for WooCommerce")**
+Payment Gateway Based Fees and Discounts for WooCommerce is suitable for many different store types, including:
+* Charge a handling fee for Cash on Delivery (COD) orders.
+* Offer a discount for customers who choose Direct Bank Transfer (BACS).
+* Recover payment processing costs by adding a percentage-based checkout surcharge.
+* Add a fixed convenience fee for selected payment methods.
+* Encourage customers to use lower-cost payment gateways by offering incentives.
+* Display payment method fees before checkout to improve pricing transparency.
 
-6. **[Deposits For WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/deposits-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Deposits For WooCommerce")**
+= Documentation & Support =
 
-7. **[Custom Order Status for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/custom-order-status-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Custom Order Status for WooCommerce - Pro")**
+Need help getting started?
+* Visit the [WordPress support forums](https://wordpress.org/support/plugin/checkout-fees-for-woocommerce/)
+* Check the [documentation](https://www.tychesoftwares.com/docs/woocommerce-payment-gateway-based-fees-and-discounts/) for common answers
+* Try the [live demo](https://app.instawp.io/launch?d=v1&t=payment-gateway-based-fees-and-discounts-for-woocommerce) to see how the plugin works on the storefront.
 
-8. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/custom-order-numbers-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Custom Order Numbers for WooCommerce - Pro")**
+If the plugin helps your business, consider leaving a â­â­â­â­â­ review. Your feedback helps other WooCommerce merchants discover the plugin.
 
-9. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/product-input-fields-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Product Input Fields for WooCommerce - Pro")**
+= Looking for More Advanced Features? =
 
-10. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Call for Price for WooCommerce - Pro")**
+If you need more advanced pricing rules for different payment methods, the Pro version extends the Lite plugin with additional conditions and greater flexibility.
 
-11. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/price-user-role-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Price based on User Role for WooCommerce - Pro")**
+Upgrade to [Payment Gateway Based Fees and Discounts for WooCommerce Pro](https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/) to configure:
+* Per-product payment gateway fees and discounts
+* Customer country and state-based rules
+* Product category restrictions
+* Shipping method conditions
+* Card-based fees using issuing country, bank, or card network
+* Additional advanced fee calculation options
 
-12. **[Currency per Product for WooCommerce - Pro](https://www.tychesoftwares.com/store/premium-plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=WCPGBasedFees "Currency per Product for WooCommerce - Pro")**
+See the complete Lite vs Pro comparison: [https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/](https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/)
 
-### Some of our other free plugins
+= About Tyche Softwares =
+
+Payment Gateway Based Fees and Discounts for WooCommerce is developed and maintained by Tyche Softwares, creators of WooCommerce extensions since 2012.
+
+Our plugins help WooCommerce merchants manage pricing, deliveries, bookings, checkout customization, abandoned carts, and other day-to-day store operations. We actively maintain our plugins to keep them compatible with the latest versions of WooCommerce and WordPress.
+
+= Explore More WooCommerce Plugins =
+
+Tyche Softwares also develops plugins for abandoned cart recovery, order delivery scheduling, bookings, invoices and packing slips, custom order numbers, product input fields, BOGO offers, payment gateway fees, call for price, role-based pricing, currency management, and other WooCommerce enhancements.
+
+**Some of our Pro plugins:**
+
+1. **[Flexi BOGO for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Flexi BOGO for WooCommerce")**
+
+2. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-abandoned-cart-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Abandoned Cart Pro for WooCommerce")**
+
+3. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-booking-and-appointment-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Booking & Appointment Plugin for WooCommerce")**
+
+4. **[Order Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-order-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Order Delivery Date Pro for WooCommerce")**
+
+5. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-product-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Product Delivery Date Pro for WooCommerce")**
+
+6. **[Deposits For WooCommerce](https://www.tychesoftwares.com/products/woocommerce-deposit-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Deposits For WooCommerce")**
+
+7. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-custom-order-numbers-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Custom Order Numbers for WooCommerce - Pro")**
+
+8. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-product-input-fields-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Product Input Fields for WooCommerce - Pro")**
+
+9. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Call for Price for WooCommerce - Pro")**
+
+10. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-price-user-role-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Price based on User Role for WooCommerce - Pro")**
+
+11. **[Currency per Product for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-currency-per-product-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Currency per Product for WooCommerce - Pro")**
+
+**Some of our other free plugins:**
 
 1. **[Abandoned Cart for WooCommerce](https://wordpress.org/plugins/woocommerce-abandoned-cart/ "Abandoned Cart for WooCommerce")**
 
@@ -74,22 +132,17 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 
 3. **[Product Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/product-delivery-date-for-woocommerce-lite/ "Product Delivery Date for WooCommerce")**
 
-4. **[WooCommerce Print Invoice & Delivery Note](https://wordpress.org/plugins/woocommerce-delivery-notes/ "WooCommerce Print Invoice & Delivery Note")**
+4. **[Custom Order Status for WooCommerce](https://wordpress.org/plugins/custom-order-statuses-woocommerce/ "Custom Order Status for WooCommerce")**
 
-5. **[Custom Order Status for WooCommerce](https://wordpress.org/plugins/custom-order-statuses-woocommerce/ "Custom Order Status for WooCommerce")**
+5. **[Custom Order Numbers for WooCommerce](https://wordpress.org/plugins/custom-order-numbers-for-woocommerce/ "Custom Order Numbers for WooCommerce")**
 
-6. **[Custom Order Numbers for WooCommerce](https://wordpress.org/plugins/custom-order-numbers-for-woocommerce/ "Custom Order Numbers for WooCommerce")**
+6. **[Product Input Fields for WooCommerce](https://wordpress.org/plugins/product-input-fields-for-woocommerce/ "Product Input Fields for WooCommerce")**
 
-7. **[Product Input Fields for WooCommerce](https://wordpress.org/plugins/product-input-fields-for-woocommerce/ "Product Input Fields for WooCommerce")**
+7. **[Call for Price for WooCommerce](https://wordpress.org/plugins/woocommerce-call-for-price/ "Call for Price for WooCommerce")**
 
-8. **[Call for Price for WooCommerce](https://wordpress.org/plugins/woocommerce-call-for-price/ "Call for Price for WooCommerce")**
+8. **[Price based on User Role for WooCommerce](https://wordpress.org/plugins/price-by-user-role-for-woocommerce/ "Price based on User Role for WooCommerce")**
 
-9. **[Price based on User Role for WooCommerce](https://wordpress.org/plugins/price-by-user-role-for-woocommerce/ "Price based on User Role for WooCommerce")**
-
-10. **[Currency per Product for WooCommerce](https://wordpress.org/plugins/currency-per-product-for-woocommerce/ "Currency per Product for WooCommerce")**
-
-= Feedback =
-* We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
+9. **[Currency per Product for WooCommerce](https://wordpress.org/plugins/currency-per-product-for-woocommerce/ "Currency per Product for WooCommerce")**
 
 == Installation ==
 
@@ -97,19 +150,66 @@ Plugin requires **minimum setup**: after enabling the fee/discount for selected 
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Go to "WooCommerce > Settings > Payment Gateway Based Fees and Discounts".
 
+== Frequently Asked Questions ==
+
+= How do I add a Cash on Delivery (COD) fee in WooCommerce? =
+
+Enable a fee for the Cash on Delivery payment gateway and configure it as either a fixed amount or a percentage. The fee is automatically added to the order total when customers select the Cash on Delivery payment method during checkout.
+
+= Can I offer a discount for Direct Bank Transfer (BACS)? =
+
+Yes. You can configure a discount for the Direct Bank Transfer (BACS) payment gateway to encourage customers to use a lower-cost payment method.
+
+= Can I add both fixed and percentage-based fees? =
+
+Yes. The plugin supports both fixed amount and percentage-based fees and discounts, allowing you to choose the pricing method that best suits your business.
+
+= Can I limit when payment gateway fees are applied? =
+
+Yes. You can configure minimum and maximum cart amounts, as well as minimum and maximum fee values, to control when gateway fees or discounts are applied.
+
+= Does the plugin work with third-party payment gateways? =
+
+Yes. In addition to the standard WooCommerce payment gateways, the plugin also works with payment gateways added by other WooCommerce extensions.
+
+= Can I customize how the fee is displayed to customers? =
+
+Yes. You can set a custom title for each payment gateway fee or discount, making it easier for customers to understand any additional charges or savings during checkout.
+
+= Can I apply taxes to payment gateway fees? =
+
+Yes. The plugin lets you configure tax settings for payment gateway fees and discounts, along with rounding options to match your store's pricing requirements.
+
+= Can I display payment gateway fee information before checkout? =
+
+Yes. The Lite version lets you display payment gateway fee or discount information on the product page, helping customers understand any additional charges or savings before they reach checkout.
+
+= When should I upgrade to the Pro version? =
+
+The Lite version is suitable if you want to apply payment gateway fees or discounts across your WooCommerce store.
+
+Consider upgrading to the Pro version if you need additional conditions such as:
+* Per-product payment gateway fees and discounts
+* Rules based on customer country or state
+* Product category-specific rules
+* Shipping method-based conditions
+* Card-specific fees based on issuing bank, network, or country
+
+For a complete feature comparison, see the Lite vs Pro comparison page.
+
 == External Services ==
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
 
 = 3.2.0 - 07/07/2026 =
-* New – React-based admin interface for General, Payment Gateways, Global Extra Fee, and Info pages.
-* Dev – Introduced a REST API layer (pgbf-pro/v1) for plugin settings operations.
-* Dev – Consolidated settings storage from individual alg_gateways_fees_* and alg_woocommerce_checkout_fees_* options into pgbf_pro_settings and pgbf_pro_gateway_settings JSON objects.
-* Dev – Consolidated product fee meta keys into _pgbf_pro_product_fees JSON meta key.
-* Fix – Fixed payment gateway fees not being applied or changed when the Pay for order page is visited in incognito mode.
-* Update – Compatibility with WordPress 7.0.
-* Update – Compatibility with WooCommerce 10.9.3.
+* New â€“ React-based admin interface for General, Payment Gateways, Global Extra Fee, and Info pages.
+* Dev â€“ Introduced a REST API layer (pgbf-pro/v1) for plugin settings operations.
+* Dev â€“ Consolidated settings storage from individual alg_gateways_fees_* and alg_woocommerce_checkout_fees_* options into pgbf_pro_settings and pgbf_pro_gateway_settings JSON objects.
+* Dev â€“ Consolidated product fee meta keys into _pgbf_pro_product_fees JSON meta key.
+* Fix â€“ Fixed payment gateway fees not being applied or changed when the Pay for order page is visited in incognito mode.
+* Update â€“ Compatibility with WordPress 7.0.
+* Update â€“ Compatibility with WooCommerce 10.9.3.
 
 = 3.1.0 - 02/06/2026 =
 * Fix - Payment gateway fees are now correctly calculated on the deposit amount when using WooCommerce Deposits.
@@ -153,15 +253,15 @@ This plugin communicates with our tracking server to send usage data **only** if
 
 = 2.13.0 - 09/06/2024 =
 * Fix - Added a nonce check for Cross-Site Request Forgery (CSRF) vulnerability on the reset button
-* Fix – Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks
+* Fix â€“ Payment Gateway fees did not update when the payment gateway was changed on WooCommerce Cart/Checkout blocks
 * Fix - The maximum fee value option was not working as expected.
 * Fix - A fatal error was shown when activating the 'WooCommerce Table Rate Shipping' plugin with our PGBF lite plugin.
 
 = 2.12.2 - 01/04/2024 =
-* Fix – Cross Site Request Forgery (CSRF) vulnerability.
+* Fix â€“ Cross Site Request Forgery (CSRF) vulnerability.
 
 = 2.12.1 - 21/03/2024 =
-* Fix – Cross Site Request Forgery (CSRF) vulnerability.
+* Fix â€“ Cross Site Request Forgery (CSRF) vulnerability.
 
 = 2.12.0 - 27/02/2024 =
 * Fix - The payment gateway fees are added twice when Woo Discount Rules plugins are activated.
@@ -195,9 +295,9 @@ This plugin communicates with our tracking server to send usage data **only** if
 = 2.10.0 - 20/06/2023 =
 * Fix - Compatibility with "zipMoney(Zip Co) Payments Plugin for WooCommerce" plugin.
 * Fix - Compatibility with "iyzico WooCommerce" plugin.
-* Fix - Compatibility with the "Bykea.Cash � Online Payments" plugin.
+* Fix - Compatibility with the "Bykea.Cash ï¿½ Online Payments" plugin.
 * Fix - Compatibility with "ECPay" plugin.
-* Fix - Compatibility with "bSecure � Your Universal Checkout" plugin.
+* Fix - Compatibility with "bSecure ï¿½ Your Universal Checkout" plugin.
 * Fix - Made some changes to solve the conflict with Germanized for WooCommerce plugin.
 * Fix - Incorrect fees amount when the fees is set in negative value and tax is enabled.
 * Fix - Not possible to select the Payment Gateway on the checkout page when our plugin is activated.
