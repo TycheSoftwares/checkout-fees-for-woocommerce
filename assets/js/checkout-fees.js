@@ -11,6 +11,59 @@ jQuery(($) => {
     referrerArr = orderPayReferrer.split('/');
   }
 
+  // Stripe Optimized Checkout Suite (OCS) / UPE compatibility.
+  let pgfLastStripeApmType = null;
+  function pgfGetSelectedStripeApmType() {
+    const $hiddenField = $('#wc_stripe_selected_upe_payment_type');
+    if ($hiddenField.length && $hiddenField.val()) {
+      return $hiddenField.val();
+    }
+    return null;
+  }
+  function pgfEnsureApmHiddenField() {
+    let $field = $('input[name="stripe_apm_type"]');
+    if ($field.length === 0) {
+      const $form = $('form.checkout, form#order_review').first();
+      $field = $('<input>', { type: 'hidden', name: 'stripe_apm_type', value: '' });
+      $form.append($field);
+    }
+    return $field;
+  }
+  function pgfMaybeTriggerFeeUpdate() {
+    if (!$('input[name="payment_method"][value="stripe"]').is(':checked')) {
+      pgfLastStripeApmType = null;
+      return;
+    }
+    const currentType = pgfGetSelectedStripeApmType();
+    if (currentType && currentType !== pgfLastStripeApmType) {
+      pgfLastStripeApmType = currentType;
+      window.pgfSelectedStripeApmType = currentType;
+      pgfEnsureApmHiddenField().val(currentType);
+
+      const onOrderPay = !!(typeof pgf_checkout_order_id !== 'undefined' && pgf_checkout_order_id.order_id);
+      if (onOrderPay) {
+        triggerUpdateFees();
+      } else {
+        $(document.body).trigger('update_checkout');
+      }
+    }
+  }
+  new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'value' &&
+          mutation.target && mutation.target.id === 'wc_stripe_selected_upe_payment_type') {
+        pgfMaybeTriggerFeeUpdate();
+        break;
+      }
+    }
+  }).observe(document.body, {
+    attributes: true,
+    attributeFilter: ['value'],
+    subtree: true
+  });
+  setInterval(pgfMaybeTriggerFeeUpdate, 800);
+
+
   jQuery(($) => {
     function isSquareActive() {
       return (
@@ -44,7 +97,6 @@ jQuery(($) => {
     }
   });
 
-
   function triggerUpdateFees(defaultPaymentMethod = null) {
     const order_id = (pgf_checkout_order_id.order_id) ? pgf_checkout_order_id.order_id : referrerArr[3];
 
@@ -67,7 +119,8 @@ jQuery(($) => {
       payment_method_title: paymentMethodTitle,
       order_id: order_id,
       order_key: pgf_checkout_order_id.order_key || '',
-      security: pgf_checkout_params.update_payment_method_nonce
+      security: pgf_checkout_params.update_payment_method_nonce,
+      stripe_apm_type: ('stripe' === paymentMethod) ? (window.pgfSelectedStripeApmType || '') : ''
     };
 
     // We need to set the payment method blank because when second time when it comes here on changing the payment method it should take that changed value and not the payment method present in the order.
