@@ -6,6 +6,7 @@
  */
 
 namespace TycheSoftwares\PaymentGatewayFees\Lite;
+use WC_Tax;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
