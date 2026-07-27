@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use TycheSoftwares\PaymentGatewayFees\Lite\Settings;
 use TycheSoftwares\PaymentGatewayFees\Lite\Product_Fees_Helper;
+use WC_Tax;
 
 /**
  * Display fee info on single product pages.
