@@ -159,7 +159,7 @@ function General( { noticeOperations, noticeUI } ) {
                 path   : '/wp/v2/settings',
                 method : 'POST',
                 data   : {
-                    pgbf_pro_allow_tracking : '',
+                    pgbf_lite_allow_tracking : '',
                     ts_tracker_last_send    : '',
                 },
             } );
