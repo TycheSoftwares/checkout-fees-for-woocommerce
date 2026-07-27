@@ -152,6 +152,24 @@ class Checkout_Fees {
 			}
 
 			add_action( 'woocommerce_checkout_update_order_meta', array( &$this, 'add_order_meta_fees' ), 11 );
+
+			// Stripe Optimized Checkout Suite (OCS) / UPE compatibility: capture.
+			add_action( 'woocommerce_checkout_update_order_review', array( $this, 'capture_stripe_apm_type_from_update_checkout' ) );
+		}
+	}
+
+	/**
+	 * Capture stripe_apm_type posted alongside WooCommerce's native
+	 * update_checkout AJAX request and persist it to the session, so
+	 * get_current_gateway() can resolve the correct Stripe sub-gateway
+	 * (e.g. "stripe_alipay") even on the normal checkout page.
+	 *
+	 * @param string $post_data Serialized query string posted by update_checkout.
+	 */
+	public function capture_stripe_apm_type_from_update_checkout( $post_data ) {
+		parse_str( $post_data, $posted );
+		if ( ! empty( $posted['stripe_apm_type'] ) && WC()->session ) {
+			WC()->session->set( 'pgbf_stripe_apm_type', sanitize_text_field( wp_unslash( $posted['stripe_apm_type'] ) ) );
 		}
 	}
 
@@ -353,6 +371,12 @@ class Checkout_Fees {
 			return;
 		}
 
+		$order_id_data = array(
+			'order_id'       => '',
+			'payment_method' => '',
+			'order_key'      => '',
+		);
+
 		if ( is_wc_endpoint_url( 'order-pay' ) ) {
 			if ( isset( $wp->query_vars['order-pay'] ) && absint( $wp->query_vars['order-pay'] ) > 0 ) {
 				$order_id       = absint( $wp->query_vars['order-pay'] );
@@ -375,20 +399,17 @@ class Checkout_Fees {
 				}
 
 				if ( '' !== get_query_var( 'order-pay' ) ) {
-					wp_localize_script(
-						'alg-payment-gateways-checkout',
-						'pgf_checkout_order_id',
-						array(
-							'order_id'       => get_query_var( 'order-pay' ),
-							'payment_method' => $payment_method,
-							'order_key'      => $order_key,
-						)
+					$order_id_data = array(
+						'order_id'       => get_query_var( 'order-pay' ),
+						'payment_method' => $payment_method,
+						'order_key'      => $order_key,
 					);
 				}
 			}
 		}
 
 		wp_enqueue_script( 'alg-payment-gateways-checkout' );
+		wp_localize_script( 'alg-payment-gateways-checkout', 'pgf_checkout_order_id', $order_id_data );
 		wp_localize_script(
 			'alg-payment-gateways-checkout',
 			'pgf_checkout_params',
@@ -411,9 +432,38 @@ class Checkout_Fees {
 				$current_gateway = ( isset( $this->last_known_current_gateway ) ? $this->last_known_current_gateway : get_option( 'woocommerce_default_gateway', '' ) );
 			}
 		}
+		if ( 'stripe' === $current_gateway ) {
+			$current_gateway = $this->resolve_stripe_apm_gateway( $current_gateway );
+		}
 		$current_gateway                  = apply_filters( 'alg_wc_checkout_current_gateway', $current_gateway );
 		$this->last_known_current_gateway = $current_gateway;
 		return $current_gateway;
+	}
+
+	/**
+	 * Resolve the real Stripe sub-gateway ID (card, alipay, ideal, ...) when
+	 * Stripe's Optimized Checkout Suite / UPE has consolidated every payment
+	 * method under the single "stripe" gateway.
+	 *
+	 * @param string $default_gateway The generic gateway ID ("stripe") to fall back to.
+	 * @return string
+	 */
+	public function resolve_stripe_apm_gateway( $default_gateway ) {
+		$apm_type = '';
+
+		if ( ! empty( $_REQUEST['stripe_apm_type'] ) ) { // phpcs:ignore
+			$apm_type = sanitize_text_field( wp_unslash( $_REQUEST['stripe_apm_type'] ) ); // phpcs:ignore
+			if ( WC()->session ) {
+				WC()->session->set( 'pgbf_stripe_apm_type', $apm_type );
+			}
+		} elseif ( WC()->session ) {
+			$apm_type = WC()->session->get( 'pgbf_stripe_apm_type', '' );
+		}
+		if ( '' === $apm_type || 'card' === $apm_type ) {
+			return $default_gateway;
+		}
+		$resolved_gateway = 'stripe_' . $apm_type;
+		return apply_filters( 'pgbf_stripe_apm_gateway_id', $resolved_gateway, $apm_type );
 	}
 
 	/**

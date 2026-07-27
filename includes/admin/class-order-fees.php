@@ -170,10 +170,10 @@ class Checkout_Order_Fees {
 			$add_fees = apply_filters( 'alg_wc_add_gateways_fees', true, $order );
 			$this->remove_fees( $order );
 		}
-		if ( $add_fees ) {
-			$this->add_gateways_fees( $order, $payment_method );
 
-			// Update payment method record in the database.
+		if ( $add_fees ) {
+			$fee_matching_gateway = ( 'stripe' === $payment_method ) ? pgbf_lite()->core->resolve_stripe_apm_gateway( $payment_method ) : $payment_method;
+			$this->add_gateways_fees( $order, $fee_matching_gateway );
 			$order->set_payment_method( $payment_method );
 			$order->set_payment_method_title( $payment_method_title );
 			$order->save();
