@@ -11,6 +11,17 @@ jQuery(($) => {
     referrerArr = orderPayReferrer.split('/');
   }
 
+  if ($('.woocommerce-order-pay').length > 0 && typeof pgf_checkout_order_id !== 'undefined' && pgf_checkout_order_id.payment_method) {
+    const savedGateway = pgf_checkout_order_id.payment_method;
+    const $savedRadio = $(`input[name="payment_method"][value="${savedGateway}"]`);
+    if ($savedRadio.length && !$savedRadio.is(':checked')) {
+      $savedRadio.prop('checked', true);
+      $(`.payment_method_${savedGateway}`).show();
+      $(`div.payment_box:not(".payment_method_${savedGateway}")`).hide();
+    }
+  }
+  let pgfUserHasInteracted = false;
+
   // Stripe Optimized Checkout Suite (OCS) / UPE compatibility.
   let pgfLastStripeApmType = null;
   function pgfGetSelectedStripeApmType() {
@@ -42,6 +53,7 @@ jQuery(($) => {
 
       const onOrderPay = !!(typeof pgf_checkout_order_id !== 'undefined' && pgf_checkout_order_id.order_id);
       if (onOrderPay) {
+        pgfUserHasInteracted = true;
         triggerUpdateFees();
       } else {
         $(document.body).trigger('update_checkout');
@@ -63,6 +75,9 @@ jQuery(($) => {
   });
   setInterval(pgfMaybeTriggerFeeUpdate, 800);
 
+  if ($('.woocommerce-order-pay').length > 0 && typeof pgf_checkout_order_id !== 'undefined' && pgf_checkout_order_id.order_id) {
+    triggerUpdateFees();
+  }
 
   jQuery(($) => {
     function isSquareActive() {
@@ -70,6 +85,7 @@ jQuery(($) => {
         $('input[name="payment_method"][value="square_credit_card"]').length > 0 || $('input[name="payment_method"][value="square_ach_payment"]').length > 0
       );
     }
+
     if (isSquareActive()) {
       // Square plugin active → run your ACH reload logic.
       document.addEventListener('change', function(e) {
@@ -92,6 +108,7 @@ jQuery(($) => {
     } else {
       // Existing trigger on payment method click
       $('form#order_review').on('click', 'input[name="payment_method"]', function() {
+        pgfUserHasInteracted = true;
         triggerUpdateFees();
       });
     }
@@ -108,9 +125,8 @@ jQuery(($) => {
     // Get Payment Title and strip out all html tags.
     let paymentMethodTitle = $(`label[for="payment_method_${paymentMethod}"]`).text().replace(/[\t\n]+/g, '').trim();
 
-    // On visiting Pay for order page, take the payment method and payment title which are present in the order.
-    if ('' !== pgf_checkout_order_id.payment_method) {
-      paymentMethod = pgf_checkout_order_id.payment_method;
+    if ( !pgfUserHasInteracted && '' !== pgf_checkout_order_id.payment_method ) {
+      paymentMethod      = pgf_checkout_order_id.payment_method;
       paymentMethodTitle = $(`label[for="payment_method_${paymentMethod}"]`).text().replace(/[\t\n]+/g, '').trim();
     }
 
@@ -151,12 +167,6 @@ jQuery(($) => {
     $(document.body).trigger('update_checkout');
   });
 
-  $('body').on('payment_method_selected', () => {
-    if ($('.woocommerce-order-pay').length === 0) {
-      const methodSelected = $('input[name="payment_method"]:checked').val();
-      $('input[name="payment_method"]').val(`${methodSelected}`).trigger('change');
-    }
-  });
 });
 
 // Credit card fields from WooCommerce Square plugin where duplicated multiple times.
