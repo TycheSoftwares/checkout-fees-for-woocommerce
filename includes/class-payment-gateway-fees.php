@@ -30,7 +30,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public $version = '3.2.0';
+	public $version = '3.2.1';
 
 	/**
 	 * Core fee calculation object.

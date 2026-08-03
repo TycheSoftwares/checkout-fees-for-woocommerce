@@ -1,5 +1,11 @@
 *** Payment Gateway Based Fees and Discounts for WooCommerce ***
 
+2026-08-03 - version 3.2.1
+* Fix - Fatal error "WC_Tax not found" occurs when tax is enabled for a payment gateway and the "Info on Single Product Page" option is enabled.
+* Fix - Reset Tracking notice is not displayed after resetting the tracking settings.
+* Fix - Credit card payment gateway fees are not removed when another gateway from the same Stripe plugin is selected on the classic checkout page while Optimized Checkout is enabled.
+* Fix - Incorrect payment method is displayed on the Pay for Order page after placing an order using the Stripe Credit Card gateway.
+
 2026-07-07 - version 3.2.0
 * New – React-based admin interface for General, Payment Gateways, Global Extra Fee, and Info pages.
 * Dev – Introduced a REST API layer (pgbf-pro/v1) for plugin settings operations.
