@@ -436,6 +436,7 @@ class Checkout_Fees {
 			$current_gateway = $this->resolve_stripe_apm_gateway( $current_gateway );
 		}
 		$current_gateway                  = apply_filters( 'alg_wc_checkout_current_gateway', $current_gateway );
+		$current_gateway                  = sanitize_key( $current_gateway );
 		$this->last_known_current_gateway = $current_gateway;
 		return $current_gateway;
 	}
