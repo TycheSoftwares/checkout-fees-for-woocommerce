@@ -1,5 +1,9 @@
 *** Payment Gateway Based Fees and Discounts for WooCommerce ***
 
+2026-09-10 - version 3.3.0
+* Fix - Fatal error on the product page when the [alg_show_checkout_fees_full_info] shortcode is added to a product's description and changes are made via the REST API.
+* Fix - Product-based fees not applying due to unsanitized payment gateway ID when using third-party payment gateways.
+
 2026-08-03 - version 3.2.1
 * Fix - Fatal error "WC_Tax not found" occurs when tax is enabled for a payment gateway and the "Info on Single Product Page" option is enabled.
 * Fix - Reset Tracking notice is not displayed after resetting the tracking settings.

@@ -3,8 +3,8 @@ Contributors: tychesoftwares
 Donate link: https://www.paypal.me/TycheSoftwares
 Tags: woocommerce, payment, gateway, fee, discount
 Requires at least: 4.4
-Tested up to: 7.0.2
-Stable tag: 3.2.1
+Tested up to: 7.1
+Stable tag: 3.3.0
 Requires PHP: 7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,9 +13,7 @@ Set fees and discounts for WooCommerce payment gateways.
 
 == Description ==
 
-Many WooCommerce stores charge different payment methods differently. For example, you might want to add a small handling fee for Cash on Delivery orders, encourage customers to pay by bank transfer with a discount, or recover the transaction fees charged by payment providers.
-
-Payment Gateway-Based Fees and Discounts for WooCommerce lets you automatically add a fixed amount or percentage-based fee or offer a discount based on the payment method your customer selects during checkout. It works with WooCommerce's built-in payment gateways, such as Cash on Delivery, Direct Bank Transfer (BACS), and third-party payment gateways such as PayPal, added by other WooCommerce extensions.
+**[Payment Gateway-Based Fees and Discounts for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=prolink2&utm_campaign=WCPGBasedFees)** lets you automatically add a fixed amount or percentage-based fee or offer a discount based on the payment method your customer selects during checkout. It works with WooCommerce's built-in payment gateways, such as Cash on Delivery, Direct Bank Transfer (BACS), and third-party payment gateways such as PayPal, added by other WooCommerce extensions.
 
 = Key Features =
 
@@ -80,7 +78,7 @@ If the plugin helps your business, consider leaving a ⭐⭐⭐⭐⭐ review. Yo
 
 If you need more advanced pricing rules for different payment methods, the Pro version extends the Lite plugin with additional conditions and greater flexibility.
 
-Upgrade to [Payment Gateway Based Fees and Discounts for WooCommerce Pro](https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/) to configure:
+Upgrade to [Payment Gateway Based Fees and Discounts for WooCommerce Pro](https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF) to configure:
 * Per-product payment gateway fees and discounts
 * Customer country and state-based rules
 * Product category restrictions
@@ -88,7 +86,7 @@ Upgrade to [Payment Gateway Based Fees and Discounts for WooCommerce Pro](https:
 * Card-based fees using issuing country, bank, or card network
 * Additional advanced fee calculation options
 
-See the complete Lite vs Pro comparison: [https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/](https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/)
+See the complete Lite vs Pro comparison: [https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/](https://www.tychesoftwares.com/differences-between-pro-and-lite-versions-of-payment-gateway-based-fees-and-discounts-for-woocommerce-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF)
 
 = About Tyche Softwares =
 
@@ -102,47 +100,47 @@ Tyche Softwares also develops plugins for abandoned cart recovery, order deliver
 
 **Some of our Pro plugins:**
 
-1. **[Flexi BOGO for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Flexi BOGO for WooCommerce")**
+1. **[Flexi BOGO for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-flexi-bogo-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=FlexiBOGO "Flexi BOGO for WooCommerce")**
 
-2. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-abandoned-cart-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Abandoned Cart Pro for WooCommerce")**
+2. **[Abandoned Cart Pro for WooCommerce](https://www.tychesoftwares.com/store/premium-plugins/woocommerce-abandoned-cart-pro/?utm_source=wprepo&utm_medium=link&utm_campaign=AbandonedCartLite "Abandoned Cart Pro for WooCommerce")**
 
-3. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-booking-and-appointment-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Booking & Appointment Plugin for WooCommerce")**
+3. **[Booking & Appointment Plugin for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-booking-and-appointment-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=BookingAppointmentLite "Booking & Appointment Plugin for WooCommerce")**
 
-4. **[Order Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-order-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Order Delivery Date Pro for WooCommerce")**
+4. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-product-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=ProductDeliveryDateLite "Product Delivery Date Pro for WooCommerce")**
 
-5. **[Product Delivery Date Pro for WooCommerce](https://www.tychesoftwares.com/products/woocommerce-product-delivery-date-pro-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Product Delivery Date Pro for WooCommerce")**
+5. **[Deposits For WooCommerce](https://www.tychesoftwares.com/products/woocommerce-deposit-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=DepositsLite "Deposits For WooCommerce")**
 
-6. **[Deposits For WooCommerce](https://www.tychesoftwares.com/products/woocommerce-deposit-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Deposits For WooCommerce")**
+6. **[Payment Gateway Based Fees and Discounts for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-payment-gateway-based-fees-and-discounts-plugin/?utm_source=wprepo&utm_medium=prolink2&utm_campaign=WCPGBasedFees "Payment Gateway Based Fees and Discounts for WooCommerce - Pro")**
 
-7. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-custom-order-numbers-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Custom Order Numbers for WooCommerce - Pro")**
+7. **[Custom Order Numbers for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-custom-order-numbers-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=CustomNumbers "Custom Order Numbers for WooCommerce - Pro")**
 
-8. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-product-input-fields-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Product Input Fields for WooCommerce - Pro")**
+8. **[Product Input Fields for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-product-input-fields-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=ProductInputFields "Product Input Fields for WooCommerce - Pro")**
 
-9. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Call for Price for WooCommerce - Pro")**
+9. **[Call for Price for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-call-for-price-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CallForPrice "Call for Price for WooCommerce - Pro")**
 
-10. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-price-user-role-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Price based on User Role for WooCommerce - Pro")**
+10. **[Currency per Product for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-currency-per-product-plugin/?utm_source=wprepo&utm_medium=topprolink&utm_campaign=CurrencyProductLite "Currency per Product for WooCommerce - Pro")**
 
-11. **[Currency per Product for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-currency-per-product-plugin/?utm_source=wprepo&utm_medium=link&utm_campaign=WCDeliveryNotes "Currency per Product for WooCommerce - Pro")**
+11. **[Price based on User Role for WooCommerce - Pro](https://www.tychesoftwares.com/products/woocommerce-price-user-role-plugin/?utm_source=wprepo&utm_medium=prolink&utm_campaign=ProductPricesByUserRoles "Price based on User Role for WooCommerce - Pro")**
 
 **Some of our other free plugins:**
 
-1. **[Abandoned Cart for WooCommerce](https://wordpress.org/plugins/woocommerce-abandoned-cart/ "Abandoned Cart for WooCommerce")**
+1. **[Abandoned Cart for WooCommerce](https://wordpress.org/plugins/woocommerce-abandoned-cart/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Abandoned Cart for WooCommerce")**
 
-2. **[Order Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/order-delivery-date-for-woocommerce/ "Order Delivery Date for WooCommerce - Lite")**
+2. **[Order Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/order-delivery-date-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Order Delivery Date for WooCommerce - Lite")**
 
-3. **[Product Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/product-delivery-date-for-woocommerce-lite/ "Product Delivery Date for WooCommerce")**
+3. **[Product Delivery Date for WooCommerce - Lite](https://wordpress.org/plugins/product-delivery-date-for-woocommerce-lite/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Product Delivery Date for WooCommerce")**
 
-4. **[Custom Order Status for WooCommerce](https://wordpress.org/plugins/custom-order-statuses-woocommerce/ "Custom Order Status for WooCommerce")**
+4. **[Custom Order Status for WooCommerce](https://wordpress.org/plugins/custom-order-statuses-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Custom Order Status for WooCommerce")**
 
-5. **[Custom Order Numbers for WooCommerce](https://wordpress.org/plugins/custom-order-numbers-for-woocommerce/ "Custom Order Numbers for WooCommerce")**
+5. **[Custom Order Numbers for WooCommerce](https://wordpress.org/plugins/custom-order-numbers-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Custom Order Numbers for WooCommerce")**
 
-6. **[Product Input Fields for WooCommerce](https://wordpress.org/plugins/product-input-fields-for-woocommerce/ "Product Input Fields for WooCommerce")**
+6. **[Product Input Fields for WooCommerce](https://wordpress.org/plugins/product-input-fields-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Product Input Fields for WooCommerce")**
 
-7. **[Call for Price for WooCommerce](https://wordpress.org/plugins/woocommerce-call-for-price/ "Call for Price for WooCommerce")**
+7. **[Call for Price for WooCommerce](https://wordpress.org/plugins/woocommerce-call-for-price/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Call for Price for WooCommerce")**
 
-8. **[Price based on User Role for WooCommerce](https://wordpress.org/plugins/price-by-user-role-for-woocommerce/ "Price based on User Role for WooCommerce")**
+8. **[Price based on User Role for WooCommerce](https://wordpress.org/plugins/price-by-user-role-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Price based on User Role for WooCommerce")**
 
-9. **[Currency per Product for WooCommerce](https://wordpress.org/plugins/currency-per-product-for-woocommerce/ "Currency per Product for WooCommerce")**
+9. **[Currency per Product for WooCommerce](https://wordpress.org/plugins/currency-per-product-for-woocommerce/?utm_source=wprepo&utm_medium=link&utm_campaign=PGBF "Currency per Product for WooCommerce")**
 
 == Installation ==
 
@@ -201,6 +199,10 @@ For a complete feature comparison, see the Lite vs Pro comparison page.
 This plugin communicates with our tracking server to send usage data **only** if the user has explicitly opted in to usage tracking. For detailed information about what is tracked, please refer to our [usage tracking documentation](https://www.tychesoftwares.com/docs/payment-gateway-based-fees-and-discounts-for-woocommerce/usage-trackings-payment-gateways/).
 
 == Changelog ==
+
+= 3.3.0 - 10/09/2026 =
+* Fix - Fatal error on the product page when the [alg_show_checkout_fees_full_info] shortcode is added to a product's description and changes are made via the REST API.
+* Fix - Product-based fees not applying due to unsanitized payment gateway ID when using third-party payment gateways.
 
 = 3.2.1 - 03/08/2026 =
 * Fix - Fatal error "WC_Tax not found" occurs when tax is enabled for a payment gateway and the "Info on Single Product Page" option is enabled.
