@@ -148,6 +148,11 @@ class Checkout_Order_Fees {
 			wp_send_json_error( 'Order not found' );
 		}
 
+		$block_paid_order_edit = apply_filters( 'pgbf_block_fee_update_on_paid_order', true, $order );
+		if ( $block_paid_order_edit && ! $order->needs_payment() ) {
+			wp_send_json_error( 'This order has already been paid and can no longer be modified.' );
+		}
+
 		$current_user_id = get_current_user_id();
 		$order_user_id   = (int) $order->get_user_id();
 
