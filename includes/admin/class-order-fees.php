@@ -467,7 +467,8 @@ class Checkout_Order_Fees {
 						if ( ! $is_info_only && 'global' === $args['fee_scope'] ) {
 							$total_in_cart = $this->get_sum_for_fee_by_included_and_excluded_cats( $order, $total_in_cart, 'fee_1', $args['current_gateway'] );
 						}
-						if ( ( 'local' === $args['fee_scope'] || $core->check_countries( $args['current_gateway'], 'fee_1' ) ) ) {
+						if ( ( 'local' === $args['fee_scope'] || $core->check_countries( $args['current_gateway'], 'fee_1' ) ) &&
+							( $is_info_only || $this->do_apply_fees_by_coupons( $order, $args['coupons_rule'] ) ) ) {
 							$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_1', $order );
 						}
 					}
@@ -477,7 +478,8 @@ class Checkout_Order_Fees {
 						if ( ! $is_info_only && 'global' === $args['fee_scope'] ) {
 							$total_in_cart = $this->get_sum_for_fee_by_included_and_excluded_cats( $order, $total_in_cart, 'fee_2', $args['current_gateway'] );
 						}
-						if ( ( 'local' === $args['fee_scope'] || $core->check_countries( $args['current_gateway'], 'fee_2' ) ) ) {
+						if ( ( 'local' === $args['fee_scope'] || $core->check_countries( $args['current_gateway'], 'fee_2' ) ) &&
+							( $is_info_only || $this->do_apply_fees_by_coupons( $order, $args['coupons_rule_2'] ) ) ) {
 							$final_fee_to_add = $this->calculate_the_fee( $args, $final_fee_to_add, $total_in_cart, 'fee_2', $order );
 						}
 					}
@@ -749,6 +751,24 @@ class Checkout_Order_Fees {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Apply fees by coupons rule.
+	 *
+	 * @param string $coupon_rule Coupon rule.
+	 * @return bool
+	 */
+	public function do_apply_fees_by_coupons( $order, $coupon_rule ) {
+		$has_coupons = ( $order instanceof \WC_Order ) && count( $order->get_coupon_codes() ) > 0;
+		switch ( $coupon_rule ) {
+			case 'only_if_no_coupons':
+				return ! $has_coupons;
+			case 'only_if_coupons':
+				return $has_coupons;
+			default:
+				return true;
+		}
 	}
 
 	/**
