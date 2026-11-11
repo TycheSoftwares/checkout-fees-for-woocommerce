@@ -75,6 +75,23 @@ jQuery(($) => {
   });
   setInterval(pgfMaybeTriggerFeeUpdate, 800);
 
+  // Stripe optimize chekcout Payment Token change detection.
+  let pgfLastSavedToken = $('input[name="wc-stripe-payment-token"]:checked').val() || null;
+  $(document.body).on('change', 'input[name="wc-stripe-payment-token"]', function (e) {
+    if (!e.originalEvent) {
+      return;
+    }
+    const val = $(this).val();
+    if (val === pgfLastSavedToken) {
+      return;
+    }
+    pgfLastSavedToken = val;
+    $('input[name="stripe_apm_type"]').val('');
+    if ($('.woocommerce-order-pay').length === 0) {
+      $(document.body).trigger('update_checkout');
+    }
+  });
+
   if ($('.woocommerce-order-pay').length > 0 && typeof pgf_checkout_order_id !== 'undefined' && pgf_checkout_order_id.order_id) {
     triggerUpdateFees();
   }
