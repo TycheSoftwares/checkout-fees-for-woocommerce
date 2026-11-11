@@ -168,7 +168,38 @@ class Checkout_Fees {
 	 */
 	public function capture_stripe_apm_type_from_update_checkout( $post_data ) {
 		parse_str( $post_data, $posted );
-		if ( ! empty( $posted['stripe_apm_type'] ) && WC()->session ) {
+		if ( ! WC()->session ) {
+			return;
+		}
+		// Saved Stripe token (card / bank) selected: derive the type from the token.
+		if ( isset( $posted['wc-stripe-payment-token'] ) ) {
+			$token_id = $posted['wc-stripe-payment-token'];
+			if ( '' !== $token_id && 'new' !== $token_id ) {
+				$token = \WC_Payment_Tokens::get( absint( $token_id ) );
+				if ( $token && (int) $token->get_user_id() === get_current_user_id() ) {
+					$type  = strtolower( $token->get_type() );
+					$class = strtolower( get_class( $token ) );
+					$apm   = 'card';
+					if (
+						false !== strpos( $type, 'ach' ) || false !== strpos( $type, 'echeck' ) || false !== strpos( $type, 'bank' ) ||
+						false !== strpos( $class, 'ach' ) || false !== strpos( $class, 'echeck' ) || false !== strpos( $class, 'bank' )
+					) {
+						$apm = 'us_bank_account';
+					} elseif ( false !== strpos( $type, 'sepa' ) || false !== strpos( $class, 'sepa' ) ) {
+						$apm = 'sepa_debit';
+					}
+					WC()->session->set( 'pgbf_stripe_apm_type', $apm );
+					// Override stale hidden field value from a previously selected new method.
+					$_REQUEST['stripe_apm_type'] = $apm;
+					$_POST['stripe_apm_type']    = $apm;
+					return;
+				}
+			} elseif ( empty( $posted['stripe_apm_type'] ) ) {
+				WC()->session->set( 'pgbf_stripe_apm_type', '' );
+				return;
+			}
+		}
+		if ( ! empty( $posted['stripe_apm_type'] ) ) {
 			WC()->session->set( 'pgbf_stripe_apm_type', sanitize_text_field( wp_unslash( $posted['stripe_apm_type'] ) ) );
 		}
 	}
