@@ -473,6 +473,37 @@ class Checkout_Fees {
 	}
 
 	/**
+	 * Resolve APM type from a saved Stripe token ID.
+	 *
+	 * @param string $token_id Token ID.
+	 * @return string APM type or empty string if not resolvable.
+	 */
+	private function get_apm_type_from_token( $token_id ) {
+		if ( '' === $token_id || 'new' === $token_id ) {
+			return '';
+		}
+		$token = \WC_Payment_Tokens::get( absint( $token_id ) );
+		if ( ! $token || (int) $token->get_user_id() !== get_current_user_id() ) {
+			return '';
+		}
+		$type  = strtolower( $token->get_type() );
+		$class = strtolower( get_class( $token ) );
+		if (
+			false !== strpos( $type, 'ach' ) || false !== strpos( $type, 'echeck' ) || false !== strpos( $type, 'bank' ) ||
+			false !== strpos( $class, 'ach' ) || false !== strpos( $class, 'echeck' ) || false !== strpos( $class, 'bank' )
+		) {
+			return 'us_bank_account';
+		}
+		if ( false !== strpos( $type, 'sepa' ) || false !== strpos( $class, 'sepa' ) ) {
+			return 'sepa_debit';
+		}
+		if ( 'cc' === $type || false !== strpos( $class, '_cc' ) ) {
+			return 'card';
+		}
+		return '';
+	}
+
+	/**
 	 * Resolve the real Stripe sub-gateway ID (card, alipay, ideal, ...) when
 	 * Stripe's Optimized Checkout Suite / UPE has consolidated every payment
 	 * method under the single "stripe" gateway.
@@ -483,7 +514,14 @@ class Checkout_Fees {
 	public function resolve_stripe_apm_gateway( $default_gateway ) {
 		$apm_type = '';
 
-		if ( ! empty( $_REQUEST['stripe_apm_type'] ) ) { // phpcs:ignore
+		$token_id  = ! empty( $_REQUEST['wc-stripe-payment-token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wc-stripe-payment-token'] ) ) : ''; // phpcs:ignore
+		$token_apm = $this->get_apm_type_from_token( $token_id );
+		if ( '' !== $token_apm ) {
+			$apm_type = $token_apm;
+			if ( WC()->session ) {
+				WC()->session->set( 'pgbf_stripe_apm_type', $apm_type );
+			}
+		} elseif ( ! empty( $_REQUEST['stripe_apm_type'] ) ) { // phpcs:ignore
 			$apm_type = sanitize_text_field( wp_unslash( $_REQUEST['stripe_apm_type'] ) ); // phpcs:ignore
 			if ( WC()->session ) {
 				WC()->session->set( 'pgbf_stripe_apm_type', $apm_type );
