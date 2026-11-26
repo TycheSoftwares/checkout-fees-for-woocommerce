@@ -47,6 +47,8 @@ jQuery(($) => {
     }
     const currentType = pgfGetSelectedStripeApmType();
     if (currentType && currentType !== pgfLastStripeApmType) {
+      const isInitialValue = null === pgfLastStripeApmType;
+
       pgfLastStripeApmType = currentType;
       window.pgfSelectedStripeApmType = currentType;
       pgfEnsureApmHiddenField().val(currentType);
@@ -55,7 +57,7 @@ jQuery(($) => {
       if (onOrderPay) {
         pgfUserHasInteracted = true;
         triggerUpdateFees();
-      } else {
+      } else if (!isInitialValue) {
         $(document.body).trigger('update_checkout');
       }
     }
