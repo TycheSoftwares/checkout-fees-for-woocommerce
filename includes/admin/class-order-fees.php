@@ -333,6 +333,8 @@ class Checkout_Order_Fees {
 				wc_add_order_item_meta( $item_id, '_last_added_fee', $item->get_name() );
 			}
 		}
+		$order->calculate_totals();
+		$order->save();
 	}
 
 	/**
