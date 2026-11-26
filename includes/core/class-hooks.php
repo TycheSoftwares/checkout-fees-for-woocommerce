@@ -1186,9 +1186,9 @@ class Checkout_Fees {
 					'</small>';
 			}
 		}
-		$cart_fee_html = str_replace( '-', '', $cart_fee_html );
 		if ( 0 > $fees->amount ) {
-			$cart_fee_html = '-' . rtrim( $cart_fee_html );
+			$cart_fee_html = preg_replace( '/>\s*(?:-|&minus;|−)/u', '>', $cart_fee_html, 1 );
+			$cart_fee_html = '-' . ltrim( rtrim( $cart_fee_html ) );
 		}
 		return $cart_fee_html;
 	}
